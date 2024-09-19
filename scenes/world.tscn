@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://73a8pjvvssy8"]
+[gd_scene load_steps=8 format=3 uid="uid://73a8pjvvssy8"]
 
 [ext_resource type="Script" path="res://scenes/character_body_3d.gd" id="1_078vk"]
 
@@ -15,6 +15,9 @@ sky = SubResource("Sky_uq3wj")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fiw5i"]
+albedo_color = Color(1, 0.643137, 0.364706, 1)
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ija0w"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wypw5"]
@@ -30,6 +33,7 @@ shadow_enabled = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.549952, 0)
+material_override = SubResource("StandardMaterial3D_fiw5i")
 use_collision = true
 size = Vector3(22.68, 0.115, 23.76)
 

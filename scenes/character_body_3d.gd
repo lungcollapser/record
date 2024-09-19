@@ -49,13 +49,14 @@ func _physics_process(delta: float) -> void:
 # Head Bob
 
 	t_bob += delta * velocity.length() * float(is_on_floor())
-	camera.transform_origin = headbob(t_bob)
+	camera.transform.origin = _headbob(t_bob)
 	
 	move_and_slide()
 	
 	
-func headbob(time) -> Vector3:
+func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
 	pos.y = sin(time * BOB_FREQ) * BOB_AMP
+	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	return pos
 	
