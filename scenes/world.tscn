@@ -31,7 +31,7 @@ shadow_enabled = true
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.549952, 0)
 use_collision = true
-size = Vector3(10.85, 0.115, 12.115)
+size = Vector3(22.68, 0.115, 23.76)
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 script = ExtResource("1_078vk")
@@ -48,3 +48,18 @@ shape = SubResource("CapsuleShape3D_wypw5")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8199, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Head"]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(0.999624, 0.0274275, -0.000553932, -0.0274331, 0.99942, -0.0201845, 0, 0.0201921, 0.999796, 5.07856, 1.74985, 6.78358)
+use_collision = true
+size = Vector3(2.02, 2.125, 3.155)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.87032, 6.8715)
+use_collision = true
+size = Vector3(4.04, 0.155, 4.5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.37398, 1.48059, 6.94685)
+use_collision = true
+size = Vector3(4.04, 0.155, 4.5)
