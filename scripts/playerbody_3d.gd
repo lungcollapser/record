@@ -1,10 +1,12 @@
 extends CharacterBody3D
 
-var speed = 4.5
-const WALK_SPEED = 4.5
-const SPRINT_SPEED = 30.0
+var speed = 0
+var max_endurace = 100
+const WALK_SPEED = 2.0
+const JOG_SPEED = 5.0
+const SPRINT_SPEED = 7.0
 const JUMP_VELOCITY = 4.5
-const SENSITIVTY = 0.02
+const SENSITIVTY = 0.01
 
 # Headbob variables
 const BOB_FREQ = 2.0
@@ -31,10 +33,13 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		
+	#Add walking and sprinting
 	if Input.is_action_pressed("sprint"):
 		speed = SPRINT_SPEED
+	elif Input.is_action_pressed("walk"):
+		speed = WALK_SPEED
 	else:
-		speed = speed
+		speed = JOG_SPEED
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
@@ -44,14 +49,20 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
 	var direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
-	else:
-		velocity.x = 0.0
-		velocity.z = 0.0
+	#Allows the character to move and adds intertia using lerp.
+	if is_on_floor():
+		if direction:
+			velocity.x = direction.x * speed
+			velocity.z = direction.z * speed
+		else:
+			velocity.x = lerp(velocity.x, direction.x * speed, delta * 6.0)
+			velocity.z = lerp(velocity.z, direction.z * speed, delta * 6.0)
 
-	
+	else:
+		velocity.x = lerp(velocity.x, direction.x * speed, delta * 2.5)
+		velocity.z = lerp(velocity.z, direction.z * speed, delta * 2.5)
+		
+		
 # Head Bob
 
 	t_bob += delta * velocity.length() * float(is_on_floor())
@@ -66,3 +77,6 @@ func _headbob(time) -> Vector3:
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	return pos
 	
+func update_stamina(delta):
+	if Input.is_action_pressed("sprint"):
+		max_endurace -= 1 * delta
