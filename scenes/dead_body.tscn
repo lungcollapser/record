@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfqnnebvepiiw"]
+
+[ext_resource type="Script" path="res://scenes/deadbody_3d.gd" id="1_mijl4"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4whc4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yak6a"]
+
+[node name="deadbody" type="Node3D"]
+
+[node name="deadbody3d" type="CharacterBody3D" parent="."]
+transform = Transform3D(0.735, 0, 0, 0, 0.735, 0, 0, 0, 0.735, 0, 0, 0)
+script = ExtResource("1_mijl4")
+
+[node name="deadbodymesh" type="MeshInstance3D" parent="deadbody3d"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_4whc4")
+
+[node name="deadbodyshape" type="CollisionShape3D" parent="deadbody3d"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_yak6a")
