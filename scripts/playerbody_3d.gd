@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 var speed = 0
-var max_endurace = 100
+var max_endurance = 100
 const WALK_SPEED = 2.0
 const JOG_SPEED = 5.0
 const SPRINT_SPEED = 7.0
@@ -17,8 +17,10 @@ var t_bob = 0.0
 @onready var camera = $Head/Camera3D
 
 
+
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	events.connect("stamina_bar", Callable(self, "lose_stamina"))
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -29,6 +31,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -77,6 +81,11 @@ func _headbob(time) -> Vector3:
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	return pos
 	
-func update_stamina(delta):
+func lose_stamina(delta):
 	if Input.is_action_pressed("sprint"):
-		max_endurace -= 1 * delta
+		max_endurance -= 1 * delta
+		print(max_endurance)
+	else:
+		max_endurance += 0.5 * delta
+		print(max_endurance)
+	

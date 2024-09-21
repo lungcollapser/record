@@ -15,5 +15,5 @@ mouse_filter = 1
 layout_mode = 2
 offset_right = 312.0
 offset_bottom = 27.0
-value = 99.0
+value = 100.0
 script = ExtResource("1_sow0b")
