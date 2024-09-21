@@ -18,9 +18,9 @@ var t_bob = 0.0
 
 
 
-func _ready() -> void:
+func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	events.connect("stamina_bar", Callable(self, "lose_stamina"))
+	
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -31,6 +31,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	
+	if Input.is_action_pressed("sprint"):
+		max_endurance -= 1
+		StaminaBar.value = max_endurance
+		print(StaminaBar.value)
 
 	
 	# Add the gravity.
@@ -81,11 +86,5 @@ func _headbob(time) -> Vector3:
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	return pos
 	
-func lose_stamina(delta):
-	if Input.is_action_pressed("sprint"):
-		max_endurance -= 1 * delta
-		print(max_endurance)
-	else:
-		max_endurance += 0.5 * delta
-		print(max_endurance)
+
 	

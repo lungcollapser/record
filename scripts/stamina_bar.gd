@@ -1,10 +1,11 @@
 extends ProgressBar
 
-@onready var player_stamina = $playerbody3d
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
 
 
-func update_stamina(delta):
-	if player_stamina.max_endurance <= 100:
-		value += 1 * delta
-	
-	
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass

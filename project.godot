@@ -15,10 +15,9 @@ run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
-[display]
+[autoload]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+StaminaBar="*res://scripts/stamina_bar.gd"
 
 [input]
 

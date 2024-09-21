@@ -1,19 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://dneiubatn42no"]
+[gd_scene load_steps=2 format=3 uid="uid://cmdngdxi7vls"]
 
 [ext_resource type="Script" path="res://scripts/stamina_bar.gd" id="1_sow0b"]
 
-[node name="playerui" type="Control"]
+[node name="PlayerUI" type="Control"]
 layout_mode = 3
-anchors_preset = 15
+anchor_left = 0.055
+anchor_top = 0.048
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -65.36
+offset_top = -29.104
+offset_right = -2.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+mouse_filter = 2
 
 [node name="StaminaBar" type="ProgressBar" parent="."]
-layout_mode = 2
-offset_right = 312.0
-offset_bottom = 27.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.216
+anchor_bottom = 0.184
+offset_left = -25.0
+offset_top = 2.0
+offset_right = -126.832
+offset_bottom = -90.232
 value = 100.0
 script = ExtResource("1_sow0b")

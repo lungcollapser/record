@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c81a8r0lsdkx2" path="res://scenes/player_character.tscn" id="1_aivjb"]
 [ext_resource type="PackedScene" uid="uid://cfqnnebvepiiw" path="res://scenes/dead_body.tscn" id="2_cjb3p"]
-[ext_resource type="PackedScene" uid="uid://dneiubatn42no" path="res://scenes/player_ui.tscn" id="3_d8ha6"]
+[ext_resource type="PackedScene" uid="uid://cmdngdxi7vls" path="res://scenes/player_ui.tscn" id="3_d8ha6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mekea"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -60,4 +60,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.89709, 3.18732, -2.18354)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="playerui" parent="CanvasLayer" instance=ExtResource("3_d8ha6")]
+[node name="PlayerUI" parent="CanvasLayer" instance=ExtResource("3_d8ha6")]
+anchor_left = 0.073
+offset_left = -0.0960083
