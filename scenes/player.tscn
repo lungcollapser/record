@@ -23,7 +23,7 @@ shape = SubResource("CapsuleShape3D_dd3nb")
 [node name="Camera3D" type="Camera3D" parent="Playerbody/Head"]
 
 [node name="Hold" type="Node3D" parent="Playerbody/Head/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.591259, -3.8821)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.272572, -1.74557)
 
 [node name="Pickup" type="RayCast3D" parent="Playerbody/Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0343571, 0)

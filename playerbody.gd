@@ -8,7 +8,7 @@ const SPRINT_SPEED = 7.0
 const JUMP_VELOCITY = 4.5
 const SENSITIVTY = 0.01
 var picked_up_object 
-var pull_power = 4
+var pull_power = 6
 
 # Headbob variables
 const BOB_FREQ = 2.0
@@ -35,6 +35,10 @@ func pick_up_object():
 	var collider = pick_up.get_collider()
 	if collider != null and collider is RigidBody3D:
 		picked_up_object = collider
+		
+func drop_object():
+	if picked_up_object != null:
+		picked_up_object = null
 
 
 func _physics_process(delta: float) -> void:
@@ -42,10 +46,16 @@ func _physics_process(delta: float) -> void:
 	if picked_up_object != null:
 		var a = picked_up_object.global_position
 		var b = hold.global_position
-		picked_up_object.set_linear_velocity((b-a))
+		picked_up_object.set_linear_velocity((b-a) * pull_power)
 	
-	if Input.is_action_pressed("interact"):
-		pick_up_object()
+	if Input.is_action_just_pressed("interact"):
+		if picked_up_object == null:
+			pick_up_object()
+		elif picked_up_object != null:
+			drop_object()
+	
+	#if Input.is_action_just_released("interact"):
+		#drop_object()
 	
 	
 	if Input.is_action_pressed("sprint"):
