@@ -7,6 +7,8 @@ const JOG_SPEED = 5.0
 const SPRINT_SPEED = 7.0
 const JUMP_VELOCITY = 4.5
 const SENSITIVTY = 0.01
+var picked_up_object = null
+var pull_power = 4
 
 # Headbob variables
 const BOB_FREQ = 2.0
@@ -15,7 +17,8 @@ var t_bob = 0.0
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
-
+@onready var pick_up = $Head/Camera3D/Pickup
+@onready var hold = $Head/Camera3D/Hold
 
 
 func _ready():
@@ -27,13 +30,22 @@ func _unhandled_input(event: InputEvent) -> void:
 		head.rotate_y(-event.relative.x * SENSITIVTY)
 		camera.rotate_x(-event.relative.y * SENSITIVTY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-50), deg_to_rad(60))
-		
+	
+func pick_up_object():
+	var collider = pick_up.get_collider()
+	if Input.is_action_pressed("interact"):
+		if picked_up_object == null:
+			picked_up_object = collider
+			
+		if picked_up_object != null:
+			picked_up_object.position = hold.global_position
 
 
 func _physics_process(delta: float) -> void:
 	
+	
 	if Input.is_action_pressed("sprint"):
-		max_endurance -= 1
+		max_endurance -= 0.5
 		StaminaBar.value = max_endurance
 		print(StaminaBar.value)
 
