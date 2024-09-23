@@ -20,6 +20,8 @@ var t_bob = 0.0
 @onready var camera = $Head/Camera3D
 @onready var pick_up = $Head/Camera3D/Pickup
 @onready var hold = $Head/Camera3D/Hold
+@onready var player_mesh = $PlayerMesh
+@onready var player_shape = $PlayerShape
 
 
 func _ready():
@@ -73,11 +75,12 @@ func _physics_process(delta: float) -> void:
 		endurance_check = false
 		
 	if Input.is_action_pressed("crouch"):
-		head.position.y = -0.3
+		player_mesh.position.y = 0.3
+		player_shape.position.y = 0.3
 		endurance_check = false
 	else:
-		head.position.y = 0
-	
+		player_mesh.position.y = 0
+		player_shape.position.y = 0
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
