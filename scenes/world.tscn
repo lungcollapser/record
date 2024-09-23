@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://73a8pjvvssy8"]
+[gd_scene load_steps=10 format=3 uid="uid://73a8pjvvssy8"]
 
 [ext_resource type="PackedScene" uid="uid://diuvg68njxngr" path="res://scenes/player.tscn" id="2_2w5k3"]
 [ext_resource type="PackedScene" uid="uid://cfqnnebvepiiw" path="res://scenes/dead_body.tscn" id="2_cjb3p"]
 [ext_resource type="PackedScene" uid="uid://cmdngdxi7vls" path="res://scenes/player_ui.tscn" id="3_d8ha6"]
+[ext_resource type="PackedScene" uid="uid://dgnqdygrkxgmt" path="res://scenes/black_garbage.tscn" id="4_xpk5t"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mekea"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -19,6 +20,9 @@ glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fiw5i"]
 albedo_color = Color(1, 0.643137, 0.364706, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7y1yk"]
+points = PackedVector3Array(0.192139, 0.312463, 0.0478066, -0.265009, 0.0920659, 0.0479925, -0.235959, 0.0786619, -0.00242419, -0.0712296, 0.526981, -0.0927017, 0.0489785, 0.0159188, -0.16403, 0.117814, 0.13374, 0.244436, -0.0695001, 0.464247, 0.191197, -0.181629, 0.0127903, 0.185516, -0.0189733, 0.371505, -0.196889, 0.160747, 0.00534381, -0.0543202, 0.135339, 0.432741, -0.097209, -0.19509, 0.437985, 0.156647, -0.146565, 0.0145208, -0.15643, 0.0728667, 0.487664, 0.147897, -0.169636, 0.337275, -0.128027, 0.0239123, 0.0143631, 0.218726, 0.177684, 0.0567695, -0.105521, 0.0617578, 0.55359, 0.00484564, -0.0526382, 0.118637, 0.241765, -0.0712296, 0.562534, -0.00400178, 0.141711, 0.168888, 0.233834, -0.204258, 0.169272, 0.190985, -0.186357, 0.420935, 0.00588629, 0.017413, 0.491539, -0.145922, -0.230286, 0.304052, 0.00570581, 0.148411, 0.429411, 0.0559964, 0.0814572, 0.270435, -0.161742, -0.044372, 0.00395098, 0.0912236, -0.00213853, 0.396574, 0.207805, 0.192058, 0.295588, 0.0731407, -0.00181079, 0.312708, -0.198549, -0.0357913, 0.195167, 0.239983)
 
 [node name="world" type="Node3D"]
 
@@ -58,5 +62,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.89709, 3.18732, -2.18354)
 [node name="Player" parent="." instance=ExtResource("2_2w5k3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.08207, 0)
 
-[node name="PlayerUI" parent="." instance=ExtResource("3_d8ha6")]
-unique_name_in_owner = true
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerUI" parent="CanvasLayer" instance=ExtResource("3_d8ha6")]
+
+[node name="blackgarbagebody" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 2.47302, 1.71268, 0)
+center_of_mass_mode = 1
+center_of_mass = Vector3(0.02, 0, 0)
+
+[node name="blackgarbagescene" parent="blackgarbagebody" instance=ExtResource("4_xpk5t")]
+
+[node name="blackgarbagecollision" type="CollisionShape3D" parent="blackgarbagebody"]
+shape = SubResource("ConvexPolygonShape3D_7y1yk")

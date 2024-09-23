@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://diuvg68njxngr"]
 
-[ext_resource type="Script" path="res://playerbody.gd" id="1_sxyqi"]
+[ext_resource type="Script" path="res://scripts/playerbody.gd" id="1_sxyqi"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_d0phb"]
 
@@ -12,19 +12,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.883297, 0)
 [node name="Playerbody" type="CharacterBody3D" parent="."]
 script = ExtResource("1_sxyqi")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Playerbody"]
+[node name="PlayerMesh" type="MeshInstance3D" parent="Playerbody"]
 mesh = SubResource("CapsuleMesh_d0phb")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Playerbody"]
+[node name="PlayerShape" type="CollisionShape3D" parent="Playerbody"]
 shape = SubResource("CapsuleShape3D_dd3nb")
 
 [node name="Head" type="Node3D" parent="Playerbody"]
 
 [node name="Camera3D" type="Camera3D" parent="Playerbody/Head"]
+fov = 90.0
 
 [node name="Hold" type="Node3D" parent="Playerbody/Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.272572, -1.74557)
 
 [node name="Pickup" type="RayCast3D" parent="Playerbody/Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0343571, 0)
-target_position = Vector3(0, -1, -5)
+target_position = Vector3(0, -1, -90)

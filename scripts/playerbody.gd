@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 var speed = 0
 var max_endurance = 100
+var endurance_check 
 const WALK_SPEED = 2.0
 const JOG_SPEED = 5.0
 const SPRINT_SPEED = 7.0
@@ -43,6 +44,10 @@ func drop_object():
 
 func _physics_process(delta: float) -> void:
 	
+	if Input.is_action_just_pressed("grind"):
+		picked_up_object.queue_free()
+		
+	
 	if picked_up_object != null:
 		var a = picked_up_object.global_position
 		var b = hold.global_position
@@ -53,23 +58,28 @@ func _physics_process(delta: float) -> void:
 			pick_up_object()
 		elif picked_up_object != null:
 			drop_object()
-	
-	#if Input.is_action_just_released("interact"):
-		#drop_object()
-	
-	
+			
 	if Input.is_action_pressed("sprint"):
 		max_endurance -= 0.5
 		StaminaBar.value = max_endurance
-		print(StaminaBar.value)
-
+		print(max_endurance)
+		
+	if max_endurance > 0:
+		endurance_check != null
+	else:
+		endurance_check = null
+		
+	if Input.is_action_just_pressed("crouch"):
+		head.position.y = -0.3
+	if Input.is_action_just_released("crouch"):
+		head.position.y = 0
 	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		
 	#Add walking and sprinting
-	if Input.is_action_pressed("sprint"):
+	if Input.is_action_just_pressed("sprint") and endurance_check != null:
 		speed = SPRINT_SPEED
 	elif Input.is_action_pressed("walk"):
 		speed = WALK_SPEED

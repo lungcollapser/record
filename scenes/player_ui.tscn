@@ -1,21 +1,26 @@
 [gd_scene load_steps=2 format=3 uid="uid://cmdngdxi7vls"]
 
-[ext_resource type="Script" path="res://scripts/stamina_bar.gd" id="1_sow0b"]
+[ext_resource type="Script" path="res://scenes/player_ui.gd" id="1_4vf7y"]
 
-[node name="PlayerUI" type="Control"]
-layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
+[node name="PlayerUI" type="Container"]
+anchors_preset = 15
 anchor_right = 1.0
-grow_horizontal = 0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 7.0
+offset_right = 25.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("1_4vf7y")
 
-[node name="StaminaBar" type="ProgressBar" parent="."]
-layout_mode = 0
-offset_left = -1120.0
-offset_top = 29.0
-offset_right = -765.0
-offset_bottom = 57.0
-scale = Vector2(0.75, 0.75)
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="StaminaBar" type="ProgressBar" parent="MarginContainer"]
+layout_mode = 2
 value = 100.0
-script = ExtResource("1_sow0b")
