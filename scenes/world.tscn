@@ -30,10 +30,11 @@ points = PackedVector3Array(0.192139, 0.312463, 0.0478066, -0.265009, 0.0920659,
 environment = SubResource("Environment_xmfbt")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 11.4696, 9.49988, -10.1854)
-light_color = Color(0.893508, 1, 0.944718, 1)
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 11.4696, 6.37092, -4.30529)
+light_color = Color(1, 1, 0.811765, 1)
 light_volumetric_fog_energy = 3.08
 shadow_enabled = true
+directional_shadow_split_1 = 0.0
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.549952, 0)
@@ -69,9 +70,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.08207, 0)
 [node name="blackgarbagebody" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 2.47302, 1.71268, 0)
 center_of_mass_mode = 1
-center_of_mass = Vector3(0, 0, 0.1)
+center_of_mass = Vector3(0, 0.2, 0.1)
+inertia = Vector3(0, 0.01, 0)
 
 [node name="blackgarbagescene" parent="blackgarbagebody" instance=ExtResource("4_xpk5t")]
 
 [node name="blackgarbagecollision" type="CollisionShape3D" parent="blackgarbagebody"]
+transform = Transform3D(1.44, 0, 0, 0, 1.44, 0, 0, 0, 1.44, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_7y1yk")
