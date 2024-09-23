@@ -44,7 +44,7 @@ func drop_object():
 
 func _physics_process(delta: float) -> void:
 	
-	if Input.is_action_just_pressed("grind"):
+	if Input.is_action_just_pressed("grind") and picked_up_object != null:
 		picked_up_object.queue_free()
 		
 	
@@ -59,22 +59,23 @@ func _physics_process(delta: float) -> void:
 		elif picked_up_object != null:
 			drop_object()
 			
-	if Input.is_action_pressed("sprint"):
-		max_endurance -= 0.3
+	if Input.is_action_pressed("sprint") and endurance_check == true:
+		max_endurance -= 0.5
 		StaminaBar.value = max_endurance
 		print(max_endurance)
 	if max_endurance < 100:
 		max_endurance += 0.1
 		print(max_endurance)
 		
-	if max_endurance >= 0:
+	if max_endurance > 0:
 		endurance_check = true
 	else:
 		endurance_check = false
 		
-	if Input.is_action_just_pressed("crouch"):
+	if Input.is_action_pressed("crouch"):
 		head.position.y = -0.3
-	if Input.is_action_just_released("crouch"):
+		endurance_check = false
+	else:
 		head.position.y = 0
 	
 	# Add the gravity.
