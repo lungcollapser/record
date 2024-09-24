@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://73a8pjvvssy8"]
+[gd_scene load_steps=12 format=3 uid="uid://73a8pjvvssy8"]
 
 [ext_resource type="PackedScene" uid="uid://diuvg68njxngr" path="res://scenes/player.tscn" id="2_2w5k3"]
 [ext_resource type="PackedScene" uid="uid://cfqnnebvepiiw" path="res://scenes/dead_body.tscn" id="2_cjb3p"]
 [ext_resource type="PackedScene" uid="uid://cmdngdxi7vls" path="res://scenes/player_ui.tscn" id="3_d8ha6"]
 [ext_resource type="PackedScene" uid="uid://dgnqdygrkxgmt" path="res://scenes/black_garbage.tscn" id="4_xpk5t"]
+[ext_resource type="PackedScene" uid="uid://bwm71j8eaavaa" path="res://assets/IndustrialBuilding.glb" id="5_p3int"]
+[ext_resource type="PackedScene" uid="uid://d1gs3iob5xhsj" path="res://assets/BrickBuilding.glb" id="6_ne6wm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mekea"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -71,7 +73,7 @@ size = Vector3(2.02, 2.125, 3.155)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.89709, 3.18732, -2.18354)
 
 [node name="Player" parent="." instance=ExtResource("2_2w5k3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.08207, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.74675, 31.0997, -2.78703)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -88,3 +90,9 @@ inertia = Vector3(0, 0.01, 0)
 [node name="blackgarbagecollision" type="CollisionShape3D" parent="blackgarbagebody"]
 transform = Transform3D(1.44, 0, 0, 0, 1.44, 0, 0, 0, 1.44, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_7y1yk")
+
+[node name="IndustrialBuilding" parent="." instance=ExtResource("5_p3int")]
+transform = Transform3D(-2.86, 0, -1.14304e-06, 0, 1.655, 0, 4.31848e-07, 0, -7.57, 0.0340561, 0.528534, -11.8439)
+
+[node name="BrickBuilding" parent="." instance=ExtResource("6_ne6wm")]
+transform = Transform3D(-1.29823e-07, 0, -1.625, 0, 1.655, 0, 2.97, 0, -7.1031e-08, -11.2823, 0.707, 0.065203)

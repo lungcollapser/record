@@ -107,7 +107,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = lerp(velocity.x, direction.x * speed, delta * 2.5)
 		velocity.z = lerp(velocity.z, direction.z * speed, delta * 2.5)
 	
-	if Input.is_action_pressed("sprint") and endurance_check == true and input_dir:
+	if Input.is_action_pressed("sprint") and endurance_check == true and input_dir and is_on_floor():
 		max_endurance -= 0.5
 		StaminaBar.value = max_endurance
 		print(max_endurance)
