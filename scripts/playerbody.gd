@@ -3,6 +3,7 @@ extends CharacterBody3D
 var speed = 0
 var max_endurance = clamp(100, 0, 100)
 var endurance_check 
+var player_health = clamp(100, 0, 100)
 const WALK_SPEED = 2.0
 const JOG_SPEED = 5.0
 const SPRINT_SPEED = 7.0
@@ -45,6 +46,7 @@ func drop_object():
 
 
 func _physics_process(delta: float) -> void:
+
 	
 	if Input.is_action_just_pressed("grind") and picked_up_object != null:
 		picked_up_object.queue_free()
@@ -60,14 +62,6 @@ func _physics_process(delta: float) -> void:
 			pick_up_object()
 		elif picked_up_object != null:
 			drop_object()
-			
-	if Input.is_action_pressed("sprint") and endurance_check == true:
-		max_endurance -= 0.5
-		StaminaBar.value = max_endurance
-		print(max_endurance)
-	if max_endurance < 100:
-		max_endurance += 0.1
-		print(max_endurance)
 		
 	if max_endurance > 0:
 		endurance_check = true
@@ -75,8 +69,8 @@ func _physics_process(delta: float) -> void:
 		endurance_check = false
 		
 	if Input.is_action_pressed("crouch"):
-		player_mesh.position.y = 0.3
-		player_shape.position.y = 0.3
+		player_mesh.position.y = 0.2
+		player_shape.position.y = 0.2
 		endurance_check = false
 	else:
 		player_mesh.position.y = 0
@@ -92,7 +86,6 @@ func _physics_process(delta: float) -> void:
 		speed = WALK_SPEED
 	else:
 		speed = JOG_SPEED
-
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -113,7 +106,15 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = lerp(velocity.x, direction.x * speed, delta * 2.5)
 		velocity.z = lerp(velocity.z, direction.z * speed, delta * 2.5)
-		
+	
+	if Input.is_action_pressed("sprint") and endurance_check == true and input_dir:
+		max_endurance -= 0.5
+		StaminaBar.value = max_endurance
+		print(max_endurance)
+	if max_endurance < 100:
+		await get_tree().create_timer(5)
+		max_endurance += 0.1
+		print(max_endurance)
 		
 # Head Bob
 
