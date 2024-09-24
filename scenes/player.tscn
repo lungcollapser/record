@@ -16,6 +16,7 @@ script = ExtResource("1_sxyqi")
 mesh = SubResource("CapsuleMesh_d0phb")
 
 [node name="PlayerShape" type="CollisionShape3D" parent="Playerbody"]
+transform = Transform3D(0.895, 0, 0, 0, 0.895, 0, 0, 0, 0.895, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_dd3nb")
 
 [node name="Head" type="Node3D" parent="Playerbody"]
@@ -24,7 +25,7 @@ shape = SubResource("CapsuleShape3D_dd3nb")
 fov = 90.0
 
 [node name="Hold" type="Node3D" parent="Playerbody/Head/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.272572, -1.74557)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.146398, -1.74557)
 
 [node name="Pickup" type="RayCast3D" parent="Playerbody/Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0343571, 0)

@@ -112,9 +112,10 @@ func _physics_process(delta: float) -> void:
 		StaminaBar.value = max_endurance
 		print(max_endurance)
 	if max_endurance < 100:
-		await get_tree().create_timer(5)
-		max_endurance += 0.1
+		max_endurance += 0.05
 		print(max_endurance)
+	if max_endurance < 100 and not input_dir:
+		max_endurance += 0.1
 		
 # Head Bob
 
