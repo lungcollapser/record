@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfqnnebvepiiw"]
+[gd_scene load_steps=6 format=3 uid="uid://cfqnnebvepiiw"]
+
+[ext_resource type="Script" path="res://dead_body.gd" id="1_lgvr2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_03anv"]
 friction = 0.45
@@ -10,9 +12,10 @@ albedo_color = Color(0.247059, 0, 0, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eh13d"]
 
-[node name="deadbody" type="RigidBody3D"]
+[node name="deadbody" type="RigidBody3D" groups=["Bussin"]]
 mass = 0.235
 physics_material_override = SubResource("PhysicsMaterial_03anv")
+script = ExtResource("1_lgvr2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.73, 0, 0, 0, -3.19093e-08, -0.73, 0, 0.73, -3.19093e-08, 0, 0, 0)
