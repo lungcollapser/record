@@ -24,3 +24,6 @@ size_flags_vertical = 3
 [node name="StaminaBar" type="ProgressBar" parent="MarginContainer"]
 layout_mode = 2
 value = 100.0
+
+[node name="BloodBar" type="ProgressBar" parent="MarginContainer"]
+layout_mode = 2
