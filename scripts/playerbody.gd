@@ -109,13 +109,13 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("sprint") and endurance_check == true and input_dir and is_on_floor():
 		max_endurance -= 0.5
-		StaminaBar.value = max_endurance
-		print(max_endurance)
+		PlayerUi.value = max_endurance
 	if max_endurance < 100:
 		max_endurance += 0.05
-		print(max_endurance)
+		PlayerUi.value = max_endurance
 	if max_endurance < 100 and not input_dir:
 		max_endurance += 0.1
+		PlayerUi.value = max_endurance
 		
 # Head Bob
 

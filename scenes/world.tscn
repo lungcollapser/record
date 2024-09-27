@@ -28,6 +28,10 @@ points = PackedVector3Array(0.192139, 0.312463, 0.0478066, -0.265009, 0.0920659,
 
 [node name="world" type="Node3D"]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="StaminaBar" parent="CanvasLayer" instance=ExtResource("3_d8ha6")]
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xmfbt")
 
@@ -74,10 +78,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.89709, 3.18732, -2.18354)
 
 [node name="Player" parent="." instance=ExtResource("2_2w5k3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.49026, 5.27431, -2.78703)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="PlayerUI" parent="CanvasLayer" instance=ExtResource("3_d8ha6")]
 
 [node name="blackgarbagebody" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 2.47302, 1.71268, 0)
