@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://73a8pjvvssy8"]
+[gd_scene load_steps=12 format=3 uid="uid://73a8pjvvssy8"]
 
 [ext_resource type="PackedScene" uid="uid://diuvg68njxngr" path="res://scenes/player.tscn" id="2_2w5k3"]
 [ext_resource type="PackedScene" uid="uid://cfqnnebvepiiw" path="res://scenes/dead_body.tscn" id="2_cjb3p"]
 [ext_resource type="PackedScene" uid="uid://cmdngdxi7vls" path="res://scenes/player_ui.tscn" id="3_d8ha6"]
 [ext_resource type="PackedScene" uid="uid://dgnqdygrkxgmt" path="res://scenes/black_garbage.tscn" id="4_xpk5t"]
 [ext_resource type="PackedScene" uid="uid://d3d15ygwkmrhp" path="res://scenes/human_recepticle.tscn" id="5_df1h8"]
+[ext_resource type="PackedScene" uid="uid://3p3672qqmgn3" path="res://scenes/dead_body_parts.tscn" id="6_oshrj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mekea"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -179,3 +180,6 @@ size = Vector3(1, 3, 1)
 
 [node name="HumanRecepticle" parent="." instance=ExtResource("5_df1h8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55163, 1.70771, -3.90963)
+
+[node name="deadbodyparts" parent="." instance=ExtResource("6_oshrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.93443, 1.01179, -0.0693083)

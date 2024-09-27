@@ -1,5 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://3p3672qqmgn3"]
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kdn71"]
+points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_y8qqu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_47c4c"]
@@ -11,34 +14,40 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_m5cmy"]
 points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kdn71"]
-points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
+[node name="deadbodyparts" type="Node3D" groups=["Bussin"]]
 
-[node name="deadbodyparts" type="RigidBody3D"]
+[node name="LeftArmBody" type="RigidBody3D" parent="."]
 
-[node name="RightArm" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.35, 0, 0, 0, -1.5299e-08, -0.35, 0, 0.35, -1.5299e-08, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_y8qqu")
-surface_material_override/0 = SubResource("StandardMaterial3D_47c4c")
+[node name="LeftArmShape" type="CollisionShape3D" parent="LeftArmBody"]
+transform = Transform3D(0.35, 0, 0, 0, -1.5299e-08, -0.35, 0, 0.35, -1.5299e-08, 1.35549, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_kdn71")
 
-[node name="LeftArm" type="MeshInstance3D" parent="."]
+[node name="LeftArm" type="MeshInstance3D" parent="LeftArmBody"]
 transform = Transform3D(0.35, 0, 0, 0, -1.5299e-08, -0.35, 0, 0.35, -1.5299e-08, 1.35549, 0, 0)
 mesh = SubResource("CapsuleMesh_y8qqu")
+skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_47c4c")
 
-[node name="LeftLeg" type="MeshInstance3D" parent="."]
+[node name="LeftLegBody" type="RigidBody3D" parent="."]
+
+[node name="LeftLeg" type="MeshInstance3D" parent="LeftLegBody"]
 transform = Transform3D(0.35, 0, 0, 0, -1.5299e-08, -0.35, 0, 0.35, -1.5299e-08, 0.656511, 0, 0)
 mesh = SubResource("CapsuleMesh_y8qqu")
+skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_47c4c")
 
-[node name="LeftLegShape" type="CollisionShape3D" parent="."]
+[node name="LeftLegShape" type="CollisionShape3D" parent="LeftLegBody"]
 transform = Transform3D(0.35, 0, 0, 0, -1.5299e-08, -0.35, 0, 0.35, -1.5299e-08, 0.656511, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_ekr8q")
 
-[node name="RightArmShape" type="CollisionShape3D" parent="."]
+[node name="RightArmBody" type="RigidBody3D" parent="."]
+
+[node name="RightArm" type="MeshInstance3D" parent="RightArmBody"]
+transform = Transform3D(0.35, 0, 0, 0, -1.5299e-08, -0.35, 0, 0.35, -1.5299e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_y8qqu")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_47c4c")
+
+[node name="RightArmShape" type="CollisionShape3D" parent="RightArmBody"]
 transform = Transform3D(0.35, 0, 0, 0, -1.5299e-08, -0.35, 0, 0.35, -1.5299e-08, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_m5cmy")
-
-[node name="LeftArmShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.35, 0, 0, 0, -1.5299e-08, -0.35, 0, 0.35, -1.5299e-08, 1.35549, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_kdn71")

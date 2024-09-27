@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d3d15ygwkmrhp"]
 
-[ext_resource type="Script" path="res://scenes/human_recepticle.gd" id="1_umbrk"]
+[ext_resource type="Script" path="res://scripts/human_recepticle.gd" id="1_umbrk"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_n11sv"]
 
