@@ -1,9 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://73a8pjvvssy8"]
+[gd_scene load_steps=11 format=3 uid="uid://73a8pjvvssy8"]
 
-[ext_resource type="PackedScene" uid="uid://j3pexiubo3c6" path="res://scenes/blood_bar.tscn" id="1_10cth"]
 [ext_resource type="PackedScene" uid="uid://diuvg68njxngr" path="res://scenes/player.tscn" id="2_2w5k3"]
 [ext_resource type="PackedScene" uid="uid://cfqnnebvepiiw" path="res://scenes/dead_body.tscn" id="2_cjb3p"]
-[ext_resource type="PackedScene" uid="uid://xt2cv5jt8wxb" path="res://scenes/stamina_bar.tscn" id="2_o25it"]
 [ext_resource type="PackedScene" uid="uid://dgnqdygrkxgmt" path="res://scenes/black_garbage.tscn" id="4_xpk5t"]
 [ext_resource type="PackedScene" uid="uid://d3d15ygwkmrhp" path="res://scenes/human_recepticle.tscn" id="5_df1h8"]
 [ext_resource type="PackedScene" uid="uid://3p3672qqmgn3" path="res://scenes/dead_body_parts.tscn" id="6_oshrj"]
@@ -30,16 +28,6 @@ points = PackedVector3Array(0.192139, 0.312463, 0.0478066, -0.265009, 0.0920659,
 [node name="world" type="Node3D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="BloodBar" parent="CanvasLayer" instance=ExtResource("1_10cth")]
-visible = false
-
-[node name="StaminaBar" parent="CanvasLayer" instance=ExtResource("2_o25it")]
-visible = false
-offset_left = 1.0
-offset_top = 42.0
-offset_right = -989.0
-offset_bottom = -576.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xmfbt")

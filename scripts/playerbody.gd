@@ -46,11 +46,8 @@ func drop_object():
 
 
 func _physics_process(delta: float) -> void:
-
-	
-	if Input.is_action_just_pressed("grind") and picked_up_object != null:
-		picked_up_object.queue_free()
-		
+	if Input.is_action_just_pressed("dismember"):
+		dismember_bodies()
 	
 	if picked_up_object != null:
 		var a = picked_up_object.global_position
@@ -131,5 +128,10 @@ func _headbob(time) -> Vector3:
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	return pos
 	
-
+func dismember_bodies():
+	var dismember_collider = pick_up.get_collider()
+	if dismember_collider != null:
+		DeadBodyParts.instantiate()
+		print("hello")
+	
 	

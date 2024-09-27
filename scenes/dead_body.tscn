@@ -12,7 +12,7 @@ albedo_color = Color(0.247059, 0, 0, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eh13d"]
 
-[node name="deadbody" type="RigidBody3D" groups=["Bussin"]]
+[node name="deadbody" type="RigidBody3D" groups=["Bussin", "Dismember"]]
 mass = 0.235
 physics_material_override = SubResource("PhysicsMaterial_03anv")
 script = ExtResource("1_lgvr2")
