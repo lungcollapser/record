@@ -19,7 +19,7 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 [node name="LeftArmBody" type="RigidBody3D" parent="." groups=["Bussin"]]
 
 [node name="LeftArmShape" type="CollisionShape3D" parent="LeftArmBody"]
-transform = Transform3D(0.35, 0, 0, 0, -1.5299e-08, -0.35, 0, 0.35, -1.5299e-08, 1.35549, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 1.35549, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_kdn71")
 
 [node name="LeftArm" type="MeshInstance3D" parent="LeftArmBody"]
@@ -37,7 +37,7 @@ skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_47c4c")
 
 [node name="LeftLegShape" type="CollisionShape3D" parent="LeftLegBody"]
-transform = Transform3D(0.35, 0, 0, 0, -1.5299e-08, -0.35, 0, 0.35, -1.5299e-08, 0.656511, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 0.656511, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_ekr8q")
 
 [node name="RightArmBody" type="RigidBody3D" parent="." groups=["Bussin"]]
@@ -49,5 +49,5 @@ skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_47c4c")
 
 [node name="RightArmShape" type="CollisionShape3D" parent="RightArmBody"]
-transform = Transform3D(0.35, 0, 0, 0, -1.5299e-08, -0.35, 0, 0.35, -1.5299e-08, 0, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_m5cmy")

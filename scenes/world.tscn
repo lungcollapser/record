@@ -74,6 +74,7 @@ size = Vector3(2.02, 2.125, 3.155)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.89709, 3.18732, -2.18354)
 
 [node name="Player" parent="." instance=ExtResource("2_2w5k3")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.49026, 5.27431, -2.78703)
 
 [node name="blackgarbagebody" type="RigidBody3D" parent="."]

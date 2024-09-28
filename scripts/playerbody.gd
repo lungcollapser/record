@@ -23,11 +23,11 @@ var t_bob = 0.0
 @onready var hold = $Head/Camera3D/Hold
 @onready var player_mesh = $PlayerMesh
 @onready var player_shape = $PlayerShape
+@onready var dead_body_parts = preload("res://scenes/dead_body_parts.tscn").instantiate()
 
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -46,8 +46,7 @@ func drop_object():
 
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("dismember"):
-		dismember_bodies()
+	dismember_bodies()
 	
 	if picked_up_object != null:
 		var a = picked_up_object.global_position
@@ -130,8 +129,7 @@ func _headbob(time) -> Vector3:
 	
 func dismember_bodies():
 	var dismember_collider = pick_up.get_collider()
-	if dismember_collider != null:
-		DeadBodyParts.instantiate()
-		print("hello")
-	
-	
+	if Input.is_action_pressed("dismember") and dismember_collider != null and is_in_group("Dismember"):
+		add_child(dead_body_parts)
+		dead_body_parts.position = Vector3(1, 3, 0)
+		print("hellow")
