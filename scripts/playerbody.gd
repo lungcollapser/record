@@ -50,10 +50,9 @@ func drop_object():
 func _physics_process(delta: float):
 	
 	var receptacle_collider = pick_up.get_collider()
-	if Input.is_action_just_pressed("stow") and receptacle_collider != null and receptacle_collider.is_in_group("stow"):
-		print("bitch")
+	if Input.is_action_just_pressed("dropreceptacle"):
 		get_parent().add_child(human_receptacle)
-		human_receptacle.global_position = human_receptacle.global_position
+		human_receptacle.global_position = hold.global_position
 	
 	var dismember_collider = pick_up.get_collider()
 	if Input.is_action_just_pressed("dismember") and dismember_collider != null and dismember_collider.is_in_group("Dismember"):

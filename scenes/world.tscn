@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://73a8pjvvssy8"]
+[gd_scene load_steps=10 format=3 uid="uid://73a8pjvvssy8"]
 
 [ext_resource type="PackedScene" uid="uid://diuvg68njxngr" path="res://scenes/player.tscn" id="2_2w5k3"]
 [ext_resource type="PackedScene" uid="uid://cfqnnebvepiiw" path="res://scenes/dead_body.tscn" id="2_cjb3p"]
-[ext_resource type="PackedScene" uid="uid://jyrhlvipedil" path="res://scenes/human_receptacle.tscn" id="4_wfb85"]
 [ext_resource type="PackedScene" uid="uid://dgnqdygrkxgmt" path="res://scenes/black_garbage.tscn" id="4_xpk5t"]
 [ext_resource type="PackedScene" uid="uid://3p3672qqmgn3" path="res://scenes/dead_body_parts.tscn" id="6_oshrj"]
 
@@ -247,9 +246,6 @@ size = Vector3(3.127, 4, 1.509)
 [node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.7356, 2.08453, 4.92977)
 size = Vector3(1, 3, 1)
-
-[node name="HumanReceptacle" parent="." instance=ExtResource("4_wfb85")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.74445, -4.09426)
 
 [node name="deadbodyparts" parent="." instance=ExtResource("6_oshrj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.93443, 1.01179, -0.0693083)
