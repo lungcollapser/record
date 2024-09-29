@@ -1,6 +1,6 @@
 extends RigidBody3D
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	replace_body()
 
 func replace_body():

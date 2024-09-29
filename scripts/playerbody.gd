@@ -51,9 +51,9 @@ func _physics_process(delta: float):
 	var dismember_collider = pick_up.get_collider()
 	if Input.is_action_just_pressed("dismember") and dismember_collider != null and dismember_collider.is_in_group("Dismember"):
 		get_parent().add_child(dead_body_parts)
-		dead_body_parts.global_position = hold.global_position
-		print("hellow")
-	
+		dead_body_parts.global_position = hold.global_position 
+		
+		
 	if picked_up_object != null:
 		var a = picked_up_object.global_position
 		var b = hold.global_position
