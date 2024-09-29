@@ -23,8 +23,9 @@ var t_bob = 0.0
 @onready var hold = $Head/Camera3D/Hold
 @onready var player_mesh = $PlayerMesh
 @onready var player_shape = $PlayerShape
-@onready var dead_body = preload("res://scenes/dead_body.tscn")
+@onready var receptacle_hold = $Head/Camera3D/ReceptacleHold
 @onready var dead_body_parts = preload("res://scenes/dead_body_parts.tscn").instantiate()
+@onready var human_receptacle = preload("res://scenes/human_receptacle.tscn").instantiate()
 
 
 func _ready():
@@ -47,6 +48,12 @@ func drop_object():
 
 
 func _physics_process(delta: float):
+	
+	var receptacle_collider = pick_up.get_collider()
+	if Input.is_action_just_pressed("stow") and receptacle_collider != null and receptacle_collider.is_in_group("stow"):
+		print("bitch")
+		get_parent().add_child(human_receptacle)
+		human_receptacle.global_position = human_receptacle.global_position
 	
 	var dismember_collider = pick_up.get_collider()
 	if Input.is_action_just_pressed("dismember") and dismember_collider != null and dismember_collider.is_in_group("Dismember"):

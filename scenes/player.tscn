@@ -9,7 +9,7 @@
 [node name="Player" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.883297, 0)
 
-[node name="Playerbody" type="CharacterBody3D" parent="." groups=["Dismember"]]
+[node name="Playerbody" type="CharacterBody3D" parent="." groups=["Dismember", "stow"]]
 script = ExtResource("1_sxyqi")
 
 [node name="PlayerMesh" type="MeshInstance3D" parent="Playerbody"]
@@ -22,10 +22,14 @@ shape = SubResource("CapsuleShape3D_dd3nb")
 [node name="Head" type="Node3D" parent="Playerbody"]
 
 [node name="Camera3D" type="Camera3D" parent="Playerbody/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.117949)
 fov = 90.0
 
 [node name="Hold" type="Node3D" parent="Playerbody/Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.146398, -1.74557)
+
+[node name="ReceptacleHold" type="Node3D" parent="Playerbody/Head/Camera3D" groups=["stow"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.701952, 0.81957)
 
 [node name="Pickup" type="RayCast3D" parent="Playerbody/Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0343571, 0)

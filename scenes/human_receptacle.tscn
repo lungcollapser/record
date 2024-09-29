@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3d15ygwkmrhp"]
+[gd_scene load_steps=5 format=3 uid="uid://jyrhlvipedil"]
 
-[ext_resource type="Script" path="res://scripts/human_recepticle.gd" id="1_umbrk"]
+[ext_resource type="Script" path="res://scripts/human_recepticle.gd" id="1_05dvp"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7i2cu"]
 size = Vector3(0.835, 0.835, 0.835)
@@ -11,19 +11,20 @@ albedo_color = Color(0.0518905, 0, 0.377873, 1)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_516cr"]
 points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
 
-[node name="HumanRecepticle" type="RigidBody3D" groups=["Bussin"]]
+[node name="HumanReceptacle" type="RigidBody3D" groups=["Bussin", "stow"]]
 disable_mode = 1
 mass = 7.675
 contact_monitor = true
 max_contacts_reported = 10
-script = ExtResource("1_umbrk")
+script = ExtResource("1_05dvp")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="HumanReceptacleMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_7i2cu")
 surface_material_override/0 = SubResource("StandardMaterial3D_8o8bw")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="HumanReceptacleShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.835, 0, 0, 0, 0.835, 0, 0, 0, 0.835, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_516cr")
 
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]
