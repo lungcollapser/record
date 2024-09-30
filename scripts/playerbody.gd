@@ -95,6 +95,8 @@ func _physics_process(delta: float):
 	else:
 		player_mesh.position.y = 0
 		player_shape.position.y = 0
+		
+		
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta

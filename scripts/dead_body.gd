@@ -6,3 +6,4 @@ func _process(_delta: float) -> void:
 func replace_body():
 	if Input.is_action_pressed("dismember"):
 		visible = false
+		collision_mask = 3
