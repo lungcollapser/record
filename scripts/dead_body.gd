@@ -5,4 +5,4 @@ func _process(_delta: float) -> void:
 
 func replace_body():
 	if Input.is_action_pressed("dismember"):
-		queue_free()
+		visible = false

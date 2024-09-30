@@ -72,6 +72,12 @@ size = Vector3(2.02, 2.125, 3.155)
 [node name="deadbody" parent="." instance=ExtResource("2_cjb3p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.89709, 3.18732, -2.18354)
 
+[node name="deadbody2" parent="." instance=ExtResource("2_cjb3p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.89709, 3.18732, -5.82045)
+
+[node name="deadbody3" parent="." instance=ExtResource("2_cjb3p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2653, 3.18732, -5.82045)
+
 [node name="Player" parent="." instance=ExtResource("2_2w5k3")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.89694, 2.73184, -2.78703)

@@ -23,7 +23,6 @@ var t_bob = 0.0
 @onready var hold = $Head/Camera3D/Hold
 @onready var player_mesh = $PlayerMesh
 @onready var player_shape = $PlayerShape
-@onready var receptacle_hold = $Head/Camera3D/ReceptacleHold
 @onready var dead_body_parts = preload("res://scenes/dead_body_parts.tscn").instantiate()
 @onready var human_receptacle = preload("res://scenes/human_receptacle.tscn").instantiate()
 
@@ -50,14 +49,22 @@ func drop_object():
 func _physics_process(delta: float):
 	
 	var receptacle_collider = pick_up.get_collider()
-	if Input.is_action_just_pressed("dropreceptacle"):
+	if Input.is_action_just_pressed("dropreceptacle"): 
 		get_parent().add_child(human_receptacle)
 		human_receptacle.global_position = hold.global_position
+		
+	if Input.is_action_just_pressed("stow") and receptacle_collider != null and receptacle_collider.is_in_group("stow"):
+		human_receptacle.set_collision_mask(2)
+		human_receptacle.visible = false
+	if Input.is_action_just_pressed("dropreceptacle"):
+		human_receptacle.set_collision_mask(1)
+		human_receptacle.visible = true
 	
 	var dismember_collider = pick_up.get_collider()
 	if Input.is_action_just_pressed("dismember") and dismember_collider != null and dismember_collider.is_in_group("Dismember"):
 		get_parent().add_child(dead_body_parts)
 		dead_body_parts.global_position = hold.global_position 
+		
 		
 		
 	if picked_up_object != null:
@@ -70,7 +77,12 @@ func _physics_process(delta: float):
 			pick_up_object()
 		elif picked_up_object != null:
 			drop_object()
-		
+	
+	if picked_up_object == human_receptacle:
+		pull_power = 2
+	if picked_up_object == dead_body_parts:
+		pull_power = 8
+
 	if max_endurance > 0:
 		endurance_check = true
 	else:
