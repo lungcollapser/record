@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cin7xys5d5odj"]
+[gd_scene load_steps=5 format=3 uid="uid://cin7xys5d5odj"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_c05o7"]
 
@@ -8,8 +8,6 @@
 albedo_color = Color(0, 0.313726, 0.109804, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wf8db"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_54bp7"]
 
 [node name="Enemy" type="CharacterBody3D"]
 script = ExtResource("1_c05o7")
@@ -23,13 +21,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_q760l")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43266, 0)
 shape = SubResource("CapsuleShape3D_wf8db")
 
-[node name="DetectionArea" type="Area3D" parent="."]
-transform = Transform3D(6.02, 0, 0, 0, 6.02, 0, 0, 0, 6.02, 0, -1.05178, 0)
-
-[node name="DetectionShape" type="CollisionShape3D" parent="DetectionArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44306, 0)
-shape = SubResource("SphereShape3D_54bp7")
-
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-
-[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+path_height_offset = 0.5
