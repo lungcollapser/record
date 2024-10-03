@@ -1,26 +1,25 @@
 extends CharacterBody3D
 
-const enemy_speed = 3
+const enemy_speed = 0.1
 var enemy_health = 100
 var player
 @export var player_path : NodePath
 @onready var nav_agent = $NavigationAgent3D
 
 func _ready():
-	player = get_node(player_path)
+	call_deferred("enemy_setup")
+	player = get_tree().get_nodes_in_group("player")[0]
 	
-func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity += get_gravity() * delta
 	
-	nav_agent.target_position = player.global_position
 	
-	var next_location = nav_agent.get_next_path_position()
+func enemy_setup():
+	await get_tree().physics_frame
+	nav_agent.set_target_position(player.position)
+	var velocity = (nav_agent.get_next_path_position() - global_position).normalized() * enemy_speed
+	move_and_collide(velocity)
 	
-	if not nav_agent.is_target_reached():
-		var direction = (next_location - global_position)
-		direction.y = 0
-		
-		move_and_collide(direction * 1)
-
+	
+func _physics_process(_delta: float):
+	enemy_setup()
+	
 	
