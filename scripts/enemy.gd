@@ -13,6 +13,7 @@ func _ready():
 	player_area = get_tree().get_nodes_in_group("player_area")
 	
 func enemy_chase():
+	await get_tree().physics_frame
 	nav_agent.set_target_position(player.global_position)
 	var velocity = (nav_agent.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
 	move_and_collide(velocity)
@@ -22,4 +23,7 @@ func _on_area_3d_body_entered(body):
 	if body == player:
 		enemy_chase()
 		print("poopy")
+		
+func _physics_process(delta: float) -> void:
+	enemy_chase()
 	
