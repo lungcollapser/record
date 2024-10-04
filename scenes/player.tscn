@@ -6,10 +6,10 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dd3nb"]
 
-[node name="Player" type="Node3D" groups=["player"]]
+[node name="Player" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.883297, 0)
 
-[node name="Playerbody" type="CharacterBody3D" parent="." groups=["Dismember", "stow"]]
+[node name="Playerbody" type="CharacterBody3D" parent="." groups=["Dismember", "player", "stow"]]
 script = ExtResource("1_sxyqi")
 
 [node name="PlayerMesh" type="MeshInstance3D" parent="Playerbody"]

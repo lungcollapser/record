@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const enemy_speed = 0.1
+const ENEMY_SPEED = 0.1
 var enemy_health = 100
 var player
 @export var player_path : NodePath
@@ -14,8 +14,8 @@ func _ready():
 	
 func enemy_setup():
 	await get_tree().physics_frame
-	nav_agent.set_target_position(player.position)
-	var velocity = (nav_agent.get_next_path_position() - global_position).normalized() * enemy_speed
+	nav_agent.set_target_position(player.global_position)
+	var velocity = (nav_agent.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
 	move_and_collide(velocity)
 	
 	
