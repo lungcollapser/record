@@ -15,7 +15,7 @@ script = ExtResource("1_sxyqi")
 [node name="PlayerMesh" type="MeshInstance3D" parent="Playerbody"]
 mesh = SubResource("CapsuleMesh_d0phb")
 
-[node name="PlayerShape" type="CollisionShape3D" parent="Playerbody"]
+[node name="PlayerShape" type="CollisionShape3D" parent="Playerbody" groups=["playerarea"]]
 transform = Transform3D(0.895, 0, 0, 0, 0.895, 0, 0, 0, 0.895, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_dd3nb")
 
