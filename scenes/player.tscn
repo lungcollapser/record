@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://diuvg68njxngr"]
+[gd_scene load_steps=5 format=3 uid="uid://diuvg68njxngr"]
 
 [ext_resource type="Script" path="res://scripts/playerbody.gd" id="1_sxyqi"]
+[ext_resource type="PackedScene" uid="uid://cneiraorx7bmt" path="res://scenes/fps_character.tscn" id="2_qqyf1"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_d0phb"]
 
@@ -9,7 +10,7 @@
 [node name="Player" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.883297, 0)
 
-[node name="Playerbody" type="CharacterBody3D" parent="." groups=["Dismember", "player", "stow"]]
+[node name="Playerbody" type="CharacterBody3D" parent="." groups=["player"]]
 script = ExtResource("1_sxyqi")
 
 [node name="PlayerMesh" type="MeshInstance3D" parent="Playerbody"]
@@ -22,11 +23,14 @@ shape = SubResource("CapsuleShape3D_dd3nb")
 [node name="Head" type="Node3D" parent="Playerbody"]
 
 [node name="Camera3D" type="Camera3D" parent="Playerbody/Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.117949)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.239932, 0.117949)
 fov = 90.0
 
+[node name="fps_character" parent="Playerbody/Head/Camera3D" instance=ExtResource("2_qqyf1")]
+transform = Transform3D(-0.999994, 0, 0.00340341, 0, 1, 0, -0.00340341, 0, -0.999994, -0.00525749, -1.80778, -0.110156)
+
 [node name="Pickup" type="RayCast3D" parent="Playerbody/Head/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0343571, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.103543, 0)
 target_position = Vector3(0, -1, -5)
 collision_mask = 3
 
