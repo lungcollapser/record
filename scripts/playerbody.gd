@@ -17,6 +17,7 @@ const BOB_FREQ = 2.0
 const BOB_AMP = 0.08
 var t_bob = 0.0
 
+var dead_player 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 @onready var pick_up = $Head/Camera3D/Pickup
