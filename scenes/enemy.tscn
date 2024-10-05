@@ -23,14 +23,14 @@ surface_material_override/0 = SubResource("StandardMaterial3D_q760l")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43266, 0)
 shape = SubResource("CapsuleShape3D_wf8db")
 
-[node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(7.135, 0, 0, 0, 7.135, 0, 0, 0, 7.135, 0, 0.0567853, 0)
+[node name="EnemyArea" type="Area3D" parent="."]
+transform = Transform3D(7.135, 0, 0, 0, 7.135, 0, 0, 0, 7.135, 0, -0.471177, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="EnemyShape" type="CollisionShape3D" parent="EnemyArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25619, 0)
 shape = SubResource("SphereShape3D_ud0o8")
 
 [node name="EnemyNavigation" type="NavigationAgent3D" parent="."]
 path_height_offset = 0.75
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="EnemyArea" to="." method="_on_enemy_area_body_entered"]

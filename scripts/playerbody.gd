@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Player
 
 var speed = 0
 var max_endurance = clamp(100, 0, 100)
