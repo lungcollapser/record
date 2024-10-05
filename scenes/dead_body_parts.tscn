@@ -19,6 +19,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.653583, 0)
 
 [node name="LeftArmBody" type="RigidBody3D" parent="." groups=["Bussin"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.693915, 0, -0.598135)
+collision_layer = 2
 
 [node name="LeftArmShape" type="CollisionShape3D" parent="LeftArmBody"]
 transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 1.35549, 0, 0)
@@ -32,6 +33,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_47c4c")
 
 [node name="LeftLegBody" type="RigidBody3D" parent="." groups=["Bussin"]]
 transform = Transform3D(0.891007, 0, -0.453991, 0, 1, 0, 0.453991, 0, 0.891007, -0.0571295, -0.0125533, 1.01119)
+collision_layer = 2
 
 [node name="LeftLeg" type="MeshInstance3D" parent="LeftLegBody"]
 transform = Transform3D(0.35, 0, 0, 0, -1.5299e-08, -0.35, 0, 0.35, -1.5299e-08, 0.656511, 0, 0)
@@ -45,6 +47,7 @@ shape = SubResource("ConvexPolygonShape3D_ekr8q")
 
 [node name="RightArmBody" type="RigidBody3D" parent="." groups=["Bussin"]]
 transform = Transform3D(0.0540788, 0, -0.998537, 0, 1, 0, 0.998537, 0, 0.0540788, 1.57664, 0, -0.55579)
+collision_layer = 2
 
 [node name="RightArm" type="MeshInstance3D" parent="RightArmBody"]
 transform = Transform3D(0.35, 0, 0, 0, -1.5299e-08, -0.35, 0, 0.35, -1.5299e-08, 0, 0, 0)
@@ -58,6 +61,7 @@ shape = SubResource("ConvexPolygonShape3D_m5cmy")
 
 [node name="RightLegBody" type="RigidBody3D" parent="." groups=["Bussin"]]
 transform = Transform3D(-0.726575, 0, 0.687088, 0, 1, 0, -0.687088, 0, -0.726575, -0.582222, 0, 0.559184)
+collision_layer = 2
 
 [node name="RightLeg" type="MeshInstance3D" parent="RightLegBody"]
 transform = Transform3D(0.35, 0, 0, 0, -1.5299e-08, -0.35, 0, 0.35, -1.5299e-08, 0, 0, 0)
@@ -71,6 +75,7 @@ shape = SubResource("ConvexPolygonShape3D_m5cmy")
 
 [node name="HeadBody" type="RigidBody3D" parent="." groups=["Bussin"]]
 transform = Transform3D(0.79653, 0, 0.604599, 0, 1, 0, -0.604599, 0, 0.79653, -1.16444, 0, -1.02716)
+collision_layer = 2
 
 [node name="Head" type="MeshInstance3D" parent="HeadBody"]
 transform = Transform3D(0.35, 0, 0, 0, -1.5299e-08, -0.35, 0, 0.35, -1.5299e-08, 0, 0, 0)

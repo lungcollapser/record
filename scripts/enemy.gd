@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const ENEMY_SPEED = 0.1
+const ENEMY_SPEED = 0.09
 var enemy_health = 100
 var player
 var player_area
