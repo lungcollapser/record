@@ -24,6 +24,6 @@ func _on_area_3d_body_entered(body):
 		enemy_chase()
 		print("poopy")
 		
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	enemy_chase()
 	

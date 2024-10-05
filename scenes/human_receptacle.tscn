@@ -4,8 +4,6 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k8dcf"]
 friction = 0.35
-rough = true
-absorbent = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_7i2cu"]
 size = Vector3(0.835, 0.835, 0.835)
@@ -20,7 +18,6 @@ points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5
 disable_mode = 1
 mass = 1.5
 physics_material_override = SubResource("PhysicsMaterial_k8dcf")
-gravity_scale = 2.128
 contact_monitor = true
 max_contacts_reported = 10
 script = ExtResource("1_05dvp")

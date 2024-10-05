@@ -11,6 +11,7 @@ const JUMP_VELOCITY = 4.5
 const SENSITIVTY = 0.01
 var picked_up_object 
 var pull_power = 6
+var receptacle_amount = 1
 
 # Headbob variables
 const BOB_FREQ = 2.0
@@ -50,11 +51,14 @@ func drop_object():
 func _physics_process(delta: float):
 	
 	var receptacle_collider = pick_up.get_collider()
-	if Input.is_action_just_pressed("dropreceptacle"): 
+	if Input.is_action_just_pressed("dropreceptacle") and receptacle_amount == 1: 
+		receptacle_amount -= 1
 		get_parent().add_child(human_receptacle)
 		human_receptacle.global_position = hold.global_position
 		
+		
 	if Input.is_action_just_pressed("stow") and receptacle_collider != null and receptacle_collider.is_in_group("stow"):
+		receptacle_amount += 1
 		human_receptacle.set_collision_mask(2)
 		human_receptacle.visible = false
 	if Input.is_action_just_pressed("dropreceptacle"):
