@@ -5,6 +5,7 @@ var speed = 0
 var max_endurance = clamp(100, 0, 100)
 var endurance_check 
 var player_health = clamp(100, 0, 100)
+const CROUCH_SPEED = 1.5
 const WALK_SPEED = 2.0
 const JOG_SPEED = 5.0
 const SPRINT_SPEED = 7.0
@@ -13,6 +14,7 @@ const SENSITIVTY = 0.01
 var picked_up_object 
 var pull_power = 6
 var receptacle_amount = 1
+var dead_body_check = null
 
 # Headbob variables
 const BOB_FREQ = 2.0
@@ -26,6 +28,7 @@ var dead_player
 @onready var hold = $Head/Camera3D/Hold
 @onready var player_mesh = $PlayerMesh
 @onready var player_shape = $PlayerShape
+@onready var fps_arms = $Head/Camera3D/fps_character/fpsarmsarea/fpsarmsshape
 @onready var dead_body_parts = preload("res://scenes/dead_body_parts.tscn").instantiate()
 @onready var human_receptacle = preload("res://scenes/human_receptacle.tscn").instantiate()
 
@@ -68,11 +71,11 @@ func _physics_process(delta: float):
 	
 	var dismember_collider = pick_up.get_collider()
 	if Input.is_action_just_pressed("attack") and dismember_collider != null and dismember_collider.is_in_group("Dismember"):
+		DeadBody.visible = true
+		DeadBody.collision_mask = 3
 		get_parent().add_child(dead_body_parts)
 		dead_body_parts.global_position = hold.global_position 
-		DeadBody.visible = false
-		DeadBody.collision_mask = 3
-		
+
 		
 		
 	if picked_up_object != null:
@@ -89,7 +92,7 @@ func _physics_process(delta: float):
 	if picked_up_object == human_receptacle:
 		pull_power = 2
 	if picked_up_object == dead_body_parts:
-		pull_power = 8
+		pull_power = 7
 
 	if max_endurance > 0:
 		endurance_check = true
@@ -97,6 +100,7 @@ func _physics_process(delta: float):
 		endurance_check = false
 		
 	if Input.is_action_pressed("crouch"):
+		speed = CROUCH_SPEED
 		player_mesh.position.y = 0.2
 		player_shape.position.y = 0.2
 		endurance_check = false

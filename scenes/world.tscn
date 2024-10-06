@@ -33,12 +33,11 @@ light_volumetric_fog_energy = 3.08
 shadow_enabled = true
 directional_shadow_split_1 = 0.0
 
-[node name="deadbody3" parent="." instance=ExtResource("2_cjb3p")]
+[node name="deadbody" parent="." instance=ExtResource("2_cjb3p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.7849, 1.49676, -11.1404)
 
 [node name="Enemy" parent="." instance=ExtResource("5_nv0q6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.7989, 1.08593, -1.2927)
-player_path = NodePath("")
 
 [node name="Player" parent="." instance=ExtResource("2_2w5k3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.2594, 1.96219, 1.10493)

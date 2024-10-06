@@ -9,7 +9,7 @@ albedo_color = Color(0, 0.313726, 0.109804, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wf8db"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_ud0o8"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_quxr8"]
 
 [node name="Enemy" type="CharacterBody3D"]
 script = ExtResource("1_c05o7")
@@ -24,11 +24,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43266, 0)
 shape = SubResource("CapsuleShape3D_wf8db")
 
 [node name="EnemyArea" type="Area3D" parent="."]
-transform = Transform3D(7.135, 0, 0, 0, 7.135, 0, 0, 0, 7.135, 0, -0.471177, 0)
+transform = Transform3D(9.195, 0, 0, 0, 9.195, 0, 0, 0, 9.195, 0, -0.471177, 0)
 
 [node name="EnemyShape" type="CollisionShape3D" parent="EnemyArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25619, 0)
-shape = SubResource("SphereShape3D_ud0o8")
+shape = SubResource("BoxShape3D_quxr8")
 
 [node name="EnemyNavigation" type="NavigationAgent3D" parent="."]
 path_height_offset = 0.75
