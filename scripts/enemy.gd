@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const ENEMY_SPEED = 0.08
+const ENEMY_SPEED = 0.02
 var enemy_health = 100
 var player
 var player_area
@@ -28,3 +28,8 @@ func enemy_chase():
 func _on_enemy_area_body_entered(body: Node3D):
 	if body is Player:
 		target = Player
+		
+
+func _on_enemy_area_body_exited(body: Node3D):
+	if body is Player:
+		target = null
