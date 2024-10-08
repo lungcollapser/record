@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const ENEMY_SPEED = 0.1
+const ENEMY_SPEED = 0.06
 var enemy_health = 100
 var player
 var player_area
@@ -13,17 +13,10 @@ var enemy_navigation_link
 
 func _ready():
 	player = get_tree().get_nodes_in_group("player")[0]
-	enemy_navigation_link = get_tree().get_nodes_in_group("Roamin")[0]
+	
 	
 func _physics_process(_delta: float) -> void:
 	enemy_chase()
-	enemy_roaming()
-
-func enemy_roaming():
-	if target == null:
-		await get_tree().physics_frame
-		var roaming_velocity = enemy_navigation_link.end_position * ENEMY_SPEED
-		move_and_collide(roaming_velocity)
 	
 func enemy_chase():
 	if target == Player:

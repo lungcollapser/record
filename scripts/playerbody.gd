@@ -46,6 +46,8 @@ func pick_up_object():
 	var collider = pick_up.get_collider()
 	if collider != null and collider is RigidBody3D:
 		picked_up_object = collider
+	if collider == human_receptacle:
+		picked_up_object = null
 		
 func drop_object():
 	if picked_up_object != null:
@@ -71,8 +73,6 @@ func _physics_process(delta: float):
 	
 	var dismember_collider = pick_up.get_collider()
 	if Input.is_action_just_pressed("attack") and dismember_collider != null and dismember_collider.is_in_group("Dismember"):
-		DeadBody.visible = true
-		DeadBody.collision_mask = 3
 		get_parent().add_child(dead_body_parts)
 		dead_body_parts.global_position = hold.global_position 
 
@@ -92,7 +92,7 @@ func _physics_process(delta: float):
 	if picked_up_object == human_receptacle:
 		pull_power = 2
 	if picked_up_object == dead_body_parts:
-		pull_power = 7
+		pull_power = 5
 
 	if max_endurance > 0:
 		endurance_check = true
