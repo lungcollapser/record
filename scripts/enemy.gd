@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+
 const ENEMY_SPEED = 0.06
 var enemy_health = 100
 var player
@@ -34,3 +35,8 @@ func _on_enemy_area_body_entered(body: Node3D):
 func _on_enemy_area_body_exited(body: Node3D):
 	if body is Player:
 		target = null
+
+func lose_health():
+	enemy_health -= 1
+	if enemy_health <= 0:
+		queue_free()

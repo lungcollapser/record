@@ -19,7 +19,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34304, 0)
 mesh = SubResource("CapsuleMesh_4wxgc")
 surface_material_override/0 = SubResource("StandardMaterial3D_q760l")
 
-[node name="EnemyShape" type="CollisionShape3D" parent="."]
+[node name="EnemyShape" type="CollisionShape3D" parent="." groups=["enemyshape"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43266, 0)
 shape = SubResource("CapsuleShape3D_wf8db")
 
