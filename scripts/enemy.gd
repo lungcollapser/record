@@ -10,6 +10,7 @@ var enemy_navigation_link
 @export var player_path : NodePath
 @onready var nav_agent = $EnemyNavigation
 @onready var enemy_area = $EnemyArea
+@onready var enemy_shape = $EnemyShape
 
 
 func _ready():
@@ -36,7 +37,7 @@ func _on_enemy_area_body_exited(body: Node3D):
 	if body is Player:
 		target = null
 
-func lose_health():
+func enemy_lose_health():
 	enemy_health -= 1
 	if enemy_health <= 0:
 		queue_free()
