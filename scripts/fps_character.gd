@@ -16,6 +16,6 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_fpsarmsarea_body_entered(body):
-	if Input.is_action_just_pressed("attack") and body == enemy_shape:
+	if body == enemy_shape:
 		Enemy.enemy_lose_health()
-		print("booby")
+		print(Enemy.enemy_health)

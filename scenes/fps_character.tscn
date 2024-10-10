@@ -1,9 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cneiraorx7bmt"]
+[gd_scene load_steps=5 format=3 uid="uid://cneiraorx7bmt"]
 
 [ext_resource type="PackedScene" uid="uid://c3ebym01kx5d" path="res://assets/fps_character.glb" id="1_32wxt"]
 [ext_resource type="Script" path="res://scripts/fps_character.gd" id="2_d87w8"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5b7bb"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1sbd3"]
 
 [node name="fps_character" instance=ExtResource("1_32wxt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.483933, 0)
@@ -43,6 +45,13 @@ transform = Transform3D(0.185, 0, 0, 0, 0.185, 0, 0, 0, 0.185, -0.118835, 1.2766
 [node name="fpsarmsshape" type="CollisionShape3D" parent="fpsarmsarea" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29358, 1.58446, 0.533924)
 shape = SubResource("SphereShape3D_5b7bb")
+
+[node name="fpsarmscollision" type="Area3D" parent="." index="3"]
+transform = Transform3D(0.74, 0, 0, 0, 0.74, 0, 0, 0, 0.74, 7.45058e-09, 1.50255, 0.335974)
+
+[node name="fpsarmscollisionshape" type="CollisionShape3D" parent="fpsarmscollision" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.45058e-09, 0, 0)
+shape = SubResource("SphereShape3D_1sbd3")
 
 [connection signal="area_entered" from="fpsarmsarea" to="." method="_on_fpsarmsarea_area_entered"]
 [connection signal="body_entered" from="fpsarmsarea" to="." method="_on_fpsarmsarea_body_entered"]
