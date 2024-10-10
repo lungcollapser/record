@@ -3,11 +3,19 @@ extends Node3D
 @onready var fps_arms_collider = $fpsarmsarea
 @onready var punch_animation = $AnimationPlayer
 @onready var idle_animation = $AnimationPlayer
+var enemy_shape
+
+func _ready():
+	enemy_shape = get_tree().get_nodes_in_group("enemyshape")[0]
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("attack"):
 		punch_animation.play("AtkPunch")
-		
-	var punch_collider = fps_arms_collider.get_collider()
-	if Input.is_action_pressed("attack") and punch_collider is Enemy2:
+	
+
+
+
+func _on_fpsarmsarea_body_entered(body):
+	if Input.is_action_just_pressed("attack") and body == enemy_shape:
 		Enemy.enemy_lose_health()
+		print("booby")
