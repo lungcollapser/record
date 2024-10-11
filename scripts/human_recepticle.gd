@@ -1,7 +1,7 @@
 extends RigidBody3D
 
 @onready var collision = $HumanReceptacleShape
-@onready var human_receptacle  = preload("res://scenes/human_receptacle.tscn").instantiate()
+@onready var human_receptacle  = preload("res://scenes/human_receptacle.tscn")
 var player_hold
 var player_pick_up
 var receptacle_amount = 1
@@ -16,18 +16,19 @@ func _on_body_shape_entered(_body_rid: RID, body: Node, _body_shape_index: int, 
 		body.queue_free()
 		BloodBar.value += 10
 		
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var receptacle_collider = player_pick_up.get_collider()
 	if Input.is_action_just_pressed("dropreceptacle") and receptacle_amount == 1: 
+		var human_receptacle_instance = human_receptacle.instantiate()
 		receptacle_amount -= 1
-		get_parent().add_child(human_receptacle)
-		human_receptacle.global_position = player_hold.global_position
+		get_parent().add_child(human_receptacle_instance)
+		human_receptacle_instance.global_position = player_hold.global_position
 		
 		
 	if Input.is_action_just_pressed("stow") and receptacle_collider != null and receptacle_collider.is_in_group("stow"):
 		receptacle_amount += 1
-		
-		human_receptacle.visible = false
+		collision.disabled = true 
+		visible = false
 	if Input.is_action_just_pressed("dropreceptacle"):
-		
-		human_receptacle.visible = true
+		collision.disabled = true
+		visible = true
