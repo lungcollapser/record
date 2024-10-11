@@ -18,17 +18,18 @@ func _on_body_shape_entered(_body_rid: RID, body: Node, _body_shape_index: int, 
 		
 func _physics_process(_delta: float) -> void:
 	var receptacle_collider = player_pick_up.get_collider()
+	var human_receptacle_instance = human_receptacle.instantiate()
 	if Input.is_action_just_pressed("dropreceptacle") and receptacle_amount == 1: 
-		var human_receptacle_instance = human_receptacle.instantiate()
 		receptacle_amount -= 1
 		get_parent().add_child(human_receptacle_instance)
 		human_receptacle_instance.global_position = player_hold.global_position
+		print(receptacle_amount)
 		
 		
 	if Input.is_action_just_pressed("stow") and receptacle_collider != null and receptacle_collider.is_in_group("stow"):
 		receptacle_amount += 1
-		collision.disabled = true 
 		visible = false
-	if Input.is_action_just_pressed("dropreceptacle"):
 		collision.disabled = true
+	if Input.is_action_just_pressed("dropreceptacle"):
+		collision.disabled = false
 		visible = true

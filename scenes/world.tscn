@@ -40,8 +40,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.7849, 1.49676, -11.1404)
 [node name="Enemy" parent="." instance=ExtResource("5_nv0q6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.7989, 0.654708, -1.2927)
 
-[node name="HumanReceptacle" parent="." instance=ExtResource("4_rtglp")]
-
 [node name="Player" parent="." instance=ExtResource("2_2w5k3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.2594, 1.96219, 1.10493)
 
@@ -318,3 +316,7 @@ size = Vector3(3.127, 4, 1.509)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.7356, 2.43941, 4.92977)
 use_collision = true
 size = Vector3(1, 3, 1)
+
+[node name="HumanReceptacle" type="Node3D" parent="."]
+
+[node name="HumanReceptacle" parent="HumanReceptacle" instance=ExtResource("4_rtglp")]
