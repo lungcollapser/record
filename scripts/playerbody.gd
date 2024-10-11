@@ -13,7 +13,6 @@ const JUMP_VELOCITY = 4.5
 const SENSITIVTY = 0.01
 var picked_up_object 
 var pull_power = 6
-var receptacle_amount = 1
 var dead_body_check = null
 
 # Headbob variables
@@ -30,7 +29,6 @@ var dead_player
 @onready var player_shape = $PlayerShape
 @onready var fps_arms = $Head/Camera3D/fps_character/fpsarmsarea/fpsarmsshape
 @onready var dead_body_parts = preload("res://scenes/dead_body_parts.tscn").instantiate()
-@onready var human_receptacle = preload("res://scenes/human_receptacle.tscn").instantiate()
 
 
 func _ready():
@@ -46,8 +44,7 @@ func pick_up_object():
 	var collider = pick_up.get_collider()
 	if collider != null and collider is RigidBody3D:
 		picked_up_object = collider
-	if collider == human_receptacle:
-		picked_up_object = null
+
 		
 func drop_object():
 	if picked_up_object != null:
@@ -56,20 +53,7 @@ func drop_object():
 
 func _physics_process(delta: float):
 	
-	var receptacle_collider = pick_up.get_collider()
-	if Input.is_action_just_pressed("dropreceptacle") and receptacle_amount == 1: 
-		receptacle_amount -= 1
-		get_parent().add_child(human_receptacle)
-		human_receptacle.global_position = hold.global_position
-		
-		
-	if Input.is_action_just_pressed("stow") and receptacle_collider != null and receptacle_collider.is_in_group("stow"):
-		receptacle_amount += 1
-		human_receptacle.set_collision_mask(2)
-		human_receptacle.visible = false
-	if Input.is_action_just_pressed("dropreceptacle"):
-		human_receptacle.set_collision_mask(1)
-		human_receptacle.visible = true
+	
 	#FIX THIS TOMORROW. NOT SPAWNING MULTIPLE DEAD BODY PARTS SCENES, AND FUCKING UP
 	var dismember_collider = pick_up.get_collider()
 	if Input.is_action_just_pressed("attack") and dismember_collider != null and dismember_collider.is_in_group("Dismember"):
@@ -93,8 +77,6 @@ func _physics_process(delta: float):
 		elif picked_up_object != null:
 			drop_object()
 	
-	if picked_up_object == human_receptacle:
-		pull_power = 2
 	if picked_up_object == dead_body_parts:
 		pull_power = 5
 

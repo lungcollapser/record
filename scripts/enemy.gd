@@ -1,8 +1,9 @@
 extends CharacterBody3D
 
 
+
 const ENEMY_SPEED = 0.06
-var enemy_health = 10
+var enemy_health = clamp(10, 0, 10)
 var player
 var player_area
 var target

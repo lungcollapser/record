@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://73a8pjvvssy8"]
+[gd_scene load_steps=9 format=3 uid="uid://73a8pjvvssy8"]
 
 [ext_resource type="PackedScene" uid="uid://diuvg68njxngr" path="res://scenes/player.tscn" id="2_2w5k3"]
 [ext_resource type="PackedScene" uid="uid://cfqnnebvepiiw" path="res://scenes/dead_body.tscn" id="2_cjb3p"]
+[ext_resource type="PackedScene" uid="uid://jyrhlvipedil" path="res://scenes/human_receptacle.tscn" id="4_rtglp"]
 [ext_resource type="PackedScene" uid="uid://cin7xys5d5odj" path="res://scenes/enemy.tscn" id="5_nv0q6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mekea"]
@@ -38,6 +39,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.7849, 1.49676, -11.1404)
 
 [node name="Enemy" parent="." instance=ExtResource("5_nv0q6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.7989, 0.654708, -1.2927)
+
+[node name="HumanReceptacle" parent="." instance=ExtResource("4_rtglp")]
 
 [node name="Player" parent="." instance=ExtResource("2_2w5k3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.2594, 1.96219, 1.10493)
