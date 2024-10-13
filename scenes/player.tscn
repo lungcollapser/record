@@ -35,4 +35,4 @@ target_position = Vector3(0, -1, -5)
 collision_mask = 3
 
 [node name="Hold" type="Node3D" parent="Playerbody/Head/Camera3D" groups=["hold"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0263963, -2.5637)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0263963, -2.02224)
