@@ -53,13 +53,6 @@ func drop_object():
 
 func _physics_process(delta: float):
 	
-	
-	#FIX THIS TOMORROW. NOT SPAWNING MULTIPLE DEAD BODY PARTS SCENES, AND FUCKING UP
-	var dismember_collider = pick_up.get_collider()
-	if Input.is_action_just_pressed("attack") and dismember_collider != null and dismember_collider.is_in_group("Dismember"):
-		get_parent().add_child(dead_body_parts)
-		dead_body_parts.global_position = hold.global_position 
-	
 	if Enemy.enemy_health <= 0:
 		get_parent().add_child(dead_body_parts)
 		dead_body_parts.global_position = hold.global_position
