@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cin7xys5d5odj"]
+[gd_scene load_steps=7 format=3 uid="uid://cin7xys5d5odj"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_c05o7"]
 
@@ -8,6 +8,8 @@
 albedo_color = Color(0, 0.313726, 0.109804, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wf8db"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_syuu0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_quxr8"]
 
@@ -23,6 +25,12 @@ surface_material_override/0 = SubResource("StandardMaterial3D_q760l")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43266, 0)
 shape = SubResource("CapsuleShape3D_wf8db")
 
+[node name="EnemyHitbox" type="Area3D" parent="."]
+
+[node name="EnemyHitboxShape" type="CollisionShape3D" parent="EnemyHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43536, 0)
+shape = SubResource("CapsuleShape3D_syuu0")
+
 [node name="EnemyDetection" type="Area3D" parent="."]
 transform = Transform3D(9.195, 0, 0, 0, 9.195, 0, 0, 0, 9.195, 0, -0.471177, 0)
 
@@ -33,5 +41,7 @@ shape = SubResource("BoxShape3D_quxr8")
 [node name="EnemyNavigation" type="NavigationAgent3D" parent="."]
 path_height_offset = 0.75
 
+[connection signal="area_entered" from="EnemyHitbox" to="." method="_on_enemy_hitbox_area_entered"]
+[connection signal="body_entered" from="EnemyHitbox" to="." method="_on_enemy_hitbox_body_entered"]
 [connection signal="body_entered" from="EnemyDetection" to="." method="_on_enemy_area_body_entered"]
 [connection signal="body_exited" from="EnemyDetection" to="." method="_on_enemy_area_body_exited"]

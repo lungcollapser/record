@@ -46,8 +46,6 @@ func pick_up_object():
 	if collider != null and collider is RigidBody3D:
 		picked_up_object = collider
 		
-	if picked_up_object.is_in_group("stow"):
-		picked_up_object = null
 	
 
 		
@@ -58,10 +56,6 @@ func drop_object():
 
 func _physics_process(delta: float):
 	
-	if Enemy.enemy_health <= 0:
-		get_parent().add_child(dead_body_parts)
-		dead_body_parts.global_position = hold.global_position
-		
 		
 		
 	if picked_up_object != null:

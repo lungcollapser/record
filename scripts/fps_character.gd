@@ -12,10 +12,3 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("attack"):
 		punch_animation.play("AtkPunch")
 	
-
-
-
-func _on_fpsarmsarea_body_entered(body):
-	if body == enemy_shape:
-		Enemy.enemy_lose_health()
-		print(Enemy.enemy_health)
