@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://diuvg68njxngr"]
+[gd_scene load_steps=6 format=3 uid="uid://diuvg68njxngr"]
 
 [ext_resource type="Script" path="res://scripts/playerbody.gd" id="1_sxyqi"]
 [ext_resource type="PackedScene" uid="uid://cneiraorx7bmt" path="res://scenes/fps_character.tscn" id="2_qqyf1"]
@@ -6,6 +6,8 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_d0phb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dd3nb"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_108hd"]
 
 [node name="Player" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.883297, 0)
@@ -36,3 +38,11 @@ collision_mask = 3
 
 [node name="Hold" type="Node3D" parent="Playerbody/Head/Camera3D" groups=["hold"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0263963, -2.02224)
+
+[node name="PlayerHitbox" type="Area3D" parent="."]
+transform = Transform3D(1.56, 0, 0, 0, 1.56, 0, 0, 0, 1.56, 0, 0, 0)
+
+[node name="PlayerHitboxShape" type="CollisionShape3D" parent="PlayerHitbox"]
+shape = SubResource("CapsuleShape3D_108hd")
+
+[connection signal="body_entered" from="PlayerHitbox" to="Playerbody" method="_on_player_hitbox_body_entered"]

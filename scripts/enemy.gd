@@ -33,18 +33,21 @@ func _physics_process(_delta: float) -> void:
 	var dead_body_instance = dead_body.instantiate()
 	if enemy_health == 0:
 		visible = false
-		collision_mask = 3
+		enemy_shape.disabled = true
 		get_parent().add_child(dead_body_instance)
 		dead_body_instance.global_position = enemy_shape.global_position
 		
 		
 		
-	
 func enemy_chase():
+	var enemy_look_position = player.global_position
+	enemy_look_position.y = global_position.y
 	if target == Player:
 		await get_tree().physics_frame
 		nav_agent.set_target_position(player.global_position)
 		var velocity = (nav_agent.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
+		if enemy_look_position != Vector3.ZERO:
+			look_at(enemy_look_position)
 		move_and_collide(velocity)
 		
 		

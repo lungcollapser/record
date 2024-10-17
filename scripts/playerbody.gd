@@ -55,9 +55,6 @@ func drop_object():
 
 
 func _physics_process(delta: float):
-	
-		
-		
 	if picked_up_object != null:
 		var a = picked_up_object.global_position
 		var b = hold.global_position
@@ -143,3 +140,11 @@ func _headbob(time) -> Vector3:
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	return pos
 	
+
+
+func _on_player_hitbox_body_entered(body):
+	if body is Enemy:
+		print(player_health)
+		player_health -= 1
+		if player_health == 0:
+			queue_free()
