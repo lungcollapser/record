@@ -15,6 +15,7 @@ var player_arms
 @onready var enemy_area = $EnemyArea
 @onready var enemy_shape = $EnemyShape
 @onready var dead_body_parts = preload("res://scenes/dead_body_parts.tscn")
+@onready var dead_body = preload("res://scenes/dead_body.tscn")
 
 
 
@@ -25,13 +26,18 @@ func _ready():
 	player_arms = get_tree().get_nodes_in_group("fpsarmarea")[0]
 	
 	
+	
 func _physics_process(_delta: float) -> void:
 	enemy_chase()
 	
-	var dead_body_parts_instance = dead_body_parts.instantiate()
-	if enemy_health <= 0:
-		get_parent().add_child(dead_body_parts_instance)
-		dead_body_parts_instance.global_position = player_hold.global_position
+	var dead_body_instance = dead_body.instantiate()
+	if enemy_health == 0:
+		visible = false
+		collision_mask = 3
+		get_parent().add_child(dead_body_instance)
+		dead_body_instance.global_position = enemy_shape.global_position
+		
+		
 		
 	
 func enemy_chase():
@@ -60,10 +66,9 @@ func _on_enemy_area_body_exited(body: Node3D):
 
 
 
-func _on_enemy_hitbox_body_entered(body) -> void:
+func _on_enemy_hitbox_body_entered(body):
 	if body is FpsCharacter:
-		print("poopy")
+		print(enemy_health)
 		enemy_health -= 1
-		if enemy_health == 0:
-			visible = false
+		
 		
