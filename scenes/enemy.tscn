@@ -41,7 +41,6 @@ shape = SubResource("BoxShape3D_quxr8")
 [node name="EnemyNavigation" type="NavigationAgent3D" parent="."]
 path_height_offset = 0.75
 
-[connection signal="area_entered" from="EnemyHitbox" to="." method="_on_enemy_hitbox_area_entered"]
 [connection signal="body_entered" from="EnemyHitbox" to="." method="_on_enemy_hitbox_body_entered"]
 [connection signal="body_entered" from="EnemyDetection" to="." method="_on_enemy_area_body_entered"]
 [connection signal="body_exited" from="EnemyDetection" to="." method="_on_enemy_area_body_exited"]

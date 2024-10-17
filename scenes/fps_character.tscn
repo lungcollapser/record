@@ -39,10 +39,10 @@ bones/22/rotation = Quaternion(-0.187592, 0.480341, 0.831604, -0.206196)
 bones/23/rotation = Quaternion(0.48938, -0.0225777, 0.0837412, 0.867747)
 bones/24/rotation = Quaternion(-0.117553, 0.020484, -0.0666149, 0.990618)
 
-[node name="fpsarmsarea" type="Area3D" parent="." index="2" groups=["fpsarmarea"]]
+[node name="fpsarmsarea" type="Area3D" parent="." index="2"]
 transform = Transform3D(0.185, 0, 0, 0, 0.185, 0, 0, 0, 0.185, -0.118835, 1.27666, 0.46734)
 
-[node name="fpsarmsshape" type="CollisionShape3D" parent="fpsarmsarea" index="0"]
+[node name="fpsarmsshape" type="CollisionShape3D" parent="fpsarmsarea" index="0" groups=["fpsarmarea"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29358, 1.58446, 0.533924)
 shape = SubResource("SphereShape3D_5b7bb")
 
