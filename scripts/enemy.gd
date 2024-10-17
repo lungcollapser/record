@@ -10,11 +10,9 @@ var target
 var enemy_navigation_link
 var player_hold
 var player_arms 
+@onready var enemy = $"."
 @export var player_path : NodePath
 @onready var nav_agent = $EnemyNavigation
-@onready var enemy_area = $EnemyArea
-@onready var enemy_shape = $EnemyShape
-@onready var dead_body_parts = preload("res://scenes/dead_body_parts.tscn")
 @onready var dead_body = preload("res://scenes/dead_body.tscn")
 
 
@@ -33,9 +31,9 @@ func _physics_process(_delta: float) -> void:
 	var dead_body_instance = dead_body.instantiate()
 	if enemy_health == 0:
 		visible = false
-		enemy_shape.disabled = true
+		enemy.disabled = true
 		get_parent().add_child(dead_body_instance)
-		dead_body_instance.global_position = enemy_shape.global_position
+		dead_body_instance.global_position = enemy.global_position
 		
 		
 		
