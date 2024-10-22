@@ -20,6 +20,7 @@ const BOB_FREQ = 2.0
 const BOB_AMP = 0.08
 var t_bob = 0.0
 
+var enemy 
 var dead_player 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
@@ -34,6 +35,8 @@ var dead_player
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	enemy = get_tree().get_nodes_in_group("enemyshape")[0]
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -142,9 +145,10 @@ func _headbob(time) -> Vector3:
 	
 
 
-func _on_player_hitbox_body_entered(body):
-	if body is Enemy:
-		print(player_health)
-		player_health -= 1
-		if player_health == 0:
-			queue_free()
+func _on_player_hitbox_area_entered(area):
+	if area is Enemy:
+		while (player_health > 0):
+			print(player_health)
+			player_health -= 1
+			if player_health == 0:
+				print("dead")

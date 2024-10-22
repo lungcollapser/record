@@ -45,4 +45,5 @@ transform = Transform3D(1.51, 0, 0, 0, 1.51, 0, 0, 0, 1.51, 0, 0, 0)
 [node name="PlayerHitboxShape" type="CollisionShape3D" parent="PlayerHitbox"]
 shape = SubResource("CapsuleShape3D_108hd")
 
+[connection signal="area_entered" from="PlayerHitbox" to="Playerbody" method="_on_player_hitbox_area_entered"]
 [connection signal="body_entered" from="PlayerHitbox" to="Playerbody" method="_on_player_hitbox_body_entered"]

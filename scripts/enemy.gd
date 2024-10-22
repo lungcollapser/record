@@ -1,9 +1,9 @@
 extends CharacterBody3D
-
-
+class_name Enemy
 
 const ENEMY_SPEED = 0.06
 var enemy_health = clamp(10, 0, 10)
+var enemy_damage
 var player
 var player_area
 var target
@@ -28,12 +28,18 @@ func _ready():
 func _physics_process(_delta: float) -> void:
 	enemy_chase()
 	
+	
+	if enemy_damage == true:
+		enemy_health -= 1
+	
 	var dead_body_instance = dead_body.instantiate()
 	if enemy_health == 0:
 		visible = false
 		enemy.disabled = true
 		get_parent().add_child(dead_body_instance)
 		dead_body_instance.global_position = enemy.global_position
+		
+		
 		
 		
 		
@@ -66,10 +72,7 @@ func _on_enemy_area_body_exited(body: Node3D):
 
 
 
-
-func _on_enemy_hitbox_body_entered(body):
+func _on_enemy_hitbox_body_entered(body: Node3D):
 	if body is FpsCharacter:
 		print(enemy_health)
 		enemy_health -= 1
-		
-		
