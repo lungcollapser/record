@@ -28,8 +28,8 @@ shape = SubResource("CapsuleShape3D_dd3nb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.239932, 0.117949)
 fov = 90.0
 
-[node name="fps_character" parent="Playerbody/Head/Camera3D" instance=ExtResource("2_qqyf1")]
-transform = Transform3D(-0.999994, 0, 0.00340341, 0, 1, 0, -0.00340341, 0, -0.999994, -0.00525749, -1.80778, 0.0413486)
+[node name="fps_character" parent="Playerbody/Head/Camera3D" groups=["fpsarms"] instance=ExtResource("2_qqyf1")]
+transform = Transform3D(-0.999994, 0, 0.00340341, 0, 1, 0, -0.00340341, 0, -0.999994, -0.00525749, -1.80778, -0.0619444)
 
 [node name="Pickup" type="RayCast3D" parent="Playerbody/Head/Camera3D" groups=["pickup"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0246967, 0)
@@ -39,11 +39,11 @@ collision_mask = 3
 [node name="Hold" type="Node3D" parent="Playerbody/Head/Camera3D" groups=["hold"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0263963, -2.02224)
 
-[node name="PlayerHitbox" type="Area3D" parent="."]
+[node name="PlayerHitbox" type="Area3D" parent="Playerbody"]
 transform = Transform3D(1.51, 0, 0, 0, 1.51, 0, 0, 0, 1.51, 0, 0, 0)
 
-[node name="PlayerHitboxShape" type="CollisionShape3D" parent="PlayerHitbox"]
+[node name="PlayerHitboxShape" type="CollisionShape3D" parent="Playerbody/PlayerHitbox"]
 shape = SubResource("CapsuleShape3D_108hd")
 
-[connection signal="area_entered" from="PlayerHitbox" to="Playerbody" method="_on_player_hitbox_area_entered"]
-[connection signal="body_entered" from="PlayerHitbox" to="Playerbody" method="_on_player_hitbox_body_entered"]
+[connection signal="body_entered" from="Playerbody/PlayerHitbox" to="Playerbody" method="_on_player_hitbox_body_entered"]
+[connection signal="body_exited" from="Playerbody/PlayerHitbox" to="Playerbody" method="_on_player_hitbox_body_exited"]

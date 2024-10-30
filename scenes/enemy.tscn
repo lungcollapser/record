@@ -28,6 +28,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43266, 0)
 shape = SubResource("CapsuleShape3D_wf8db")
 
 [node name="EnemyHitbox" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0041976, 0)
 
 [node name="EnemyHitboxShape" type="CollisionShape3D" parent="EnemyHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43536, 0)
@@ -51,7 +52,6 @@ mesh = SubResource("BoxMesh_cdjec")
 transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, -0.168517, 1.616, -0.525805)
 mesh = SubResource("BoxMesh_cdjec")
 
-[connection signal="area_entered" from="EnemyHitbox" to="." method="_on_enemy_hitbox_area_entered"]
 [connection signal="body_entered" from="EnemyHitbox" to="." method="_on_enemy_hitbox_body_entered"]
 [connection signal="body_entered" from="EnemyDetection" to="." method="_on_enemy_area_body_entered"]
 [connection signal="body_exited" from="EnemyDetection" to="." method="_on_enemy_area_body_exited"]

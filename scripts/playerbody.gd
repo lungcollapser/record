@@ -21,7 +21,8 @@ const BOB_AMP = 0.08
 var t_bob = 0.0
 
 var enemy 
-var dead_player 
+var hit_detec_check
+var human_receptacle 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 @onready var pick_up = $Head/Camera3D/Pickup
@@ -30,13 +31,12 @@ var dead_player
 @onready var player_shape = $PlayerShape
 @onready var fps_arms = $Head/Camera3D/fps_character/fpsarmsarea/fpsarmsshape
 @onready var dead_body_parts = preload("res://scenes/dead_body_parts.tscn").instantiate()
-@onready var human_receptacle = preload("res://scenes/human_receptacle.tscn")
 
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
 	enemy = get_tree().get_nodes_in_group("enemyshape")[0]
+	human_receptacle = get_tree().get_nodes_in_group("stow")[0]
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -49,15 +49,17 @@ func pick_up_object():
 	if collider != null and collider is RigidBody3D:
 		picked_up_object = collider
 		
-	
-
-		
 func drop_object():
 	if picked_up_object != null:
 		picked_up_object = null
 
 
 func _physics_process(delta: float):
+	if hit_detec_check == true:
+		player_health -= 1
+		print(player_health)
+		
+		
 	if picked_up_object != null:
 		var a = picked_up_object.global_position
 		var b = hold.global_position
@@ -71,7 +73,8 @@ func _physics_process(delta: float):
 	
 	if picked_up_object == dead_body_parts:
 		pull_power = 5
-
+	
+	
 	if max_endurance > 0:
 		endurance_check = true
 	else:
@@ -94,7 +97,7 @@ func _physics_process(delta: float):
 	#Add walking and sprinting
 	if Input.is_action_pressed("sprint") and endurance_check == true:
 		speed = SPRINT_SPEED
-	elif Input.is_action_pressed("walk"):
+	elif Input.is_action_pressed("walk") or picked_up_object == human_receptacle:
 		speed = WALK_SPEED
 	else:
 		speed = JOG_SPEED
@@ -145,10 +148,10 @@ func _headbob(time) -> Vector3:
 	
 
 
-func _on_player_hitbox_area_entered(area):
-	if area is Enemy:
-		while (player_health > 0):
-			print(player_health)
-			player_health -= 1
-			if player_health == 0:
-				print("dead")
+func _on_player_hitbox_body_entered(body):
+	if body is Enemy:
+		hit_detec_check = true
+
+
+func _on_player_hitbox_body_exited(body):
+	hit_detec_check = false

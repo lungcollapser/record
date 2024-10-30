@@ -19,7 +19,6 @@ config/icon="res://icon.svg"
 
 StaminaBar="*res://scenes/stamina_bar.tscn"
 BloodBar="*res://scenes/blood_bar.tscn"
-FpsCharacter="*res://scenes/fps_character.tscn"
 
 [display]
 
