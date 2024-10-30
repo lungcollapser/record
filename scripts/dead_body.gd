@@ -1,4 +1,5 @@
 extends RigidBody3D
+class_name DeadBody
 
 var player_hold
 var player_pick_up
@@ -15,8 +16,7 @@ func _physics_process(_delta: float) -> void:
 	var dismember_collider = player_pick_up.get_collider()
 	var dead_body_parts_instance = dead_body_parts.instantiate()
 	if Input.is_action_just_pressed("attack") and dismember_collider == dead_body and dismember_collider.is_in_group("Dismember"):
-		visible = false
-		dead_body_shape.disabled = true
+		queue_free()
 
 	
 	if Input.is_action_just_pressed("attack") and dismember_collider == dead_body and dismember_collider.is_in_group("Dismember"):

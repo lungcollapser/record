@@ -11,6 +11,7 @@ var enemy_navigation_link
 var player_hold
 var player_pickup
 var hit_detec_check
+var pathing
 @onready var enemy_shape = $"EnemyShape"
 @export var player_path : NodePath
 @onready var nav_agent = $EnemyNavigation
@@ -24,11 +25,13 @@ func _ready():
 	player = get_tree().get_nodes_in_group("player")[0]
 	player_hold = get_tree().get_nodes_in_group("hold")[0]
 	player_pickup = get_tree().get_nodes_in_group("pickup")[0]
+	pathing = get_tree().get_nodes_in_group("pathing")[0]
 	
 	
 	
 func _physics_process(_delta: float) -> void:
 	enemy_chase()
+	
 	
 	if hit_detec_check == true:
 		enemy_health -= 1
@@ -55,11 +58,8 @@ func enemy_chase():
 			look_at(enemy_look_position)
 		move_and_collide(velocity)
 		
+
 		
-func enemy_roaming():
-	if target != Player:
-		await get_tree().physics_frame
-		nav_agent.set_target_position()
 
 func _on_enemy_area_body_entered(body: Node3D):
 	if body is Player:

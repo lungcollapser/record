@@ -98,7 +98,7 @@ func _physics_process(delta: float):
 	#Add walking and sprinting
 	if Input.is_action_pressed("sprint") and endurance_check == true:
 		speed = SPRINT_SPEED
-	elif Input.is_action_pressed("walk") or picked_up_object == human_receptacle:
+	elif Input.is_action_pressed("walk") or picked_up_object is HumanReceptacle or picked_up_object is DeadBody:
 		speed = WALK_SPEED
 	else:
 		speed = JOG_SPEED
@@ -154,5 +154,5 @@ func _on_player_hitbox_body_entered(body):
 		hit_detec_check = true
 
 
-func _on_player_hitbox_body_exited(body):
+func _on_player_hitbox_body_exited(_body):
 	hit_detec_check = false
