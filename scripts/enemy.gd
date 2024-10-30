@@ -32,6 +32,7 @@ func _physics_process(_delta: float) -> void:
 	
 	if hit_detec_check == true:
 		enemy_health -= 1
+		
 	
 	var dead_body_instance = dead_body.instantiate()
 	if enemy_health == 0:

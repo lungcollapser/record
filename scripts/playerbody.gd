@@ -56,8 +56,9 @@ func drop_object():
 
 func _physics_process(delta: float):
 	if hit_detec_check == true:
-		player_health -= 1
+		player_health -= 0.5
 		print(player_health)
+		HealthBar.value = player_health
 		
 		
 	if picked_up_object != null:
