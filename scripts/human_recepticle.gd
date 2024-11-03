@@ -12,13 +12,8 @@ func _ready() -> void:
 	player_pick_up = get_tree().get_nodes_in_group("pickup")[0]
 
 func _on_body_shape_entered(_body_rid: RID, body: Node, _body_shape_index: int, _local_shape_index: int):
-	var body_part_collider = player_pick_up.get_collider()
-	if body.is_in_group("Bussin") and body_part_collider == null:
-		body.visible = false
-		await get_tree().create_timer(10).timeout
-		body.queue_free()
-		BloodBar.value += 10
-		
+	DeadBodyParts.dead_body_destroy()
+
 func _physics_process(_delta: float):
 	drop_receptacle()
 		
