@@ -11,9 +11,6 @@ func _ready() -> void:
 	player_hold = get_tree().get_nodes_in_group("hold")[0]
 	player_pick_up = get_tree().get_nodes_in_group("pickup")[0]
 
-func _on_body_shape_entered(_body_rid: RID, body: Node, _body_shape_index: int, _local_shape_index: int):
-	DeadBodyParts.dead_body_destroy()
-
 func _physics_process(_delta: float):
 	drop_receptacle()
 		
