@@ -6,12 +6,14 @@ class_name HumanReceptacle
 var player_hold
 var player_pick_up
 var receptacle_amount = true
+var dead_body_parts
 
 func _ready() -> void:
 	player_hold = get_tree().get_nodes_in_group("hold")[0]
 	player_pick_up = get_tree().get_nodes_in_group("pickup")[0]
 
 func _physics_process(_delta: float):
+	
 	drop_receptacle()
 		
 	if Input.is_action_just_pressed("dropreceptacle"):

@@ -1,33 +1,31 @@
-extends Node3D
+extends HumanReceptacle
 
-func _on_head_body_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int):
-	if body is HumanReceptacle:
+func _physics_process(delta: float) -> void:
+	human_receptacle = get_tree().get_nodes_in_group("stow")[0]
+
+
+func _on_head_body_body_entered(body):
+	if body.is_in_group("stow") or body is HumanReceptacle:
+		print("hellow")
+		queue_free()
+
+func _on_right_leg_body_body_entered(body):
+	if body.is_in_group("stow") or body is HumanReceptacle:
+		print("hellow")
+		queue_free()
+
+func _on_right_arm_body_body_entered(body):
+	if body.is_in_group("stow") or body is HumanReceptacle:
+		print("hellow")
+		queue_free()
+
+func _on_left_leg_body_body_entered(body):
+	if body.is_in_group("stow") or body is HumanReceptacle:
 		print("hellow")
 		queue_free()
 
 
-
-func _on_right_leg_body_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int):
-	if body is HumanReceptacle:
-		print("hellow")
-		queue_free()
-
-
-
-func _on_right_arm_body_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int):
-	if body is HumanReceptacle:
-		print("hellow")
-		queue_free()
-
-
-func _on_left_leg_body_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int):
-	if body is HumanReceptacle:
-		print("hellow")
-		queue_free()
-
-
-
-func _on_left_arm_body_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int):
-	if body is HumanReceptacle:
+func _on_left_arm_body_body_entered(body):
+	if body.is_in_group("stow") or body is HumanReceptacle:
 		print("hellow")
 		queue_free()

@@ -89,8 +89,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_47c4c")
 transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_m5cmy")
 
-[connection signal="body_shape_entered" from="LeftArmBody" to="." method="_on_left_arm_body_body_shape_entered"]
-[connection signal="body_shape_entered" from="LeftLegBody" to="." method="_on_left_leg_body_body_shape_entered"]
-[connection signal="body_shape_entered" from="RightArmBody" to="." method="_on_right_arm_body_body_shape_entered"]
-[connection signal="body_shape_entered" from="RightLegBody" to="." method="_on_right_leg_body_body_shape_entered"]
-[connection signal="body_shape_entered" from="HeadBody" to="." method="_on_head_body_body_shape_entered"]
+[connection signal="body_entered" from="LeftArmBody" to="." method="_on_left_arm_body_body_entered"]
+[connection signal="body_entered" from="LeftLegBody" to="." method="_on_left_leg_body_body_entered"]
+[connection signal="body_entered" from="RightArmBody" to="." method="_on_right_arm_body_body_entered"]
+[connection signal="body_entered" from="RightLegBody" to="." method="_on_right_leg_body_body_entered"]
+[connection signal="body_entered" from="HeadBody" to="." method="_on_head_body_body_entered"]
