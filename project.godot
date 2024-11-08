@@ -20,7 +20,6 @@ config/icon="res://icon.svg"
 StaminaBar="*res://scenes/stamina_bar.tscn"
 BloodBar="*res://scenes/blood_bar.tscn"
 HealthBar="*res://scenes/health_bar.tscn"
-DeadBodyParts="*res://scripts/dead_body_parts.gd"
 
 [display]
 

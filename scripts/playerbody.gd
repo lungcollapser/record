@@ -11,8 +11,7 @@ const JOG_SPEED = 5.0
 const SPRINT_SPEED = 7.0
 const JUMP_VELOCITY = 4.5
 const SENSITIVTY = 0.01
-var picked_up_object 
-var pull_power = 6
+var picked_up_object
 var dead_body_check = null
 
 # Headbob variables
@@ -22,7 +21,6 @@ var t_bob = 0.0
 
 var enemy 
 var hit_detec_check
-var human_receptacle 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 @onready var pick_up = $Head/Camera3D/Pickup
@@ -36,22 +34,12 @@ var human_receptacle
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	enemy = get_tree().get_nodes_in_group("enemyshape")[0]
-	human_receptacle = get_tree().get_nodes_in_group("stow")[0]
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVTY)
 		camera.rotate_x(-event.relative.y * SENSITIVTY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-50), deg_to_rad(60))
-	
-func pick_up_object():
-	var collider = pick_up.get_collider()
-	if collider != null and collider is RigidBody3D:
-		picked_up_object = collider
-		
-func drop_object():
-	if picked_up_object != null:
-		picked_up_object = null
 
 
 func _physics_process(delta: float):
@@ -59,23 +47,6 @@ func _physics_process(delta: float):
 		player_health -= 0.5
 		print(player_health)
 		HealthBar.value = player_health
-		
-		
-	if picked_up_object != null:
-		var a = picked_up_object.global_position
-		var b = hold.global_position
-		picked_up_object.set_linear_velocity((b-a) * pull_power)
-	
-	if Input.is_action_just_pressed("interact"):
-		if picked_up_object == null:
-			pick_up_object()
-		elif picked_up_object != null:
-			drop_object()
-	
-	if picked_up_object == dead_body_parts:
-		pull_power = 5
-	
-	
 	if max_endurance > 0:
 		endurance_check = true
 	else:
@@ -98,9 +69,8 @@ func _physics_process(delta: float):
 	#Add walking and sprinting
 	if Input.is_action_pressed("sprint") and endurance_check == true:
 		speed = SPRINT_SPEED
-	elif Input.is_action_pressed("walk") or picked_up_object is HumanReceptacle or picked_up_object is DeadBody:
+	elif Input.is_action_pressed("walk"):
 		speed = WALK_SPEED
-		endurance_check = false
 	else:
 		speed = JOG_SPEED
 	# Handle jump.
@@ -127,9 +97,11 @@ func _physics_process(delta: float):
 	if Input.is_action_pressed("sprint") and endurance_check == true and input_dir and is_on_floor():
 		max_endurance -= 0.5
 		StaminaBar.value = max_endurance
+		
 	if max_endurance < 100:
 		max_endurance += 0.05
 		StaminaBar.value = max_endurance
+		
 	if max_endurance < 100 and not input_dir:
 		max_endurance += 0.1
 		StaminaBar.value = max_endurance

@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://diuvg68njxngr"]
+[gd_scene load_steps=7 format=3 uid="uid://diuvg68njxngr"]
 
 [ext_resource type="Script" path="res://scripts/playerbody.gd" id="1_sxyqi"]
+[ext_resource type="Script" path="res://scripts/head.gd" id="2_44ua0"]
 [ext_resource type="PackedScene" uid="uid://cneiraorx7bmt" path="res://scenes/fps_character.tscn" id="2_qqyf1"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_d0phb"]
@@ -23,6 +24,7 @@ transform = Transform3D(0.895, 0, 0, 0, 0.895, 0, 0, 0, 0.895, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_dd3nb")
 
 [node name="Head" type="Node3D" parent="Playerbody"]
+script = ExtResource("2_44ua0")
 
 [node name="Camera3D" type="Camera3D" parent="Playerbody/Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.239932, 0.117949)

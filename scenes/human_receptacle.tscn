@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://jyrhlvipedil"]
+[gd_scene load_steps=7 format=3 uid="uid://jyrhlvipedil"]
 
 [ext_resource type="Script" path="res://scripts/human_recepticle.gd" id="1_05dvp"]
 
@@ -11,13 +11,15 @@ size = Vector3(0.835, 0.835, 0.835)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8o8bw"]
 albedo_color = Color(0.0518905, 0, 0.377873, 1)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_516cr"]
-points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+[sub_resource type="BoxShape3D" id="BoxShape3D_5otlv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4m522"]
 
 [node name="HumanReceptacle" type="RigidBody3D" groups=["stow"]]
 disable_mode = 1
-mass = 1.5
+mass = 18.079
 physics_material_override = SubResource("PhysicsMaterial_k8dcf")
+gravity_scale = 2.5
 contact_monitor = true
 max_contacts_reported = 10
 script = ExtResource("1_05dvp")
@@ -27,9 +29,14 @@ mesh = SubResource("BoxMesh_7i2cu")
 surface_material_override/0 = SubResource("StandardMaterial3D_8o8bw")
 
 [node name="HumanReceptacleShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.835, 0, 0, 0, 0.835, 0, 0, 0, 0.835, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_516cr")
+transform = Transform3D(0.825, 0, 0, 0, 0.825, 0, 0, 0, 0.825, 0, 0.0210883, 0)
+shape = SubResource("BoxShape3D_5otlv")
+
+[node name="HumanReceptacleDropArea" type="Area3D" parent="." groups=["stow"]]
+
+[node name="HumanReceptacleDropShape" type="CollisionShape3D" parent="HumanReceptacleDropArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.935684, 0)
+shape = SubResource("BoxShape3D_4m522")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
 [connection signal="input_event" from="." to="." method="_on_input_event"]
