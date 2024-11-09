@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://jyrhlvipedil"]
+[gd_scene load_steps=6 format=3 uid="uid://jyrhlvipedil"]
 
 [ext_resource type="Script" path="res://scripts/human_recepticle.gd" id="1_05dvp"]
 
@@ -12,8 +12,6 @@ size = Vector3(0.835, 0.835, 0.835)
 albedo_color = Color(0.0518905, 0, 0.377873, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5otlv"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_4m522"]
 
 [node name="HumanReceptacle" type="RigidBody3D" groups=["stow"]]
 disable_mode = 1
@@ -31,12 +29,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_8o8bw")
 [node name="HumanReceptacleShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.825, 0, 0, 0, 0.825, 0, 0, 0, 0.825, 0, 0.0210883, 0)
 shape = SubResource("BoxShape3D_5otlv")
-
-[node name="HumanReceptacleDropArea" type="Area3D" parent="." groups=["stow"]]
-
-[node name="HumanReceptacleDropShape" type="CollisionShape3D" parent="HumanReceptacleDropArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.935684, 0)
-shape = SubResource("BoxShape3D_4m522")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="input_event" from="." to="." method="_on_input_event"]

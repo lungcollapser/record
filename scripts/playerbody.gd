@@ -11,6 +11,7 @@ const JOG_SPEED = 5.0
 const SPRINT_SPEED = 7.0
 const JUMP_VELOCITY = 4.5
 const SENSITIVTY = 0.01
+var pull_power = 3
 var picked_up_object
 var dead_body_check = null
 
@@ -31,9 +32,12 @@ var hit_detec_check
 @onready var dead_body_parts = preload("res://scenes/dead_body_parts.tscn").instantiate()
 
 
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	enemy = get_tree().get_nodes_in_group("enemyshape")[0]
+	pick_up = get_tree().get_nodes_in_group("pickup")[0]
+	hold = get_tree().get_nodes_in_group("hold")[0]
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -41,8 +45,32 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera.rotate_x(-event.relative.y * SENSITIVTY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-50), deg_to_rad(60))
 
+func pick_up_object():
+	var collider = pick_up.get_collider()
+	if collider != null and collider is RigidBody3D:
+		picked_up_object = collider
+		
+func drop_object():
+	if picked_up_object != null:
+		picked_up_object = null
+
+
+
 
 func _physics_process(delta: float):
+
+	if picked_up_object != null:
+		var a = picked_up_object.global_position
+		var b = hold.global_position
+		picked_up_object.set_linear_velocity((b-a) * pull_power)
+		
+	if Input.is_action_just_pressed("interact"):
+		if picked_up_object == null:
+			pick_up_object()
+		elif picked_up_object != null:
+			drop_object()
+	
+	
 	if hit_detec_check == true:
 		player_health -= 0.5
 		print(player_health)
@@ -73,6 +101,7 @@ func _physics_process(delta: float):
 		speed = WALK_SPEED
 	else:
 		speed = JOG_SPEED
+		
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -120,6 +149,8 @@ func _headbob(time) -> Vector3:
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	return pos
 	
+func speed_change():
+	speed = WALK_SPEED
 
 
 func _on_player_hitbox_body_entered(body):

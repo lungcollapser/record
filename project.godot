@@ -26,6 +26,10 @@ HealthBar="*res://scenes/health_bar.tscn"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 
+[global_group]
+
+player=""
+
 [input]
 
 forward={
