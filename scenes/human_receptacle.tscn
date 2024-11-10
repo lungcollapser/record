@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://jyrhlvipedil"]
 
-[ext_resource type="Script" path="res://scripts/human_recepticle.gd" id="1_05dvp"]
+[ext_resource type="Script" path="res://scripts/human_receptacle.gd" id="1_05dvp"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k8dcf"]
 friction = 0.35
@@ -31,4 +31,5 @@ transform = Transform3D(0.825, 0, 0, 0, 0.825, 0, 0, 0, 0.825, 0, 0.0210883, 0)
 shape = SubResource("BoxShape3D_5otlv")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="call_receptacle_speed" from="." to="." method="_on_call_receptacle_speed"]
 [connection signal="input_event" from="." to="." method="_on_input_event"]

@@ -20,7 +20,6 @@ const BOB_FREQ = 2.0
 const BOB_AMP = 0.08
 var t_bob = 0.0
 
-var enemy 
 var hit_detec_check
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
@@ -35,9 +34,10 @@ var hit_detec_check
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	enemy = get_tree().get_nodes_in_group("enemyshape")[0]
 	pick_up = get_tree().get_nodes_in_group("pickup")[0]
 	hold = get_tree().get_nodes_in_group("hold")[0]
+	
+	Events.connect("call_receptacle_speed", Callable(self, "receptacle_speed"))
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -58,6 +58,7 @@ func drop_object():
 
 
 func _physics_process(delta: float):
+
 
 	if picked_up_object != null:
 		var a = picked_up_object.global_position
@@ -148,10 +149,6 @@ func _headbob(time) -> Vector3:
 	pos.y = sin(time * BOB_FREQ) * BOB_AMP
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	return pos
-	
-func speed_change():
-	speed = WALK_SPEED
-
 
 func _on_player_hitbox_body_entered(body):
 	if body is Enemy:
@@ -160,3 +157,7 @@ func _on_player_hitbox_body_entered(body):
 
 func _on_player_hitbox_body_exited(_body):
 	hit_detec_check = false
+	
+	
+func receptacle_speed():
+	speed = WALK_SPEED

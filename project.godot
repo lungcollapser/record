@@ -20,15 +20,12 @@ config/icon="res://icon.svg"
 StaminaBar="*res://scenes/stamina_bar.tscn"
 BloodBar="*res://scenes/blood_bar.tscn"
 HealthBar="*res://scenes/health_bar.tscn"
+Events="*res://events.gd"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-
-[global_group]
-
-player=""
 
 [input]
 
