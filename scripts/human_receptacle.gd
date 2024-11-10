@@ -40,8 +40,7 @@ func drop_receptacle():
 		collision.disabled = true
 
 
-
-func _on_body_entered(body: Node):
+func _on_human_receptacle_grinder_body_entered(body):
 	if body.is_in_group("Bussin"):
 		body.queue_free()
 		BloodBar.value += 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://jyrhlvipedil"]
+[gd_scene load_steps=9 format=3 uid="uid://jyrhlvipedil"]
 
 [ext_resource type="Script" path="res://scripts/human_receptacle.gd" id="1_05dvp"]
 
@@ -11,6 +11,13 @@ size = Vector3(0.835, 0.835, 0.835)
 albedo_color = Color(0.0518905, 0, 0.377873, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5otlv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_plppa"]
+albedo_color = Color(0, 0.545098, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_msbfj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_evmdg"]
 
 [node name="HumanReceptacle" type="RigidBody3D" groups=["stow"]]
 disable_mode = 1
@@ -28,5 +35,19 @@ surface_material_override/0 = SubResource("StandardMaterial3D_8o8bw")
 transform = Transform3D(0.825, 0, 0, 0, 0.825, 0, 0, 0, 0.825, 0, 0.0210883, 0)
 shape = SubResource("BoxShape3D_5otlv")
 
+[node name="GrinderHole" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.535, 0, 0, 0, 0.535, 0, 0, 0, 0.535, 0, 0.212816, 0)
+material_override = SubResource("StandardMaterial3D_plppa")
+mesh = SubResource("BoxMesh_msbfj")
+
+[node name="HumanReceptacleGrinder" type="Area3D" parent="."]
+transform = Transform3D(0.69, 0, 0, 0, 0.69, 0, 0, 0, 0.69, 0, 0.109901, 0)
+collision_mask = 2
+
+[node name="HumanReceptacleGrinderShape" type="CollisionShape3D" parent="HumanReceptacleGrinder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0487064, 0)
+shape = SubResource("BoxShape3D_evmdg")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="body_entered" from="HumanReceptacleGrinder" to="." method="_on_human_receptacle_grinder_body_entered"]

@@ -1,10 +1,14 @@
 extends Node3D
+class_name DeadBodyParts
+
 
 
 func _on_head_body_body_entered(body):
 	if body.is_in_group("stow"):
 		print("hellow")
 		queue_free()
+		
+		
 
 func _on_right_leg_body_body_entered(body):
 	if body.is_in_group("stow"):
