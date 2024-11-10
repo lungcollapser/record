@@ -38,6 +38,7 @@ func _ready():
 	hold = get_tree().get_nodes_in_group("hold")[0]
 	
 	Events.connect("call_receptacle_speed", Callable(self, "receptacle_speed"))
+	Events.connect("call_normal_speed", Callable(self, "normal_speed"))
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -58,7 +59,6 @@ func drop_object():
 
 
 func _physics_process(delta: float):
-
 
 	if picked_up_object != null:
 		var a = picked_up_object.global_position
@@ -100,8 +100,6 @@ func _physics_process(delta: float):
 		speed = SPRINT_SPEED
 	elif Input.is_action_pressed("walk"):
 		speed = WALK_SPEED
-	else:
-		speed = JOG_SPEED
 		
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
@@ -161,3 +159,5 @@ func _on_player_hitbox_body_exited(_body):
 	
 func receptacle_speed():
 	speed = WALK_SPEED
+func normal_speed():
+	speed = JOG_SPEED
