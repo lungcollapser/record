@@ -3,10 +3,11 @@ class_name Player
 
 var speed = 0
 var max_endurance = clamp(100, 0, 100)
-var endurance_check 
+var endurance_check = true 
 var player_health = clamp(100, 0, 100)
 const CROUCH_SPEED = 1.5
 const WALK_SPEED = 2.0
+const RECEPTACLE_SPEED = 3.5
 const JOG_SPEED = 5.0
 const SPRINT_SPEED = 7.0
 const JUMP_VELOCITY = 4.5
@@ -76,10 +77,7 @@ func _physics_process(delta: float):
 		player_health -= 0.5
 		print(player_health)
 		HealthBar.value = player_health
-	if max_endurance > 0:
-		endurance_check = true
-	else:
-		endurance_check = false
+		
 		
 	if Input.is_action_pressed("crouch"):
 		speed = CROUCH_SPEED
@@ -158,6 +156,10 @@ func _on_player_hitbox_body_exited(_body):
 	
 	
 func receptacle_speed():
-	speed = WALK_SPEED
+	speed = RECEPTACLE_SPEED
+	endurance_check = false
+	
 func normal_speed():
 	speed = JOG_SPEED
+	endurance_check = true
+	

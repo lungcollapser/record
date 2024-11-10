@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://scripts/human_receptacle.gd" id="1_05dvp"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k8dcf"]
-friction = 0.35
 
 [sub_resource type="BoxMesh" id="BoxMesh_7i2cu"]
 size = Vector3(0.835, 0.835, 0.835)
@@ -17,7 +16,6 @@ albedo_color = Color(0.0518905, 0, 0.377873, 1)
 disable_mode = 1
 mass = 18.079
 physics_material_override = SubResource("PhysicsMaterial_k8dcf")
-gravity_scale = 2.5
 contact_monitor = true
 max_contacts_reported = 10
 script = ExtResource("1_05dvp")
