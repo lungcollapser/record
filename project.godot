@@ -21,6 +21,7 @@ StaminaBar="*res://scenes/stamina_bar.tscn"
 BloodBar="*res://scenes/blood_bar.tscn"
 HealthBar="*res://scenes/health_bar.tscn"
 Events="*res://scripts/events.gd"
+DeadBodyParts="*res://scenes/dead_body_parts.tscn"
 
 [display]
 
