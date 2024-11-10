@@ -12,7 +12,7 @@ const JOG_SPEED = 5.0
 const SPRINT_SPEED = 7.0
 const JUMP_VELOCITY = 4.5
 const SENSITIVTY = 0.01
-var pull_power = 10
+var pull_power = 12
 var picked_up_object
 var dead_body_check = null
 
@@ -61,7 +61,7 @@ func drop_object():
 
 func _physics_process(delta: float):
 	
-	if picked_up_object is RigidBody3D:
+	if picked_up_object != null:
 		picked_up_object.lock_rotation = true
 
 	if picked_up_object != null:

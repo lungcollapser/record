@@ -23,6 +23,10 @@ HealthBar="*res://scenes/health_bar.tscn"
 Events="*res://scripts/events.gd"
 DeadBodyParts="*res://scenes/dead_body_parts.tscn"
 
+[debug]
+
+shapes/collision/shape_color=Color(1, 0, 0.984314, 0.419608)
+
 [display]
 
 window/size/viewport_width=1920
