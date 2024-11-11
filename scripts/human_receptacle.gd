@@ -18,9 +18,7 @@ func _ready() -> void:
 	Events.connect("call_kill_floor_receptacle", Callable(self, "kill_floor_receptacle"))
 
 func _physics_process(_delta: float):
-	
-	wall_collision(wall)
-	
+	wall_kill_floor()
 	drop_receptacle()
 	
 	if receptacle_amount == true:
@@ -53,7 +51,10 @@ func kill_floor_receptacle():
 	human_receptacle.global_position = player_hold.global_position
 	linear_velocity = Vector3.ZERO
 	
-func wall_collision(body):
-	if player_pick_up.is_colliding() and body.is_in_group("wall"):
+func wall_kill_floor():
+	var wall_collider = player_pick_up.get_collider()
+	if wall_collider != null and wall_collider.is_in_group("wall") and Input.is_action_just_pressed("dropreceptacle"):
 		print("herro")
+		collision.disabled = true
 		Events.emit_signal("call_kill_floor_receptacle")
+		
