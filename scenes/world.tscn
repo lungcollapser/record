@@ -52,6 +52,7 @@ size = Vector3(55.44, 1, 34.145)
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D" groups=["wall"]]
 transform = Transform3D(1.06639, 0, 0, 0, 1, 0, 0, 0, 1.0298, 0, 0, 0)
 use_collision = true
+collision_priority = 100.0
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(0.937744, 0, 0, 0, 1, 0, 0, 0, 0.971064, -51.1694, 80.8705, 0)

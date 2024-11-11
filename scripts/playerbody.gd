@@ -61,6 +61,7 @@ func drop_object():
 
 func _physics_process(delta: float):
 	
+	
 	if picked_up_object != null:
 		picked_up_object.lock_rotation = true
 

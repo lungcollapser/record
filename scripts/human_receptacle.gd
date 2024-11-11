@@ -21,6 +21,8 @@ func _physics_process(_delta: float):
 	wall_kill_floor()
 	drop_receptacle()
 	
+
+	
 	if receptacle_amount == true:
 		Events.emit_signal("call_receptacle_speed")
 	else:
@@ -52,9 +54,8 @@ func kill_floor_receptacle():
 	linear_velocity = Vector3.ZERO
 	
 func wall_kill_floor():
-	var wall_collider = player_pick_up.get_collider()
-	if wall_collider != null and wall_collider.is_in_group("wall") and Input.is_action_just_pressed("dropreceptacle"):
+	if human_receptacle.max_contacts_reported >= 3:
+		print(human_receptacle.get_contact_count())
 		print("herro")
-		collision.disabled = true
 		Events.emit_signal("call_kill_floor_receptacle")
 		
