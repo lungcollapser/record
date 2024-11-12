@@ -18,10 +18,8 @@ func _ready() -> void:
 	Events.connect("call_kill_floor_receptacle", Callable(self, "kill_floor_receptacle"))
 
 func _physics_process(_delta: float):
-	wall_kill_floor()
+#	wall_kill_floor()
 	drop_receptacle()
-	
-
 	
 	if receptacle_amount == true:
 		Events.emit_signal("call_receptacle_speed")
@@ -53,9 +51,9 @@ func kill_floor_receptacle():
 	human_receptacle.global_position = player_hold.global_position
 	linear_velocity = Vector3.ZERO
 	
-func wall_kill_floor():
-	if human_receptacle.max_contacts_reported >= 3:
-		print(human_receptacle.get_contact_count())
-		print("herro")
-		Events.emit_signal("call_kill_floor_receptacle")
+#func wall_kill_floor():
+#	if human_receptacle.get_colliding_bodies() and receptacle_amount == true:
+#		print(human_receptacle.get_contact_count())
+#		print("herro")
+#		kill_floor_receptacle()
 		

@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dgnqdygrkxgmt"]
-
-[ext_resource type="PackedScene" uid="uid://clnrxydf0djjt" path="res://assets/Garbage_Bag_01_black1.glb" id="1_nde6j"]
-
-[node name="Garbage_Bag_01_black12" instance=ExtResource("1_nde6j")]

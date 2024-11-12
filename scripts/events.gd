@@ -3,3 +3,4 @@ extends Node
 signal call_receptacle_speed
 signal call_normal_speed
 signal call_kill_floor_receptacle
+signal call_enemy_lose_health

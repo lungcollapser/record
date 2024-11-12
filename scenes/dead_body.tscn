@@ -14,7 +14,7 @@ albedo_color = Color(0.247059, 0, 0, 1)
 
 [node name="deadbody" type="RigidBody3D" groups=["Dismember"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.390282, 0)
-mass = 0.235
+mass = 9.354
 physics_material_override = SubResource("PhysicsMaterial_03anv")
 script = ExtResource("1_woxul")
 

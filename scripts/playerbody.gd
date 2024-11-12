@@ -28,7 +28,6 @@ var hit_detec_check
 @onready var hold = $Head/Camera3D/Hold
 @onready var player_mesh = $PlayerMesh
 @onready var player_shape = $PlayerShape
-@onready var fps_arms = $Head/Camera3D/fps_character/fpsarmsarea/fpsarmsshape
 @onready var dead_body_parts = preload("res://scenes/dead_body_parts.tscn").instantiate()
 
 
@@ -79,7 +78,6 @@ func _physics_process(delta: float):
 	
 	if hit_detec_check == true:
 		player_health -= 0.5
-		print(player_health)
 		HealthBar.value = player_health
 		
 		

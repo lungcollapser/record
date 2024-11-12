@@ -27,6 +27,8 @@ func _ready():
 	player_pickup = get_tree().get_nodes_in_group("pickup")[0]
 	pathing = get_tree().get_nodes_in_group("pathing")[0]
 	
+	Events.connect("call_enemy_lose_health", Callable(self, "enemy_lose_health"))
+	
 	
 	
 func _physics_process(_delta: float) -> void:
@@ -74,6 +76,9 @@ func _on_enemy_area_body_exited(body: Node3D):
 
 
 func _on_enemy_hitbox_body_entered(body):
-	if body is Player and Input.is_action_just_pressed("attack"):
+	if body.is_in_group("fpsarmsss") and Input.is_action_just_pressed("attack"):
+		print("herro")
 		hit_detec_check = true
-		
+	
+func enemy_lose_health():
+	enemy_health -= 1
