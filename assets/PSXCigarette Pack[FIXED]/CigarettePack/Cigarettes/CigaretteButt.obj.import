@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cx4xrkqghy3e3"
+path="res://.godot/imported/CigaretteButt.obj-5dfeba0c3a713be4e9d1446095f22248.mesh"
+
+[deps]
+
+files=["res://.godot/imported/CigaretteButt.obj-5dfeba0c3a713be4e9d1446095f22248.mesh"]
+
+source_file="res://assets/PSXCigarette Pack[FIXED]/CigarettePack/Cigarettes/CigaretteButt.obj"
+dest_files=["res://.godot/imported/CigaretteButt.obj-5dfeba0c3a713be4e9d1446095f22248.mesh", "res://.godot/imported/CigaretteButt.obj-5dfeba0c3a713be4e9d1446095f22248.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

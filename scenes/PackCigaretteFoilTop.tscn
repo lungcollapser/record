@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=4 uid="uid://7lxy8ip0fa3g"]
+
+[ext_resource type="Texture2D" uid="uid://cwmv8hokd12xl" path="res://assets/PSXCigarette Pack[FIXED]/textures/packFrontTextureLowPoly.png" id="1_p254r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_piqbj"]
+resource_name = "Material.053"
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 1)
+albedo_texture = ExtResource("1_p254r")
+emission_enabled = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_yrheg"]
+_surfaces = [{
+"aabb": AABB(-0.00159223, 0.00228394, -0.00388519, 0.00286199, 0.0117507, 0.00777038),
+"format": 34359742465,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQABQAEAAAAAAADAAUABwABAAAAAAAEAAcABwAGAAIAAgABAAcABQADAAIAAgAGAAUA"),
+"name": "Material.053",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("E26mOozxZTysnn67YLLQuozxZTysnn67YLLQuiiuFTusnn67E26mOiiuFTusnn67E26mOozxZTysnn47E26mOiiuFTusnn47YLLQuiiuFTusnn47YLLQuozxZTysnn47")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_pvshc"]
+resource_name = "PackCigaretteFoilTop_001"
+_surfaces = [{
+"aabb": AABB(-0.00159223, 0.00228394, -0.00388519, 0.00286199, 0.0117507, 0.00777038),
+"attribute_data": PackedByteArray("tg8FPwCQ+bkB+Cs/AJD5uQH4Kz/fNYA/tg8FP981gD/Sjis/ALA7OdKOKz8QBIA/mwIFPxAEgD+bAgU/ALA7OZxTyTnMKIA/nFPJOQCgz7k4SgI/AKDPuThKAj/MKIA/Mc8uP47KJT8xzy4/AFgOOgg6Vj8AWA46CDpWP47KJT+FRAI/AKDPuYVEAj/MKIA/sB0MO8wogD+wHQw7AKDPuWHBVT+05cw+YcFVP5hQJT+kNC8/mFAlP6Q0Lz+05cw+"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAANAA4ADgAPAAwAEAARABIAEgATABAAFAAVABYAFgAXABQA"),
+"material": SubResource("StandardMaterial3D_piqbj"),
+"name": "Material.053",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("E26mOozxZTysnn67YLLQuozxZTysnn67YLLQuiiuFTusnn67E26mOiiuFTusnn67E26mOozxZTysnn47E26mOiiuFTusnn47YLLQuiiuFTusnn47YLLQuozxZTysnn47E26mOiiuFTusnn47E26mOozxZTysnn47E26mOozxZTysnn67E26mOiiuFTusnn67YLLQuozxZTysnn47YLLQuozxZTysnn67E26mOozxZTysnn67E26mOozxZTysnn47YLLQuozxZTysnn47YLLQuiiuFTusnn47YLLQuiiuFTusnn67YLLQuozxZTysnn67E26mOiiuFTusnn47E26mOiiuFTusnn67YLLQuiiuFTusnn67YLLQuiiuFTusnn47+/8BgP9/ACP/////AAD/v/////8AAP+//f8DgP65///7//1//rn///3/+3//fwAj/3//f////7//f/9/////v/3/+38AAP7/+//9f///AID7/wGA///+//3/A4AAAACA/3///////7//f///////v/v/AYD/xQCA+//9f/65AAAAAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/3/+3//f/7c/f8DgP9//2L/fwAA////v/9/AAD///+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_yrheg")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wvdxm"]
+points = PackedVector3Array(0.00146398, 0.00220714, -0.00399286, -0.0016, 0.0137444, 0.00375872, 0.00146398, 0.00220714, 0.00399286, 0.00146398, 0.0140917, -0.00399286, -0.0016, 0.00255563, -0.00375872, -0.0016, 0.00255563, 0.00375872, -0.0016, 0.0137444, -0.00375872, 0.00146398, 0.0140917, 0.00399286)
+
+[node name="PackCigaretteFoilTop" type="RigidBody3D"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.62606, 0.227147, 0)
+
+[node name="PackCigaretteFoilTop" type="MeshInstance3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, -3.25841e-06, 0, 3.25841e-06, 20, 0, 0, 0)
+mesh = SubResource("ArrayMesh_pvshc")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, -3.25841e-06, 0, 3.25841e-06, 20, 0, -0.00842714, 0)
+shape = SubResource("ConvexPolygonShape3D_wvdxm")
