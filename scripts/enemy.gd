@@ -16,7 +16,6 @@ var pathing
 @export var player_path : NodePath
 @onready var nav_agent = $EnemyNavigation
 @onready var dead_body = preload("res://scenes/dead_body.tscn")
-@onready var player_arms = preload("res://scenes/fps_character.tscn")
 
 
 

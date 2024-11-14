@@ -5498,8 +5498,3 @@ libraries = {
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(2.555, 0, 0, 0, 2.555, 0, 0, 0, 2.555, 0, 4.07255, 0.532281)
 shape = SubResource("SphereShape3D_0kl6a")
-
-[node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.13123, 0.227835)
-target_position = Vector3(0, -1, 3.575)
-collide_with_areas = true

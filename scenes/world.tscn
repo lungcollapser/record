@@ -361,7 +361,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.112, 0.650756, -0.369226)
 [node name="Items" type="Node3D" parent="."]
 
 [node name="GarbageBag" parent="Items" instance=ExtResource("6_fhtf8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.5875, 1.22079, -9.61376)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.5627, 1.22079, -1.35154)
 
 [node name="PackCigaretteFoilTop" parent="Items" instance=ExtResource("7_4ogf3")]
 

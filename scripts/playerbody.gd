@@ -12,9 +12,10 @@ const JOG_SPEED = 5.0
 const SPRINT_SPEED = 7.0
 const JUMP_VELOCITY = 4.5
 const SENSITIVTY = 0.01
-var pull_power = 12
+var pull_power = 15
 var picked_up_object
 var dead_body_check = null
+
 
 # Headbob variables
 const BOB_FREQ = 2.0
@@ -22,6 +23,7 @@ const BOB_AMP = 0.08
 var t_bob = 0.0
 
 var hit_detec_check
+@onready var player = $"."
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 @onready var pick_up = $Head/Camera3D/Pickup
@@ -51,6 +53,7 @@ func pick_up_object():
 	if collider != null and collider is RigidBody3D:
 		picked_up_object = collider
 		
+		
 func drop_object():
 	if picked_up_object != null:
 		picked_up_object = null
@@ -68,6 +71,13 @@ func _physics_process(delta: float):
 		var a = picked_up_object.global_position
 		var b = hold.global_position
 		picked_up_object.set_linear_velocity((b-a) * pull_power)
+	
+	#if picked_up_object != null and (player.global_position - picked_up_object.global_position) :
+	#	picked_up_object = null
+	if player.global_position >= pick_up.global_position:
+		picked_up_object = null
+	else:
+		picked_up_object != null
 		
 	if Input.is_action_just_pressed("interact"):
 		if picked_up_object == null:
@@ -164,4 +174,3 @@ func receptacle_speed():
 func normal_speed():
 	speed = JOG_SPEED
 	endurance_check = true
-	
