@@ -19,27 +19,24 @@ func _ready() -> void:
 
 func _physics_process(_delta: float):
 #	wall_kill_floor()
-	drop_receptacle()
 	
 	if receptacle_amount == true:
 		Events.emit_signal("call_receptacle_speed")
 	else:
 		Events.emit_signal("call_normal_speed")
-	
-	if Input.is_action_just_pressed("dropreceptacle"):
-		collision.disabled = false
-		visible = true
-	
-func drop_receptacle():
+		
 	var receptacle_collider = player_pick_up.get_collider()
-	if Input.is_action_just_pressed("dropreceptacle") and receptacle_amount == true: 
+	if Input.is_action_just_pressed("dropreceptacle") and receptacle_amount == true:
 		human_receptacle.global_position = player_hold.global_position
 		receptacle_amount = false
+		collision.disabled = false
+		visible = true
 		
 	if Input.is_action_just_pressed("stow") and receptacle_collider != null and receptacle_collider.is_in_group("stow"):
 		receptacle_amount = true
 		visible = false
 		collision.disabled = true
+
 
 
 func _on_human_receptacle_grinder_body_entered(body):
@@ -48,8 +45,9 @@ func _on_human_receptacle_grinder_body_entered(body):
 		BloodBar.value += 1
 		
 func kill_floor_receptacle():
-	human_receptacle.global_position = player_hold.global_position
-	linear_velocity = Vector3.ZERO
+	if receptacle_amount == false:
+		human_receptacle.global_position = player_hold.global_position
+		linear_velocity = Vector3.ZERO
 	
 #func wall_kill_floor():
 #	if human_receptacle.get_colliding_bodies() and receptacle_amount == true:

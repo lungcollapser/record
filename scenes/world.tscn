@@ -50,6 +50,7 @@ navigation_mesh = SubResource("NavigationMesh_4q0lt")
 [node name="Floor" type="CSGBox3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.5665, 0.355282, 0)
 use_collision = true
+collision_priority = 100.0
 size = Vector3(55.44, 1, 34.145)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D" groups=["wall"]]
@@ -338,6 +339,7 @@ shape = SubResource("WorldBoundaryShape3D_6inlm")
 
 [node name="HumanReceptacle" parent="HumanReceptacle" instance=ExtResource("4_rtglp")]
 visible = false
+collision_priority = 1.0
 
 [node name="DeadBodies" type="Node3D" parent="."]
 

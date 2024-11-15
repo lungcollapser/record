@@ -74,10 +74,8 @@ func _physics_process(delta: float):
 	
 	#if picked_up_object != null and (player.global_position - picked_up_object.global_position) :
 	#	picked_up_object = null
-	if player.global_position >= pick_up.global_position:
-		picked_up_object = null
-	else:
-		picked_up_object != null
+	#if head.global_position >= pick_up.global_position:
+	#	picked_up_object = null
 		
 	if Input.is_action_just_pressed("interact"):
 		if picked_up_object == null:

@@ -37,7 +37,7 @@ collision_mask = 3
 transform = Transform3D(-0.67, 0, -1.01167e-07, 0, 0.67, 0, 1.01167e-07, 0, -0.67, 0.0448688, -3.10975, -0.100283)
 
 [node name="Hold" type="Node3D" parent="Playerbody/Head/Camera3D" groups=["hold"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0263963, -1.55614)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.145143, -1.55614)
 
 [node name="PlayerHitbox" type="Area3D" parent="Playerbody"]
 transform = Transform3D(1.51, 0, 0, 0, 1.51, 0, 0, 0, 1.51, 0, 0, 0)

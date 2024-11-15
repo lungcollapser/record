@@ -45,12 +45,13 @@ points = PackedVector3Array(0.00126976, 0.0140346, 0.00388519, -0.00159223, 0.01
 
 [node name="PackCigaretteFoilTop" type="RigidBody3D"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.62606, 0.227147, 0)
+collision_priority = 10.0
 
 [node name="PackCigaretteFoilTop" type="MeshInstance3D" parent="."]
 transform = Transform3D(20, 0, 0, 0, 20, -3.25841e-06, 0, 3.25841e-06, 20, 0, 0, 0)
 mesh = SubResource("ArrayMesh_pvshc")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="PackCigaretteShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(20, 0, 0, 0, 20, -3.25841e-06, 0, 3.25841e-06, 20, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_ac671")
