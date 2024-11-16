@@ -12,6 +12,8 @@ var player_hold
 var player_pickup
 var hit_detec_check
 var pathing
+var bodies = 1
+var enemy_dead_body_check = true
 @onready var enemy_shape = $"EnemyShape"
 @onready var nav_agent = $EnemyNavigation
 @onready var dead_body = preload("res://scenes/dead_body.tscn")
@@ -33,10 +35,6 @@ func _physics_process(_delta: float) -> void:
 	enemy_chase()
 	enemy_dead_body_spawn()
 	
-	if hit_detec_check == true:
-		enemy_health -= 1
-	
-		
 func enemy_chase():
 	var enemy_look_position = player.global_position
 	enemy_look_position.y = global_position.y
@@ -51,7 +49,8 @@ func enemy_chase():
 
 func enemy_dead_body_spawn():
 	var dead_body_instance = dead_body.instantiate()
-	if enemy_health == 0:
+	if enemy_health == 0 and enemy_dead_body_check == true:
+		enemy_dead_body_check = false
 		visible = false
 		enemy_shape.disabled = true
 		get_parent().add_child(dead_body_instance)
