@@ -13,7 +13,6 @@ var player_pickup
 var hit_detec_check
 var pathing
 @onready var enemy_shape = $"EnemyShape"
-@export var player_path : NodePath
 @onready var nav_agent = $EnemyNavigation
 @onready var dead_body = preload("res://scenes/dead_body.tscn")
 
@@ -32,21 +31,11 @@ func _ready():
 	
 func _physics_process(_delta: float) -> void:
 	enemy_chase()
-	
+	enemy_dead_body_spawn()
 	
 	if hit_detec_check == true:
 		enemy_health -= 1
-		
 	
-	var dead_body_instance = dead_body.instantiate()
-	if enemy_health == 0:
-		visible = false
-		enemy_shape.disabled = true
-		get_parent().add_child(dead_body_instance)
-		dead_body_instance.global_position = enemy_shape.global_position
-		
-		
-
 		
 func enemy_chase():
 	var enemy_look_position = player.global_position
@@ -60,6 +49,13 @@ func enemy_chase():
 		move_and_collide(velocity)
 		
 
+func enemy_dead_body_spawn():
+	var dead_body_instance = dead_body.instantiate()
+	if enemy_health == 0:
+		visible = false
+		enemy_shape.disabled = true
+		get_parent().add_child(dead_body_instance)
+		dead_body_instance.global_position = enemy_shape.global_position
 		
 
 func _on_enemy_area_body_entered(body: Node3D):
@@ -71,13 +67,8 @@ func _on_enemy_area_body_entered(body: Node3D):
 func _on_enemy_area_body_exited(body: Node3D):
 	if body is Player:
 		target = null
-
-
-
-func _on_enemy_hitbox_body_entered(body):
-	if body.is_in_group("fpsarmsss") and Input.is_action_just_pressed("attack"):
-		print("herro")
-		hit_detec_check = true
 	
 func enemy_lose_health():
-	enemy_health -= 1
+	if Input.is_action_just_pressed("attack"):
+		print(enemy_health)
+		enemy_health -= 1
