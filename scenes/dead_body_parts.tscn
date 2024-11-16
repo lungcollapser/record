@@ -38,7 +38,6 @@ collision_layer = 2
 mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_vs4ml")
 gravity_scale = 2.0
-freeze_mode = 1
 
 [node name="LeftArmShape" type="CollisionShape3D" parent="LeftArmBody"]
 transform = Transform3D(0.375, 0, 0, 0, -1.63918e-08, -0.375, 0, 0.375, -1.63918e-08, 1.35549, 0, 0)
@@ -56,7 +55,6 @@ collision_layer = 2
 mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_ly17n")
 gravity_scale = 2.0
-freeze_mode = 1
 
 [node name="LeftLeg" type="MeshInstance3D" parent="LeftLegBody"]
 transform = Transform3D(0.35, 0, 0, 0, -1.5299e-08, -0.35, 0, 0.35, -1.5299e-08, 0.656511, 0, 0)
@@ -74,7 +72,6 @@ collision_layer = 2
 mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_camlx")
 gravity_scale = 2.0
-freeze_mode = 1
 
 [node name="RightArm" type="MeshInstance3D" parent="RightArmBody"]
 transform = Transform3D(0.35, 0, 0, 0, -1.5299e-08, -0.35, 0, 0.35, -1.5299e-08, 0, 0, 0)

@@ -3,16 +3,12 @@ class_name Enemy
 
 const ENEMY_SPEED = 0.06
 var enemy_health = clamp(3, 0, 3)
-var enemy_damage
 var player
-var player_area
 var target
-var enemy_navigation_link
 var player_hold
 var player_pickup
-var hit_detec_check
-var pathing
-var bodies = 1
+
+
 var enemy_dead_body_check = true
 @onready var enemy_shape = $"EnemyShape"
 @onready var nav_agent = $EnemyNavigation
@@ -25,7 +21,6 @@ func _ready():
 	player = get_tree().get_nodes_in_group("player")[0]
 	player_hold = get_tree().get_nodes_in_group("hold")[0]
 	player_pickup = get_tree().get_nodes_in_group("pickup")[0]
-	pathing = get_tree().get_nodes_in_group("pathing")[0]
 	
 	Events.connect("call_enemy_lose_health", Callable(self, "enemy_lose_health"))
 	
@@ -41,10 +36,10 @@ func enemy_chase():
 	if target == Player:
 		await get_tree().physics_frame
 		nav_agent.set_target_position(player.global_position)
-		var velocity = (nav_agent.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
+		var enemy_velocity = (nav_agent.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
 		if enemy_look_position != Vector3.ZERO:
 			look_at(enemy_look_position)
-		move_and_collide(velocity)
+		move_and_collide(enemy_velocity)
 		
 
 func enemy_dead_body_spawn():

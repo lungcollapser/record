@@ -26,3 +26,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ua2is")
 [node name="deadbodyshape" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.78, 0, 0, 0, -3.40949e-08, -0.78, 0, 0.78, -3.40949e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_eh13d")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

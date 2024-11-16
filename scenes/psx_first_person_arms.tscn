@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://0py6gtps6jdo"]
+[gd_scene load_steps=20 format=4 uid="uid://0py6gtps6jdo"]
 
 [ext_resource type="Script" path="res://scripts/psx_first_person_arms.gd" id="1_58aak"]
 [ext_resource type="Texture2D" uid="uid://d0q2ollkwbdva" path="res://assets/psx_first_person_arms_0.png" id="2_v5tgo"]
@@ -1966,6 +1966,18 @@ tracks/62/path = NodePath("Sketchfab_model/PSX_First_Person_Arms_fbx/Object_2/Ro
 tracks/62/interp = 1
 tracks/62/loop_wrap = true
 tracks/62/keys = PackedFloat32Array(0, 1, -0.086949, 0.620817, 0.541679, 0.560008)
+tracks/63/type = "value"
+tracks/63/imported = false
+tracks/63/enabled = true
+tracks/63/path = NodePath("PSXArmHitbox/PSXArmHitboxShape:position")
+tracks/63/interp = 1
+tracks/63/loop_wrap = true
+tracks/63/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.133333, 0.233333, 0.333333, 0.433333, 0.533333, 0.633333, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.5739, 4.25675, 0.872859), Vector3(0.736824, 4.34616, 0.74251), Vector3(1.04224, 4.53377, 0.66701), Vector3(0.373627, 4.53377, 1.81069), Vector3(0.185936, 4.53377, 1.86404), Vector3(0.185936, 4.53377, 1.86404), Vector3(0.327734, 4.53377, 1.67597), Vector3(0.546258, 4.28318, 1.06007), Vector3(0.624344, 4.28318, 0.939999)]
+}
 
 [sub_resource type="Animation" id="Animation_3k8f1"]
 resource_name = "arms_armature|Combat_punch_right"
@@ -5084,8 +5096,24 @@ tracks/62/interp = 1
 tracks/62/loop_wrap = true
 tracks/62/keys = PackedFloat32Array(0, 1, -0.605155, 0.345862, 0.356134, 0.622363)
 
+[sub_resource type="Animation" id="Animation_q62ek"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PSXArmHitbox/PSXArmHitboxShape:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.5739, 4.25675, 0.872859)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vt104"]
 _data = {
+"RESET": SubResource("Animation_q62ek"),
 "arms_armature|Collect_something": SubResource("Animation_kywi7"),
 "arms_armature|Combat_idle": SubResource("Animation_5ryke"),
 "arms_armature|Combat_idle_start": SubResource("Animation_fvvpc"),
@@ -5497,7 +5525,7 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.38419e-07, 0)
 
 [node name="PSXArmHitboxShape" type="CollisionShape3D" parent="PSXArmHitbox"]
-transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, 0.211163, 4.52022, 1.81245)
+transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, 0.5739, 4.25675, 0.872859)
 shape = SubResource("SphereShape3D_0kl6a")
 
 [connection signal="body_entered" from="PSXArmHitbox" to="." method="_on_psx_arm_hitbox_body_entered"]
