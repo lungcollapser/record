@@ -10,8 +10,10 @@ func _ready():
 
 func _process(_delta):
 	animations.speed_scale = 2 
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("leftattack"):
 		animations.play("arms_armature|Combat_punch_left")
+	elif Input.is_action_just_pressed("rightattack"):
+		animations.play("arms_armature|Combat_punch_right")
 
 	if enemy_hit_detect == true:
 		Events.emit_signal("call_enemy_lose_health")

@@ -63,6 +63,6 @@ func _on_enemy_area_body_exited(body: Node3D):
 		target = null
 	
 func enemy_lose_health():
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("leftattack"):
 		print(enemy_health)
 		enemy_health -= 1

@@ -16,7 +16,7 @@ func _physics_process(_delta: float) -> void:
 	var garbage_collider = player_pick_up.get_collider()
 	var pizza_instance = pizza.instantiate()
 	var cigarrette_instance = cigarette.instantiate()
-	if Input.is_action_just_pressed("attack") and garbage_collider == garbage and garbage_collider.is_in_group("garbage"):
+	if Input.is_action_just_pressed("leftattack") and garbage_collider == garbage and garbage_collider.is_in_group("garbage"):
 		queue_free()
 		get_parent().add_child(pizza_instance)
 		get_parent().add_child(cigarrette_instance)
