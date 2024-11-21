@@ -17,8 +17,7 @@ func _ready() -> void:
 func dead_body_explosion():
 	var dismember_collider = player_pick_up.get_collider()
 	var dead_body_parts_instance = dead_body_parts.instantiate()
-	if dismember_collider == dead_body and dead_body_check == true:
-		dead_body_check = false
+	if dismember_collider == dead_body:
 		queue_free()
 		get_parent().add_child(dead_body_parts_instance)
 		dead_body_parts_instance.global_position = player_hold.global_position 

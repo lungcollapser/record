@@ -15,12 +15,15 @@ func _process(_delta):
 	elif Input.is_action_just_pressed("rightattack"):
 		animations.play("arms_armature|Combat_punch_right")
 
-	if enemy_hit_detect == true:
-		Events.emit_signal("call_enemy_lose_health")
+		
 
 func _on_psx_arm_hitbox_body_entered(body):
-	if body is Enemy:
-		enemy_hit_detect = true
+	if body is Enemy and Input.is_action_just_pressed("leftattack"):
+		Events.emit_signal("call_enemy_lose_health")
 		
 	if body is DeadBody:
 		Events.emit_signal("call_dead_body_explosion")
+		
+	if body is GarbageBag:
+		print("hello")
+		Events.emit_signal("call_garbage_bag_explosion")

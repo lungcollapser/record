@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfqnnebvepiiw"]
+[gd_scene load_steps=7 format=3 uid="uid://cfqnnebvepiiw"]
 
 [ext_resource type="Script" path="res://scripts/dead_body.gd" id="1_woxul"]
+[ext_resource type="Script" path="res://scenes/pickup_component.gd" id="2_rloq2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_03anv"]
 friction = 0.45
@@ -26,5 +27,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ua2is")
 [node name="deadbodyshape" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.78, 0, 0, 0, -3.40949e-08, -0.78, 0, 0.78, -3.40949e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_eh13d")
+
+[node name="PickupComponent" type="Node3D" parent="."]
+script = ExtResource("2_rloq2")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

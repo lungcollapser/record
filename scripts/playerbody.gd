@@ -48,10 +48,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera.rotate_x(-event.relative.y * SENSITIVTY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-50), deg_to_rad(60))
 
-func pick_up_object():
-	var collider = pick_up.get_collider()
-	if collider != null and collider is RigidBody3D:
-		picked_up_object = collider
+func pick_up_object(collider):
+	collider = pick_up.get_collider()
+	if collider != null and collider is PickupComponent:
+		var pick_up_com : PickupComponent = collider 
+		print(collider.get_name())
+		picked_up_object = pick_up_com
 		
 		
 func drop_object():
@@ -79,6 +81,7 @@ func _physics_process(delta: float):
 		
 	if Input.is_action_just_pressed("interact"):
 		if picked_up_object == null:
+			
 			pick_up_object()
 		elif picked_up_object != null:
 			drop_object()
