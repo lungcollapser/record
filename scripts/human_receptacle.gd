@@ -8,12 +8,10 @@ var player_hold
 var player_pick_up
 var receptacle_amount = true
 var dead_body_parts
-var wall
 
 func _ready() -> void:
 	player_hold = get_tree().get_nodes_in_group("hold")[0]
 	player_pick_up = get_tree().get_nodes_in_group("pickup")[0]
-	wall = get_tree().get_nodes_in_group("wall")[0]
 	
 	Events.connect("call_kill_floor_receptacle", Callable(self, "kill_floor_receptacle"))
 
@@ -32,7 +30,7 @@ func _physics_process(_delta: float):
 		collision.disabled = false
 		visible = true
 		
-	if Input.is_action_just_pressed("stow") and receptacle_collider != null and receptacle_collider.is_in_group("stow"):
+	if Input.is_action_just_pressed("stow") and receptacle_collider != null:
 		receptacle_amount = true
 		visible = false
 		collision.disabled = true

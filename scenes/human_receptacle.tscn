@@ -19,7 +19,7 @@ albedo_color = Color(0, 0.545098, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_evmdg"]
 
-[node name="HumanReceptacle" type="RigidBody3D" groups=["stow"]]
+[node name="HumanReceptacle" type="RigidBody3D"]
 collision_priority = 100.0
 mass = 18.079
 physics_material_override = SubResource("PhysicsMaterial_k8dcf")

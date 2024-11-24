@@ -25,5 +25,4 @@ func _on_psx_arm_hitbox_body_entered(body):
 		Events.emit_signal("call_dead_body_explosion")
 		
 	if body is GarbageBag:
-		print("hello")
 		Events.emit_signal("call_garbage_bag_explosion")

@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends StaticBody3D
 class_name Enemy
 
 const ENEMY_SPEED = 0.06
@@ -6,10 +6,11 @@ var enemy_health = clamp(3, 0, 3)
 var player
 var target
 var player_hold
-var player_pickup
+var player_attack
 
 
 var enemy_dead_body_check = true
+@onready var enemy = $"."
 @onready var enemy_shape = $"EnemyShape"
 @onready var nav_agent = $EnemyNavigation
 @onready var dead_body = preload("res://scenes/dead_body.tscn")
@@ -20,7 +21,7 @@ var enemy_dead_body_check = true
 func _ready():
 	player = get_tree().get_nodes_in_group("player")[0]
 	player_hold = get_tree().get_nodes_in_group("hold")[0]
-	player_pickup = get_tree().get_nodes_in_group("pickup")[0]
+	player_attack = get_tree().get_first_node_in_group("attack")
 	
 	Events.connect("call_enemy_lose_health", Callable(self, "enemy_lose_health"))
 	
@@ -56,13 +57,12 @@ func _on_enemy_area_body_entered(body: Node3D):
 	if body is Player:
 		target = Player
 		
-	
-
 func _on_enemy_area_body_exited(body: Node3D):
 	if body is Player:
 		target = null
 	
 func enemy_lose_health():
-	if Input.is_action_just_pressed("leftattack"):
+	var enemy_attack = player_attack.get_collider()
+	if enemy_attack == enemy:
 		print(enemy_health)
 		enemy_health -= 1

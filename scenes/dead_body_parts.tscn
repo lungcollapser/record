@@ -1,4 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://3p3672qqmgn3"]
+[gd_scene load_steps=13 format=3 uid="uid://3p3672qqmgn3"]
+
+[ext_resource type="PackedScene" uid="uid://bk6e6igwyvo4b" path="res://scenes/pickup_component.tscn" id="1_iue2g"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vs4ml"]
 rough = true
@@ -10,6 +12,10 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_47c4c"]
 albedo_color = Color(0.247059, 0, 0, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qil11"]
+radius = 0.25
+height = 0.8
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ly17n"]
 rough = true
@@ -49,6 +55,13 @@ mesh = SubResource("CapsuleMesh_y8qqu")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_47c4c")
 
+[node name="PickupComponent" parent="LeftArmBody" instance=ExtResource("1_iue2g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.80436, 0, 0)
+
+[node name="PickupComponentShape" type="CollisionShape3D" parent="LeftArmBody/PickupComponent"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.439, 0, -0.0268832)
+shape = SubResource("CapsuleShape3D_qil11")
+
 [node name="LeftLegBody" type="RigidBody3D" parent="." groups=["Bussin"]]
 transform = Transform3D(0.891007, 0, -0.453991, 0, 1, 0, 0.453991, 0, 0.891007, -0.0571295, -0.0125533, 1.01119)
 collision_layer = 2
@@ -65,6 +78,13 @@ surface_material_override/0 = SubResource("StandardMaterial3D_47c4c")
 [node name="LeftLegShape" type="CollisionShape3D" parent="LeftLegBody"]
 transform = Transform3D(0.375, 0, 0, 0, -1.63918e-08, -0.375, 0, 0.375, -1.63918e-08, 0.656511, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_ekr8q")
+
+[node name="PickupComponent" parent="LeftLegBody" instance=ExtResource("1_iue2g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.24943, 0, 0.304792)
+
+[node name="PickupComponentShape" type="CollisionShape3D" parent="LeftLegBody/PickupComponent"]
+transform = Transform3D(-0.999048, 0.0436195, -1.90667e-09, 0, -4.37114e-08, -1, -0.0436195, -0.999048, 4.36698e-08, -0.604638, 0, -0.344567)
+shape = SubResource("CapsuleShape3D_qil11")
 
 [node name="RightArmBody" type="RigidBody3D" parent="." groups=["Bussin"]]
 transform = Transform3D(0.0540788, 0, -0.998537, 0, 1, 0, 0.998537, 0, 0.0540788, 1.57664, 0, -0.55579)
@@ -83,6 +103,13 @@ surface_material_override/0 = SubResource("StandardMaterial3D_47c4c")
 transform = Transform3D(0.375, 0, 0, 0, -1.63918e-08, -0.375, 0, 0.375, -1.63918e-08, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_m5cmy")
 
+[node name="PickupComponent" parent="RightArmBody" instance=ExtResource("1_iue2g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0219791, 0, 0.405832)
+
+[node name="PickupComponentShape" type="CollisionShape3D" parent="RightArmBody/PickupComponent"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0165344, 0, -0.422748)
+shape = SubResource("CapsuleShape3D_qil11")
+
 [node name="RightLegBody" type="RigidBody3D" parent="." groups=["Bussin"]]
 transform = Transform3D(-0.726575, 0, 0.687088, 0, 1, 0, -0.687088, 0, -0.726575, -0.582222, 0, 0.559184)
 collision_layer = 2
@@ -100,6 +127,12 @@ surface_material_override/0 = SubResource("StandardMaterial3D_47c4c")
 transform = Transform3D(0.375, 0, 0, 0, -1.63918e-08, -0.375, 0, 0.375, -1.63918e-08, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_m5cmy")
 
+[node name="PickupComponent" parent="RightLegBody" instance=ExtResource("1_iue2g")]
+
+[node name="PickupComponentShape" type="CollisionShape3D" parent="RightLegBody/PickupComponent"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.000669509, 0, 0.0548)
+shape = SubResource("CapsuleShape3D_qil11")
+
 [node name="HeadBody" type="RigidBody3D" parent="." groups=["Bussin"]]
 transform = Transform3D(0.79653, 0, 0.604599, 0, 1, 0, -0.604599, 0, 0.79653, -1.16444, 0, -1.02716)
 collision_layer = 2
@@ -115,6 +148,12 @@ surface_material_override/0 = SubResource("StandardMaterial3D_47c4c")
 [node name="HeadShape" type="CollisionShape3D" parent="HeadBody"]
 transform = Transform3D(0.375, 0, 0, 0, -1.63918e-08, -0.375, 0, 0.375, -1.63918e-08, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_m5cmy")
+
+[node name="PickupComponent" parent="HeadBody" instance=ExtResource("1_iue2g")]
+
+[node name="PickupComponentShape" type="CollisionShape3D" parent="HeadBody/PickupComponent"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0249393, 0, -0.0680826)
+shape = SubResource("CapsuleShape3D_qil11")
 
 [connection signal="body_entered" from="LeftArmBody" to="." method="_on_left_arm_body_body_entered"]
 [connection signal="body_entered" from="LeftLegBody" to="." method="_on_left_leg_body_body_entered"]

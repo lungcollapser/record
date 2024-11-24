@@ -15,7 +15,7 @@ albedo_color = Color(0, 0.313726, 0.109804, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_cdjec"]
 
-[node name="Enemy" type="CharacterBody3D" groups=["enemyshape"]]
+[node name="Enemy" type="StaticBody3D"]
 script = ExtResource("1_c05o7")
 
 [node name="EnemyMesh" type="MeshInstance3D" parent="."]
@@ -52,7 +52,5 @@ mesh = SubResource("BoxMesh_cdjec")
 transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, -0.168517, 1.616, -0.525805)
 mesh = SubResource("BoxMesh_cdjec")
 
-[connection signal="area_entered" from="EnemyHitbox" to="." method="_on_enemy_hitbox_area_entered"]
-[connection signal="body_entered" from="EnemyHitbox" to="." method="_on_enemy_hitbox_body_entered"]
 [connection signal="body_entered" from="EnemyDetection" to="." method="_on_enemy_area_body_entered"]
 [connection signal="body_exited" from="EnemyDetection" to="." method="_on_enemy_area_body_exited"]
