@@ -343,6 +343,9 @@ collision_priority = 1.0
 
 [node name="DeadBodies" type="Node3D" parent="."]
 
+[node name="deadbody5" parent="DeadBodies" instance=ExtResource("2_cjb3p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.7767, 1.88704, -9.59726)
+
 [node name="deadbody" parent="DeadBodies" instance=ExtResource("2_cjb3p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.7849, 1.49676, -11.1404)
 

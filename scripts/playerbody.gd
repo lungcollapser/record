@@ -42,6 +42,8 @@ func _ready():
 	Events.connect("call_receptacle_speed", Callable(self, "receptacle_speed"))
 	Events.connect("call_normal_speed", Callable(self, "normal_speed"))
 	
+	
+	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVTY)
