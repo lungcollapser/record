@@ -32,8 +32,6 @@ shape = SubResource("CapsuleShape3D_eh13d")
 
 [node name="PickupComponent" parent="." instance=ExtResource("2_gqq67")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00928819, -0.390282, 0.00189137)
-collision_layer = 8
-collision_mask = 8
 
 [node name="PickupComponentShape" type="CollisionShape3D" parent="PickupComponent"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0464983, 0.435847, 0)

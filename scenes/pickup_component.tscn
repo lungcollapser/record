@@ -3,4 +3,6 @@
 [ext_resource type="Script" path="res://scripts/pickup_component.gd" id="1_xq6xi"]
 
 [node name="PickupComponent" type="Area3D"]
+collision_layer = 8
+collision_mask = 8
 script = ExtResource("1_xq6xi")
