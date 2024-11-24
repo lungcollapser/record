@@ -18,7 +18,7 @@ func _process(_delta):
 		
 
 func _on_psx_arm_hitbox_body_entered(body):
-	if body is Enemy and Input.is_action_just_pressed("leftattack"):
+	if body is Enemy:
 		Events.emit_signal("call_enemy_lose_health")
 		
 	if body is DeadBody:
