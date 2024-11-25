@@ -11,9 +11,9 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_108hd"]
 
 [node name="Player" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21505, 0)
 
 [node name="Playerbody" type="CharacterBody3D" parent="." groups=["player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.51313, 0)
 script = ExtResource("1_sxyqi")
 
 [node name="PlayerMesh" type="MeshInstance3D" parent="Playerbody"]

@@ -1,4 +1,4 @@
-extends StaticBody3D
+extends RigidBody3D
 class_name Enemy
 
 const ENEMY_SPEED = 0.06
@@ -7,6 +7,7 @@ var player
 var target
 var player_hold
 var player_attack
+var enemy_return
 
 
 var enemy_dead_body_check = true
@@ -15,13 +16,11 @@ var enemy_dead_body_check = true
 @onready var nav_agent = $EnemyNavigation
 @onready var dead_body = preload("res://scenes/dead_body.tscn")
 
-
-
-
 func _ready():
 	player = get_tree().get_nodes_in_group("player")[0]
 	player_hold = get_tree().get_nodes_in_group("hold")[0]
 	player_attack = get_tree().get_first_node_in_group("attack")
+	enemy_return = get_tree().get_first_node_in_group("pathing")
 	
 	Events.connect("call_enemy_lose_health", Callable(self, "enemy_lose_health"))
 	
@@ -32,17 +31,18 @@ func _physics_process(_delta: float) -> void:
 	enemy_dead_body_spawn()
 	
 func enemy_chase():
+	var enemy_velocity = (nav_agent.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
 	var enemy_look_position = player.global_position
-	enemy_look_position.y = global_position.y
 	if target == Player:
 		await get_tree().physics_frame
 		nav_agent.set_target_position(player.global_position)
-		var enemy_velocity = (nav_agent.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
 		if enemy_look_position != Vector3.ZERO:
 			look_at(enemy_look_position)
+			move_and_collide(enemy_velocity)
+	elif target == null:
+		nav_agent.set_target_position(enemy_return.global_position)
 		move_and_collide(enemy_velocity)
 		
-
 func enemy_dead_body_spawn():
 	var dead_body_instance = dead_body.instantiate()
 	if enemy_health == 0 and enemy_dead_body_check == true:
@@ -55,10 +55,12 @@ func enemy_dead_body_spawn():
 
 func _on_enemy_area_body_entered(body: Node3D):
 	if body is Player:
+		freeze = false
 		target = Player
 		
 func _on_enemy_area_body_exited(body: Node3D):
 	if body is Player:
+		freeze = true
 		target = null
 	
 func enemy_lose_health():
