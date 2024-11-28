@@ -45,10 +45,10 @@ shape = SubResource("CapsuleShape3D_syuu0")
 [node name="EnemyDetection" type="Area3D" parent="."]
 
 [node name="EnemyDetectionShape" type="CollisionShape3D" parent="EnemyDetection"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("SphereShape3D_qdqve")
 
 [node name="EnemyNavigation" type="NavigationAgent3D" parent="."]
+path_height_offset = 0.5
 
 [connection signal="body_entered" from="EnemyDetection" to="." method="_on_enemy_area_body_entered"]
 [connection signal="body_exited" from="EnemyDetection" to="." method="_on_enemy_area_body_exited"]

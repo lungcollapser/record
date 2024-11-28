@@ -7,6 +7,7 @@ var dead_body_hit_detect
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	animations.play("arms_armature|Combat_idle")
 
 func _process(_delta):
 	animations.speed_scale = 2 
