@@ -7,8 +7,8 @@ var player
 var target
 var player_hold
 var player_attack
-var enemy_return
-
+var enemy_return_one
+var enemy_return_two
 
 var enemy_dead_body_check = true
 @onready var enemy = $"."
@@ -20,7 +20,8 @@ func _ready():
 	player = get_tree().get_nodes_in_group("player")[0]
 	player_hold = get_tree().get_nodes_in_group("hold")[0]
 	player_attack = get_tree().get_first_node_in_group("attack")
-	enemy_return = get_tree().get_first_node_in_group("pathing")
+	enemy_return_one = get_tree().get_nodes_in_group("pathing")[0]
+	enemy_return_two = get_tree().get_nodes_in_group("pathing")[1]
 	
 	Events.connect("call_enemy_lose_health", Callable(self, "enemy_lose_health"))
 	
@@ -29,20 +30,34 @@ func _ready():
 func _physics_process(_delta: float) -> void:
 	enemy_chase()
 	enemy_dead_body_spawn()
+	enemy_roaming();
 	
 func enemy_chase():
 	var enemy_velocity = (nav_agent.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
 	var enemy_look_position = player.global_position
+	enemy_look_position.y = player.global_position.y
 	if target == Player:
 		await get_tree().physics_frame
 		nav_agent.set_target_position(player.global_position)
 		if enemy_look_position != Vector3.ZERO:
 			look_at(enemy_look_position)
 			move_and_collide(enemy_velocity)
-	elif target == null:
-		nav_agent.set_target_position(enemy_return.global_position)
+			
+func enemy_roaming():
+	var enemy_velocity = (nav_agent.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
+	var enemy_look_position = player.global_position
+	enemy_look_position.y = player.global_position.y
+	if target == null:
+		nav_agent.set_target_position(enemy_return_one.global_position)
+		look_at(enemy_return_one.global_position)
+		await get_tree().create_timer(10).timeout
+		nav_agent.set_target_position(enemy_return_two.global_position)
+		look_at(enemy_return_two.global_position)
+		await get_tree().create_timer(10).timeout
+		if enemy_look_position != Vector3.ZERO:
+			look_at(enemy_look_position)
 		move_and_collide(enemy_velocity)
-		
+	
 func enemy_dead_body_spawn():
 	var dead_body_instance = dead_body.instantiate()
 	if enemy_health == 0 and enemy_dead_body_check == true:

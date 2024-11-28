@@ -330,8 +330,11 @@ script = ExtResource("2_iq4qy")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16.756, 0)
 shape = SubResource("WorldBoundaryShape3D_6inlm")
 
-[node name="Marker3D" type="Marker3D" parent="NavigationRegion3D" groups=["pathing"]]
-transform = Transform3D(-0.998064, -0.0621982, 0, 0.0621982, -0.998064, 0, 0, 0, 1, -66.1421, 1.00948, 0)
+[node name="EnemyReturnOne" type="Marker3D" parent="NavigationRegion3D" groups=["pathing"]]
+transform = Transform3D(-0.998064, -0.0621982, 0, 0.0621982, -0.998064, 0, 0, 0, 1, -66.1421, 1.14266, 0)
+
+[node name="EnemyReturnTwo" type="Marker3D" parent="NavigationRegion3D" groups=["pathing"]]
+transform = Transform3D(-0.998064, -0.0621982, 0, 0.0621982, -0.998064, 0, 0, 0, 1, -38.3856, 1.23213, 0)
 
 [node name="HumanReceptacle" type="Node3D" parent="."]
 
@@ -359,7 +362,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.4788, 1.49676, 9.98748)
 [node name="Enemies" type="Node3D" parent="."]
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("5_nv0q6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.112, 2.59934, -0.369226)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.112, 7.43592, -0.369226)
 
 [node name="Items" type="Node3D" parent="."]
 

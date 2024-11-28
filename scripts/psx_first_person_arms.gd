@@ -7,7 +7,6 @@ var dead_body_hit_detect
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	animations.play("arms_armature|Combat_idle")
 
 func _process(_delta):
 	animations.speed_scale = 2 
@@ -15,8 +14,6 @@ func _process(_delta):
 		animations.play("arms_armature|Combat_punch_left")
 	elif Input.is_action_just_pressed("rightattack"):
 		animations.play("arms_armature|Combat_punch_right")
-
-		
 
 func _on_psx_arm_hitbox_body_entered(body):
 	if body is Enemy:
