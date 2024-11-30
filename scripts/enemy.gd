@@ -50,12 +50,8 @@ func enemy_roaming():
 	if target == null:
 		nav_agent.set_target_position(enemy_return_one.global_position)
 		look_at(enemy_return_one.global_position)
-		await get_tree().create_timer(10).timeout
-		nav_agent.set_target_position(enemy_return_two.global_position)
-		look_at(enemy_return_two.global_position)
-		await get_tree().create_timer(10).timeout
-		if enemy_look_position != Vector3.ZERO:
-			look_at(enemy_look_position)
+		if nav_agent.target_reached:
+			look_at(player.global_position)
 		move_and_collide(enemy_velocity)
 	
 func enemy_dead_body_spawn():
