@@ -13,10 +13,10 @@ func _ready() -> void:
 	Events.connect("call_garbage_bag_explosion", Callable(self, "garbage_bag_explosion"))
 
 func garbage_bag_explosion():
-	var garbage_attack = player_attack.get_collider()
+	var garbage_collider = player_attack.get_collider()
 	var pizza_instance = pizza.instantiate()
 	var cigarrette_instance = cigarette.instantiate()
-	if garbage_attack == garbage:
+	if garbage_collider == garbage:
 		queue_free()
 		get_parent().add_child(pizza_instance)
 		get_parent().add_child(cigarrette_instance)

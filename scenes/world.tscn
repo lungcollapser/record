@@ -1,12 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://73a8pjvvssy8"]
+[gd_scene load_steps=12 format=3 uid="uid://73a8pjvvssy8"]
 
 [ext_resource type="PackedScene" uid="uid://cfqnnebvepiiw" path="res://scenes/dead_body.tscn" id="2_cjb3p"]
 [ext_resource type="Script" path="res://scripts/kill_floor_area.gd" id="2_iq4qy"]
 [ext_resource type="PackedScene" uid="uid://jyrhlvipedil" path="res://scenes/human_receptacle.tscn" id="4_rtglp"]
 [ext_resource type="PackedScene" uid="uid://cin7xys5d5odj" path="res://scenes/enemy.tscn" id="5_nv0q6"]
 [ext_resource type="PackedScene" uid="uid://oanau7q0yrjd" path="res://scenes/garbage_bag.tscn" id="6_fhtf8"]
-[ext_resource type="PackedScene" uid="uid://7lxy8ip0fa3g" path="res://scenes/PackCigaretteFoilTop.tscn" id="7_4ogf3"]
-[ext_resource type="PackedScene" uid="uid://dxdvf75naxjm5" path="res://scenes/pizza.tscn" id="8_7136p"]
 [ext_resource type="PackedScene" uid="uid://dxcu08sgbyylr" path="res://scenes/playerbody.tscn" id="8_qc25h"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mekea"]
@@ -368,9 +366,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.112, 7.43592, -0.369226)
 
 [node name="GarbageBag" parent="Items" instance=ExtResource("6_fhtf8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.5627, 1.22079, -1.35154)
-
-[node name="PackCigaretteFoilTop" parent="Items" instance=ExtResource("7_4ogf3")]
-
-[node name="Pizza" parent="Items" instance=ExtResource("8_7136p")]
 
 [connection signal="body_entered" from="NavigationRegion3D/KillFloorArea" to="NavigationRegion3D/KillFloorArea" method="_on_body_entered"]

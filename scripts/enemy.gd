@@ -49,7 +49,6 @@ func enemy_roaming():
 	enemy_look_position.y = player.global_position.y
 	if target == null:
 		nav_agent.set_target_position(enemy_return_one.global_position)
-		look_at(enemy_return_one.global_position)
 		if nav_agent.target_reached:
 			look_at(player.global_position)
 		move_and_collide(enemy_velocity)

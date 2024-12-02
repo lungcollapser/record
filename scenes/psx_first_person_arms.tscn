@@ -5188,7 +5188,7 @@ _data = {
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0kl6a"]
-radius = 0.15
+radius = 0.13
 
 [node name="Sketchfab_Scene" type="Node3D"]
 script = ExtResource("1_u28hl")

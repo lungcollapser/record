@@ -41,5 +41,3 @@ collision_mask = 8
 [node name="PickupComponentShape" type="CollisionShape3D" parent="PickupComponent"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.00928819, 0.390282, -0.00189137)
 shape = SubResource("CapsuleShape3D_ceew2")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
