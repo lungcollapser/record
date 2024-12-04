@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=4 uid="uid://dxdvf75naxjm5"]
+[gd_scene load_steps=7 format=4 uid="uid://dxdvf75naxjm5"]
 
 [ext_resource type="Texture2D" uid="uid://bmmxnh5ktxtwn" path="res://assets/source/model_0.png" id="1_0oqjr"]
-[ext_resource type="PackedScene" uid="uid://bk6e6igwyvo4b" path="res://scenes/pickup_component.tscn" id="2_rke5v"]
+[ext_resource type="Script" path="res://scenes/pizza.gd" id="1_6k68w"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4dj34"]
 resource_name = "material_0"
@@ -50,10 +50,8 @@ shadow_mesh = SubResource("ArrayMesh_ytko7")
 [sub_resource type="BoxShape3D" id="BoxShape3D_s4mn5"]
 size = Vector3(0.735, 0.115, 0.45)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_qvp0w"]
-radius = 0.45
-
 [node name="Pizza" type="RigidBody3D"]
+script = ExtResource("1_6k68w")
 
 [node name="PizzaMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
@@ -63,10 +61,3 @@ skeleton = NodePath("")
 [node name="PizzaShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.122332, 0.134157, 0.00969782)
 shape = SubResource("BoxShape3D_s4mn5")
-
-[node name="PickupComponent" parent="." instance=ExtResource("2_rke5v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.178318, 0.310175, -0.0064683)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupComponent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.213656, 0)
-shape = SubResource("SphereShape3D_qvp0w")

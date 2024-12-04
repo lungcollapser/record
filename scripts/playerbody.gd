@@ -88,8 +88,8 @@ func _physics_process(delta: float):
 	
 	
 	if hit_detec_check == true:
-		player_health -= 0.5
 		HealthBar.value = player_health
+		player_health -= 0.5
 		
 		
 	if Input.is_action_pressed("crouch"):

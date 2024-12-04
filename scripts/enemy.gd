@@ -1,10 +1,10 @@
 extends RigidBody3D
 class_name Enemy
 
-const ENEMY_SPEED = 0.06
+const ENEMY_SPEED = 0.09
 var enemy_health = clamp(3, 0, 3)
 var player
-var target
+var target = null
 var player_hold
 var player_attack
 var enemy_return_one
@@ -28,6 +28,7 @@ func _ready():
 	
 	
 func _physics_process(_delta: float) -> void:
+	freeze = true
 	enemy_chase()
 	enemy_dead_body_spawn()
 	enemy_roaming();
@@ -49,8 +50,6 @@ func enemy_roaming():
 	enemy_look_position.y = player.global_position.y
 	if target == null:
 		nav_agent.set_target_position(enemy_return_one.global_position)
-		if nav_agent.target_reached:
-			look_at(player.global_position)
 		move_and_collide(enemy_velocity)
 	
 func enemy_dead_body_spawn():
@@ -65,7 +64,6 @@ func enemy_dead_body_spawn():
 
 func _on_enemy_area_body_entered(body: Node3D):
 	if body is Player:
-		freeze = false
 		target = Player
 		
 func _on_enemy_area_body_exited(body: Node3D):
