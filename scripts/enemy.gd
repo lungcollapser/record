@@ -1,7 +1,7 @@
 extends RigidBody3D
 class_name Enemy
 
-const ENEMY_SPEED = 0.09
+const ENEMY_SPEED = 0.07
 var enemy_health = clamp(3, 0, 3)
 var player
 var target = null
@@ -69,6 +69,7 @@ func _on_enemy_area_body_entered(body: Node3D):
 func _on_enemy_area_body_exited(body: Node3D):
 	if body is Player:
 		freeze = true
+		await get_tree().create_timer(5).timeout
 		target = null
 	
 func enemy_lose_health():
