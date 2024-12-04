@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=4 uid="uid://dxdvf75naxjm5"]
+[gd_scene load_steps=8 format=4 uid="uid://dxdvf75naxjm5"]
 
 [ext_resource type="Texture2D" uid="uid://bmmxnh5ktxtwn" path="res://assets/source/model_0.png" id="1_0oqjr"]
+[ext_resource type="PackedScene" uid="uid://bk6e6igwyvo4b" path="res://scenes/pickup_component.tscn" id="2_rke5v"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4dj34"]
 resource_name = "material_0"
@@ -46,18 +47,26 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ytko7")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gca4m"]
-points = PackedVector3Array(1.01094, 0.206656, 0.143266, 0.646539, 0.206656, -0.730944, -0.397682, 0.206656, -0.123685, 0.670883, 0.35238, -0.730944, 0.670883, 0.35238, 0.67772, -0.543444, 0.279518, -0.0266119, 0.646539, 0.206656, 0.67772, 1.01094, 0.35238, -0.172222, -0.543444, 0.206656, 0.0461929, 0.962255, 0.206656, -0.317969, 0.962255, 0.35238, 0.288876, 0.767957, 0.35238, -0.682269, -0.543444, 0.279518, 0.0461929, 0.71942, 0.206656, 0.653314, 0.767957, 0.206656, -0.682269, 0.573658, 0.303796, 0.653314, 0.646539, 0.328088, -0.730944, 0.962255, 0.206656, 0.288876, 1.01094, 0.206656, -0.172222, 1.01094, 0.35238, 0.143266, 0.71942, 0.35238, 0.653314, 0.573658, 0.206656, 0.653314, 0.938063, 0.35238, -0.366506, -0.519099, 0.279518, -0.0508802, 0.71942, 0.206656, -0.730944, -0.543444, 0.206656, -0.0266119, 0.71942, 0.35238, -0.730944, 0.695076, 0.206656, 0.67772, 0.913718, 0.206656, -0.415042, 0.962255, 0.35238, -0.317969, -0.397682, 0.279518, -0.123685, 0.695076, 0.35238, 0.67772)
+[sub_resource type="BoxShape3D" id="BoxShape3D_s4mn5"]
+size = Vector3(0.735, 0.115, 0.45)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qvp0w"]
+radius = 0.45
 
 [node name="Pizza" type="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.653134, 0, -0.974985)
-collision_priority = 10.0
 
 [node name="PizzaMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.34, -0.9375, 0, -0.046875)
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 mesh = SubResource("ArrayMesh_p6y42")
 skeleton = NodePath("")
 
 [node name="PizzaShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.34, -0.9375, 0, -0.046875)
-shape = SubResource("ConvexPolygonShape3D_gca4m")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.122332, 0.134157, 0.00969782)
+shape = SubResource("BoxShape3D_s4mn5")
+
+[node name="PickupComponent" parent="." instance=ExtResource("2_rke5v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.178318, 0.310175, -0.0064683)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.213656, 0)
+shape = SubResource("SphereShape3D_qvp0w")
