@@ -12,7 +12,7 @@ const JOG_SPEED = 5.0
 const SPRINT_SPEED = 7.0
 const JUMP_VELOCITY = 4.5
 const SENSITIVTY = 0.01
-var pull_power = 15
+var pull_power = 45
 var picked_up_object
 var dead_body_check = null
 
@@ -30,6 +30,7 @@ var hit_detec_check
 @onready var hold = $Head/Camera3D/Hold
 @onready var player_mesh = $PlayerMesh
 @onready var player_shape = $PlayerShape
+@onready var item_drop = $Head/Camera3D/itemdrop
 @onready var dead_body_parts = preload("res://scenes/dead_body_parts.tscn").instantiate()
 
 
@@ -42,6 +43,7 @@ func _ready():
 	Events.connect("call_receptacle_speed", Callable(self, "receptacle_speed"))
 	Events.connect("call_normal_speed", Callable(self, "normal_speed"))
 	
+	HealthBar.value = player_health
 	
 	
 func _unhandled_input(event: InputEvent) -> void:
@@ -56,16 +58,12 @@ func pick_up_object():
 		print(collider.get_name())
 		picked_up_object = collider
 		
-		
 func drop_object():
 	if picked_up_object != null:
 		picked_up_object = null
 
 
-
-
 func _physics_process(delta: float):
-	
 	
 	if picked_up_object != null:
 		picked_up_object.get_parent().lock_rotation = true
@@ -175,3 +173,8 @@ func receptacle_speed():
 func normal_speed():
 	speed = JOG_SPEED
 	endurance_check = true
+
+
+func _on_itemdrop_body_exited(body):
+	if pick_up.get_collider() != picked_up_object:
+		drop_object()

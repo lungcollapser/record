@@ -69,7 +69,6 @@ func _on_enemy_area_body_entered(body: Node3D):
 func _on_enemy_area_body_exited(body: Node3D):
 	if body is Player:
 		freeze = true
-		await get_tree().create_timer(5).timeout
 		target = null
 	
 func enemy_lose_health():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxcu08sgbyylr"]
+[gd_scene load_steps=8 format=3 uid="uid://dxcu08sgbyylr"]
 
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="1_hgtuj"]
 [ext_resource type="Script" path="res://scripts/playerbody.gd" id="1_qqke5"]
@@ -7,6 +7,9 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_0kd7y"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ibc3c"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vx14f"]
+radius = 0.9
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qmjj8"]
 
@@ -45,11 +48,18 @@ transform = Transform3D(-0.67, 0, -1.01167e-07, 0, 0.67, 0, 1.01167e-07, 0, -0.6
 [node name="Hold" type="Node3D" parent="Head/Camera3D" groups=["hold"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.145143, -1.55614)
 
+[node name="itemdrop" type="Area3D" parent="Head/Camera3D"]
+
+[node name="itemdropshape" type="CollisionShape3D" parent="Head/Camera3D/itemdrop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.167873, -2.38501)
+shape = SubResource("SphereShape3D_vx14f")
+
 [node name="PlayerHitbox" type="Area3D" parent="."]
 transform = Transform3D(1.51, 0, 0, 0, 1.51, 0, 0, 0, 1.51, 0, 0, 0)
 
 [node name="PlayerHitboxShape" type="CollisionShape3D" parent="PlayerHitbox"]
 shape = SubResource("CapsuleShape3D_qmjj8")
 
+[connection signal="body_exited" from="Head/Camera3D/itemdrop" to="." method="_on_itemdrop_body_exited"]
 [connection signal="body_entered" from="PlayerHitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="PlayerHitbox" to="." method="_on_player_hitbox_body_exited"]
