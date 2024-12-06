@@ -8,8 +8,8 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ibc3c"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_vx14f"]
-radius = 0.9
+[sub_resource type="BoxShape3D" id="BoxShape3D_v078u"]
+size = Vector3(5.355, 4.899, 8.45)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qmjj8"]
 
@@ -46,13 +46,13 @@ target_position = Vector3(0, -1, -5)
 transform = Transform3D(-0.67, 0, -1.01167e-07, 0, 0.67, 0, 1.01167e-07, 0, -0.67, 0.0448688, -3.10975, -0.100283)
 
 [node name="Hold" type="Node3D" parent="Head/Camera3D" groups=["hold"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.145143, -1.55614)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.329677, -1.45979)
 
 [node name="itemdrop" type="Area3D" parent="Head/Camera3D"]
 
 [node name="itemdropshape" type="CollisionShape3D" parent="Head/Camera3D/itemdrop"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.167873, -2.38501)
-shape = SubResource("SphereShape3D_vx14f")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.712031, -5.89465)
+shape = SubResource("BoxShape3D_v078u")
 
 [node name="PlayerHitbox" type="Area3D" parent="."]
 transform = Transform3D(1.51, 0, 0, 0, 1.51, 0, 0, 0, 1.51, 0, 0, 0)

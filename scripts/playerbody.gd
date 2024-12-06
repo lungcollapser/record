@@ -12,7 +12,7 @@ const JOG_SPEED = 5.0
 const SPRINT_SPEED = 7.0
 const JUMP_VELOCITY = 4.5
 const SENSITIVTY = 0.01
-var pull_power = 45
+var pull_power = 35
 var picked_up_object
 var dead_body_check = null
 
