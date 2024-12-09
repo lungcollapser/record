@@ -65,7 +65,7 @@ func drop_object():
 
 func _physics_process(delta: float):
 	
-	if picked_up_object != null and pick_up.get_collider() != picked_up_object:
+	if picked_up_object != null and global_position.distance_to(picked_up_object.global_position) >= 3:
 		drop_object()
 	
 	if picked_up_object != null:
@@ -75,12 +75,7 @@ func _physics_process(delta: float):
 		var a = picked_up_object.global_position
 		var b = hold.global_position
 		picked_up_object.get_parent().set_linear_velocity((b-a) * pull_power)
-	
-	#if picked_up_object != null and (player.global_position - picked_up_object.global_position) :
-	#	picked_up_object = null
-	#if head.global_position >= pick_up.global_position:
-	#	picked_up_object = null
-		
+
 	if Input.is_action_just_pressed("interact"):
 		if picked_up_object == null:
 			pick_up_object()
