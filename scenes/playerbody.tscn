@@ -49,9 +49,9 @@ transform = Transform3D(-0.67, 0, -1.01167e-07, 0, 0.67, 0, 1.01167e-07, 0, -0.6
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.329677, -1.45979)
 
 [node name="itemdrop" type="Area3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.41372, -6.14182)
 
 [node name="itemdropshape" type="CollisionShape3D" parent="Head/Camera3D/itemdrop"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.712031, -5.89465)
 shape = SubResource("BoxShape3D_v078u")
 
 [node name="PlayerHitbox" type="Area3D" parent="."]
@@ -60,6 +60,7 @@ transform = Transform3D(1.51, 0, 0, 0, 1.51, 0, 0, 0, 1.51, 0, 0, 0)
 [node name="PlayerHitboxShape" type="CollisionShape3D" parent="PlayerHitbox"]
 shape = SubResource("CapsuleShape3D_qmjj8")
 
+[connection signal="body_entered" from="Head/Camera3D/itemdrop" to="." method="_on_itemdrop_body_entered"]
 [connection signal="body_exited" from="Head/Camera3D/itemdrop" to="." method="_on_itemdrop_body_exited"]
 [connection signal="body_entered" from="PlayerHitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="PlayerHitbox" to="." method="_on_player_hitbox_body_exited"]

@@ -65,6 +65,9 @@ func drop_object():
 
 func _physics_process(delta: float):
 	
+	if picked_up_object != null and pick_up.get_collider() != picked_up_object:
+		drop_object()
+	
 	if picked_up_object != null:
 		picked_up_object.get_parent().lock_rotation = true
 
@@ -175,6 +178,6 @@ func normal_speed():
 	endurance_check = true
 
 
-func _on_itemdrop_body_exited(body):
-	if pick_up.get_collider() != picked_up_object:
-		drop_object()
+#func _on_itemdrop_body_exited(_body):
+#	if pick_up.get_collider() != picked_up_object:
+#		drop_object()
