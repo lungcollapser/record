@@ -51,6 +51,8 @@ shadow_mesh = SubResource("ArrayMesh_ytko7")
 size = Vector3(0.735, 0.115, 0.45)
 
 [node name="Pizza" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.18743, 0, -0.432607)
+continuous_cd = true
 script = ExtResource("1_6k68w")
 
 [node name="PizzaMesh" type="MeshInstance3D" parent="."]

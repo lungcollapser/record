@@ -365,6 +365,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.112, 2.12726, -0.369226)
 [node name="Items" type="Node3D" parent="."]
 
 [node name="GarbageBag" parent="Items" instance=ExtResource("6_fhtf8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.5627, 1.22079, -1.35154)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.2017, 1.22079, -1.35154)
 
 [connection signal="body_entered" from="NavigationRegion3D/KillFloorArea" to="NavigationRegion3D/KillFloorArea" method="_on_body_entered"]

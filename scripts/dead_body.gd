@@ -14,7 +14,6 @@ func _ready() -> void:
 	Events.connect("call_dead_body_explosion", Callable(self, "dead_body_explosion"))
 
 
-
 func dead_body_explosion():
 	var dismember_collider = player_attack.get_collider()
 	var dead_body_parts_instance = dead_body_parts.instantiate()
@@ -22,5 +21,6 @@ func dead_body_explosion():
 		queue_free()
 		get_parent().add_child(dead_body_parts_instance)
 		dead_body_parts_instance.global_position = player_hold.global_position 
+		Events.emit_signal("call_item_spawn")
 		
 	
