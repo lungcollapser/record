@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=4 uid="uid://7lxy8ip0fa3g"]
+[gd_scene load_steps=9 format=4 uid="uid://7lxy8ip0fa3g"]
 
 [ext_resource type="Texture2D" uid="uid://cwmv8hokd12xl" path="res://assets/PSXCigarette Pack[FIXED]/Textures/packFrontTextureLowPoly.png" id="1_p254r"]
+[ext_resource type="Script" path="res://scripts/pack_cigarette_foil_top.gd" id="1_wb50m"]
 [ext_resource type="PackedScene" uid="uid://bk6e6igwyvo4b" path="res://scenes/pickup_component.tscn" id="2_yhta6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_piqbj"]
@@ -51,6 +52,7 @@ radius = 0.2
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 collision_priority = 10.0
 continuous_cd = true
+script = ExtResource("1_wb50m")
 
 [node name="PackCigaretteFoilTop" type="MeshInstance3D" parent="."]
 transform = Transform3D(20, 0, 0, 0, 20, -3.25841e-06, 0, 3.25841e-06, 20, 0, 0, 0)

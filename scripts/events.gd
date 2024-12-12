@@ -7,4 +7,4 @@ signal call_kill_floor_receptacle
 signal call_enemy_lose_health
 signal call_dead_body_explosion
 signal call_garbage_bag_explosion
-signal call_item_spawn
+signal call_item_spawn(item)
