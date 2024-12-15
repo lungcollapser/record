@@ -1,7 +1,9 @@
 extends RigidBody3D
 
 @onready var pizza = $"."
+@onready var item_spawn = preload("res://scenes/itemspawncomponent.tscn").instantiate()
 var player_pick_up
+
 
 func _ready() -> void:
 	player_pick_up = get_tree().get_first_node_in_group("pickup")
@@ -9,6 +11,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float):
 		eat_pizza()
+		item_spawn.item_spawn(pizza)
 		
 func eat_pizza():
 	var pizza_collider = player_pick_up.get_collider()
@@ -16,16 +19,5 @@ func eat_pizza():
 		queue_free()
 		HealthBar.value += 5
 		
-	
-func item_spawn(item):
-	for movement in item:
-		var MIN_LAUNCH_HEIGHT = 0.5
-		var MAX_LAUNCH_HEIGHT = 1.5
-		var MAX_LAUNCH_RANGE = 1.5
-		var MIN_LAUNCH_RANGE = 0.5
-		var rand_height = MIN_LAUNCH_HEIGHT + (randf() * MAX_LAUNCH_HEIGHT)
-		var rand_dir = Vector3.FORWARD.rotated(Vector3.UP, randf() * 2 * PI)
-		var rand_pos = rand_dir * (MIN_LAUNCH_RANGE + (randf() * MAX_LAUNCH_RANGE))
-		rand_pos.y = rand_height
-		apply_central_impulse(rand_pos)
+
 	
