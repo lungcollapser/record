@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://d08ter5bo4ln5"]
+
+[node name="sanitybar" type="ProgressBar"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 971.0
+offset_right = -1518.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+show_percentage = false

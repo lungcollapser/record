@@ -22,5 +22,6 @@ func dead_body_explosion():
 		get_parent().add_child(dead_body_parts_instance)
 		dead_body_parts_instance.global_position = player_hold.global_position 
 		Events.emit_signal("call_item_spawn")
+		SanityBar.value -= 5
 		
 	
