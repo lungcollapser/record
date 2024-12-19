@@ -4,6 +4,7 @@ class_name HumanReceptacle
 
 @onready var collision = $HumanReceptacleShape
 @onready var human_receptacle  = $"."
+@onready var grinder_collision = $"HumanReceptacleGrinder"
 var player_hold
 var player_pick_up
 var receptacle_amount = true
@@ -17,6 +18,10 @@ func _ready() -> void:
 
 func _physics_process(_delta: float):
 #	wall_kill_floor()
+
+	if BloodBar.value == 100:
+		grinder_collision.monitoring = false
+		
 	
 	if receptacle_amount == true:
 		Events.emit_signal("call_receptacle_speed")
@@ -40,7 +45,7 @@ func _physics_process(_delta: float):
 func _on_human_receptacle_grinder_body_entered(body):
 	if body.is_in_group("Bussin"):
 		body.queue_free()
-		BloodBar.value += 1
+		BloodBar.value += 10
 		
 func kill_floor_receptacle():
 	if receptacle_amount == false:

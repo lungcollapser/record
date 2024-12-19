@@ -1,4 +1,4 @@
-extends RigidBody3D
+extends CharacterBody3D
 class_name Enemy
 
 const ENEMY_SPEED = 0.07
@@ -10,6 +10,7 @@ var player_attack
 var enemy_return_one
 var enemy_return_two
 
+var knockback
 var enemy_dead_body_check = true
 @onready var enemy = $"."
 @onready var enemy_shape = $"EnemyShape"
@@ -28,10 +29,11 @@ func _ready():
 	
 	
 func _physics_process(_delta: float) -> void:
-	freeze = true
 	enemy_chase()
 	enemy_dead_body_spawn()
 	enemy_roaming();
+	
+
 	
 func enemy_chase():
 	var enemy_velocity = (nav_agent.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
@@ -60,6 +62,7 @@ func enemy_dead_body_spawn():
 		enemy_shape.disabled = true
 		get_parent().add_child(dead_body_instance)
 		dead_body_instance.global_position = enemy_shape.global_position
+		SanityBar.value -= 20
 		
 
 func _on_enemy_area_body_entered(body: Node3D):
@@ -68,7 +71,6 @@ func _on_enemy_area_body_entered(body: Node3D):
 		
 func _on_enemy_area_body_exited(body: Node3D):
 	if body is Player:
-		freeze = true
 		target = null
 	
 func enemy_lose_health():
@@ -76,3 +78,17 @@ func enemy_lose_health():
 	if enemy_attack == enemy:
 		print(enemy_health)
 		enemy_health -= 1
+		if enemy_health > 1:
+			enemy_knockback()
+		
+		
+func enemy_knockback():
+	var MAX_KNOCKBACK = -2
+	var MIN_KNOCKBACK = -1
+	var knockback_speed = 0.5
+	var motion = Vector3()
+	var rand_knockback = MIN_KNOCKBACK + (randf() * MAX_KNOCKBACK)
+	motion.x = rand_knockback * knockback_speed
+	move_and_collide(motion)
+	
+	
