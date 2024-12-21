@@ -81,14 +81,11 @@ func enemy_lose_health():
 		if enemy_health > 1:
 			enemy_knockback()
 		
-		
 func enemy_knockback():
-	var MAX_KNOCKBACK = -2
-	var MIN_KNOCKBACK = -1
-	var knockback_speed = 0.5
+	var dir = -2.50
+	var knockback_speed = 2.50
 	var motion = Vector3()
-	var rand_knockback = MIN_KNOCKBACK + (randf() * MAX_KNOCKBACK)
-	motion.x = rand_knockback * knockback_speed
+	motion.x = lerp(knockback_speed, dir, 1)
 	move_and_collide(motion)
 	
 	
