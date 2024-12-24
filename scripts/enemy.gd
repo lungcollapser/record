@@ -9,8 +9,7 @@ var player_hold
 var player_attack
 var enemy_return_one
 var enemy_return_two
-
-var knockback
+var stun_check = false
 var enemy_dead_body_check = true
 @onready var enemy = $"."
 @onready var enemy_shape = $"EnemyShape"
@@ -31,15 +30,15 @@ func _ready():
 func _physics_process(_delta: float) -> void:
 	enemy_chase()
 	enemy_dead_body_spawn()
-	enemy_roaming();
-	
+	enemy_roaming()
+
 
 	
 func enemy_chase():
 	var enemy_velocity = (nav_agent.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
 	var enemy_look_position = player.global_position
 	enemy_look_position.y = player.global_position.y
-	if target == Player:
+	if target == Player and stun_check == false:
 		await get_tree().physics_frame
 		nav_agent.set_target_position(player.global_position)
 		if enemy_look_position != Vector3.ZERO:
@@ -78,14 +77,14 @@ func enemy_lose_health():
 	if enemy_attack == enemy:
 		print(enemy_health)
 		enemy_health -= 1
-		if enemy_health > 1:
-			enemy_knockback()
+		enemy_stun()
+	
 		
-func enemy_knockback():
-	var dir = -2.50
-	var knockback_speed = 2.50
-	var motion = Vector3()
-	motion.x = lerp(knockback_speed, dir, 1)
-	move_and_collide(motion)
+func enemy_stun():
+	var stun_duration = await get_tree().create_timer(randf_range(3, 6)).timeout
+	for stun in stun_duration: 
+		stun_check = true
+		print(stun)
+	stun_check = false
 	
 	
