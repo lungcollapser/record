@@ -81,10 +81,13 @@ func enemy_lose_health():
 	
 		
 func enemy_stun():
-	var stun_duration = await get_tree().create_timer(randf_range(3, 6)).timeout
-	for stun in stun_duration: 
-		stun_check = true
-		print(stun)
+	stun_check = true
+	await get_tree().create_timer(randf_range(1, 2)).timeout
 	stun_check = false
+	
+	#for stun in stun_duration: 
+	#	stun_check = true
+	#	print(stun)
+	#stun_check = false
 	
 	

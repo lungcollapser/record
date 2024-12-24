@@ -85,7 +85,8 @@ func _physics_process(delta: float):
 	
 	if hit_detec_check == true:
 		HealthBar.value = player_health
-		player_health -= 0.5
+		player_health -= 1
+		await get_tree().create_timer(randf_range(1, 2)).timeout
 		
 		
 	if Input.is_action_pressed("crouch"):
