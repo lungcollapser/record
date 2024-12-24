@@ -1,7 +1,7 @@
 extends CharacterBody3D
 class_name Enemy
 
-const ENEMY_SPEED = 0.07
+const ENEMY_SPEED = 0.05
 var enemy_health = clamp(10, 0, 10)
 var player
 var target = null
@@ -11,6 +11,7 @@ var enemy_return_one
 var enemy_return_two
 var stun_check = false
 var enemy_dead_body_check = true
+var aggro_check
 @onready var enemy = $"."
 @onready var enemy_shape = $"EnemyShape"
 @onready var nav_agent = $EnemyNavigation
@@ -27,10 +28,11 @@ func _ready():
 	
 	
 	
-func _physics_process(_delta: float) -> void:
+func _physics_process(_delta) -> void:
 	enemy_chase()
 	enemy_dead_body_spawn()
 	enemy_roaming()
+	
 
 
 	
@@ -38,13 +40,13 @@ func enemy_chase():
 	var enemy_velocity = (nav_agent.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
 	var enemy_look_position = player.global_position
 	enemy_look_position.y = player.global_position.y
-	if target == Player and stun_check == false:
+	if target == Player and stun_check == false || aggro_check == true and stun_check == false:
 		await get_tree().physics_frame
 		nav_agent.set_target_position(player.global_position)
 		if enemy_look_position != Vector3.ZERO:
 			look_at(enemy_look_position)
 			move_and_collide(enemy_velocity)
-			
+		
 func enemy_roaming():
 	var enemy_velocity = (nav_agent.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
 	var enemy_look_position = player.global_position
@@ -78,6 +80,7 @@ func enemy_lose_health():
 	if enemy_attack == enemy:
 		print(enemy_health)
 		enemy_health -= 1
+		aggro_check = true
 		for stun in stun_chance:
 			print(stun)
 			if stun >= 5:
