@@ -12,13 +12,13 @@ var enemy_return_two
 var stun_check = false
 var enemy_dead_body_check = true
 var aggro_check
+@onready var nav_agent = $EnemyNavigation
 @onready var enemy = $"."
 @onready var enemy_shape = $"EnemyShape"
-@onready var nav_agent = $EnemyNavigation
 @onready var dead_body = preload("res://scenes/dead_body.tscn")
 
 func _ready():
-	player = get_tree().get_nodes_in_group("player")[0]
+	player = get_tree().get_first_node_in_group("player")
 	player_hold = get_tree().get_nodes_in_group("hold")[0]
 	player_attack = get_tree().get_first_node_in_group("attack")
 	enemy_return_one = get_tree().get_nodes_in_group("pathing")[0]
@@ -49,10 +49,16 @@ func enemy_chase():
 		
 func enemy_roaming():
 	var enemy_velocity = (nav_agent.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
-	var enemy_look_position = player.global_position
-	enemy_look_position.y = player.global_position.y
-	if target == null:
+	var enemy_one_look_position = enemy_return_one.global_position
+	enemy_one_look_position.y = enemy_return_one.global_position.y
+	var enemy_two_look_position = enemy_return_two.global_position
+	enemy_two_look_position.y = enemy_return_two.global_position.y
+	if target == null and aggro_check != true:
 		nav_agent.set_target_position(enemy_return_one.global_position)
+		look_at(enemy_one_look_position)
+		await get_tree().create_timer(randf_range(3, 6)).timeout
+		nav_agent.set_target_position(enemy_return_one.global_position)
+		look_at(enemy_one_look_position)
 		move_and_collide(enemy_velocity)
 	
 func enemy_dead_body_spawn():
@@ -82,14 +88,13 @@ func enemy_lose_health():
 		enemy_health -= 1
 		aggro_check = true
 		for stun in stun_chance:
-			print(stun)
 			if stun >= 5:
 				enemy_stun()
 	
 		
 func enemy_stun():
 	stun_check = true
-	await get_tree().create_timer(randf_range(1, 2)).timeout
+	await get_tree().create_timer(randf_range(1, 3)).timeout
 	stun_check = false
 	
 
