@@ -2,7 +2,7 @@ extends CharacterBody3D
 class_name Enemy
 
 const ENEMY_SPEED = 0.07
-var enemy_health = clamp(3, 0, 3)
+var enemy_health = clamp(10, 0, 10)
 var player
 var target = null
 var player_hold
@@ -73,11 +73,15 @@ func _on_enemy_area_body_exited(body: Node3D):
 		target = null
 	
 func enemy_lose_health():
+	var stun_chance = randf_range(0, 10)
 	var enemy_attack = player_attack.get_collider()
 	if enemy_attack == enemy:
 		print(enemy_health)
 		enemy_health -= 1
-		enemy_stun()
+		for stun in stun_chance:
+			print(stun)
+			if stun >= 5:
+				enemy_stun()
 	
 		
 func enemy_stun():
@@ -85,9 +89,5 @@ func enemy_stun():
 	await get_tree().create_timer(randf_range(1, 2)).timeout
 	stun_check = false
 	
-	#for stun in stun_duration: 
-	#	stun_check = true
-	#	print(stun)
-	#stun_check = false
-	
+
 	
