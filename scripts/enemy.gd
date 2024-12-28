@@ -9,6 +9,7 @@ var player_hold
 var player_attack
 var enemy_return_one
 var enemy_return_two
+var return_check = false
 var stun_check = false
 var enemy_dead_body_check = true
 var aggro_check
@@ -31,18 +32,16 @@ func _ready():
 func _physics_process(_delta) -> void:
 	enemy_chase()
 	enemy_dead_body_spawn()
-	enemy_first_position()
+	#work on this!! maybe add another state machine check.
 	
-	while target == null and aggro_check != true:
-		if nav_agent.target_position == enemy_return_one.global_position:
-			await get_tree().physics_frame
-			enemy_second_position()
-			await get_tree().create_timer(5).timeout
-		elif nav_agent.target_position == enemy_return_two.global_position:
-			await get_tree().physics_frame
-			enemy_first_position()
-			await get_tree().create_timer(5).timeoout
-		
+	if return_check == false:
+		enemy_first_position()
+		await get_tree().create_timer(5).timeout
+		return_check = true
+	if return_check == true:
+		enemy_second_position()
+		await get_tree().create_timer(5).timeout
+		return_check = false
 	
 
 
@@ -98,14 +97,12 @@ func enemy_first_position():
 	var enemy_velocity = (nav_agent.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
 	var enemy_one_look_position = enemy_return_one.global_position
 	enemy_one_look_position.y = enemy_return_one.global_position.y
-	if target == null and aggro_check != true:
-		nav_agent.set_target_position(enemy_return_one.global_position)
-		move_and_collide(enemy_velocity)
+	nav_agent.set_target_position(enemy_return_one.global_position)
+	move_and_collide(enemy_velocity)
 
 func enemy_second_position():
 	var enemy_velocity = (nav_agent.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
 	var enemy_two_look_position = enemy_return_two.global_position
 	enemy_two_look_position.y = enemy_return_two.global_position.y
-	if target == null and aggro_check != true:
-		nav_agent.set_target_position(enemy_return_two.global_position)
-		move_and_collide(enemy_velocity)
+	nav_agent.set_target_position(enemy_return_two.global_position)
+	move_and_collide(enemy_velocity)
