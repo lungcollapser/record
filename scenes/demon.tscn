@@ -30,7 +30,7 @@ shape = SubResource("CapsuleShape3D_qwncu")
 shape = SubResource("SphereShape3D_34ndt")
 
 [node name="demonnav" type="NavigationAgent3D" parent="."]
-path_height_offset = -0.75
+path_height_offset = -0.65
 
 [connection signal="body_entered" from="demonarea" to="." method="_on_demonarea_body_entered"]
 [connection signal="body_exited" from="demonarea" to="." method="_on_demonarea_body_exited"]

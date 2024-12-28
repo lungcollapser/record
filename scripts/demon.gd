@@ -39,7 +39,7 @@ func demon_chase():
 		demon_nav.set_target_position(player.global_position)
 		if demon_look_position != Vector3.ZERO:
 				look_at(demon_look_position)
-		if demon.global_position <= player.global_position:
+		if demon_nav.distance_to_target() <= 5:
 			move_and_collide(demon_run_velocity)
 			print("hello")
 		else: 
