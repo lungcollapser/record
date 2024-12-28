@@ -33,11 +33,15 @@ func _physics_process(_delta) -> void:
 	enemy_dead_body_spawn()
 	enemy_first_position()
 	
-	if nav_agent.target_position == enemy_return_one.global_position:
-		await get_tree().physics_frame
-		enemy_second_position()
-		await get_tree().create_timer(3).timeout
-		enemy_first_position()
+	while target == null and aggro_check != true:
+		if nav_agent.target_position == enemy_return_one.global_position:
+			await get_tree().physics_frame
+			enemy_second_position()
+			await get_tree().create_timer(5).timeout
+		elif nav_agent.target_position == enemy_return_two.global_position:
+			await get_tree().physics_frame
+			enemy_first_position()
+			await get_tree().create_timer(5).timeoout
 		
 	
 
