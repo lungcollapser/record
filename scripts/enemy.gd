@@ -32,15 +32,16 @@ func _ready():
 func _physics_process(_delta) -> void:
 	enemy_chase()
 	enemy_dead_body_spawn()
-	#work on this!! maybe add another state machine check.
 	
-	if return_check == false:
+	#optimize later. still works but only under two conditions.
+	if return_check == false and aggro_check != true and target == null:
 		enemy_first_position()
-		await get_tree().create_timer(5).timeout
+		await get_tree().create_timer(randf_range(5, 10)).timeout
 		return_check = true
-	if return_check == true:
+	if return_check == true and aggro_check != true and target == null:
+		await get_tree().physics_frame
 		enemy_second_position()
-		await get_tree().create_timer(5).timeout
+		await get_tree().create_timer(randf_range(5, 10)).timeout
 		return_check = false
 	
 
