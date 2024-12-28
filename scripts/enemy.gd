@@ -31,7 +31,14 @@ func _ready():
 func _physics_process(_delta) -> void:
 	enemy_chase()
 	enemy_dead_body_spawn()
-	enemy_roaming()
+	enemy_first_position()
+	
+	if nav_agent.target_position == enemy_return_one.global_position:
+		await get_tree().physics_frame
+		enemy_second_position()
+		await get_tree().create_timer(3).timeout
+		enemy_first_position()
+		
 	
 
 
@@ -46,20 +53,6 @@ func enemy_chase():
 		if enemy_look_position != Vector3.ZERO:
 			look_at(enemy_look_position)
 			move_and_collide(enemy_velocity)
-		
-func enemy_roaming():
-	var enemy_velocity = (nav_agent.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
-	var enemy_one_look_position = enemy_return_one.global_position
-	enemy_one_look_position.y = enemy_return_one.global_position.y
-	var enemy_two_look_position = enemy_return_two.global_position
-	enemy_two_look_position.y = enemy_return_two.global_position.y
-	if target == null and aggro_check != true:
-		nav_agent.set_target_position(enemy_return_one.global_position)
-		look_at(enemy_one_look_position)
-		await get_tree().create_timer(randf_range(3, 6)).timeout
-		nav_agent.set_target_position(enemy_return_one.global_position)
-		look_at(enemy_one_look_position)
-		move_and_collide(enemy_velocity)
 	
 func enemy_dead_body_spawn():
 	var dead_body_instance = dead_body.instantiate()
@@ -96,6 +89,19 @@ func enemy_stun():
 	stun_check = true
 	await get_tree().create_timer(randf_range(1, 3)).timeout
 	stun_check = false
-	
 
-	
+func enemy_first_position():
+	var enemy_velocity = (nav_agent.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
+	var enemy_one_look_position = enemy_return_one.global_position
+	enemy_one_look_position.y = enemy_return_one.global_position.y
+	if target == null and aggro_check != true:
+		nav_agent.set_target_position(enemy_return_one.global_position)
+		move_and_collide(enemy_velocity)
+
+func enemy_second_position():
+	var enemy_velocity = (nav_agent.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
+	var enemy_two_look_position = enemy_return_two.global_position
+	enemy_two_look_position.y = enemy_return_two.global_position.y
+	if target == null and aggro_check != true:
+		nav_agent.set_target_position(enemy_return_two.global_position)
+		move_and_collide(enemy_velocity)
