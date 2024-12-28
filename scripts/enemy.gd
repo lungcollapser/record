@@ -13,7 +13,7 @@ var return_check = false
 var stun_check = false
 var enemy_dead_body_check = true
 var aggro_check
-@onready var nav_agent = $EnemyNavigation
+@onready var enemy_nav = $EnemyNavigation
 @onready var enemy = $"."
 @onready var enemy_shape = $"EnemyShape"
 @onready var dead_body = preload("res://scenes/dead_body.tscn")
@@ -48,12 +48,12 @@ func _physics_process(_delta) -> void:
 
 	
 func enemy_chase():
-	var enemy_velocity = (nav_agent.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
+	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
 	var enemy_look_position = player.global_position
 	enemy_look_position.y = player.global_position.y
 	if target == Player and stun_check == false || aggro_check == true and stun_check == false:
 		await get_tree().physics_frame
-		nav_agent.set_target_position(player.global_position)
+		enemy_nav.set_target_position(player.global_position)
 		if enemy_look_position != Vector3.ZERO:
 			look_at(enemy_look_position)
 			move_and_collide(enemy_velocity)
@@ -69,11 +69,11 @@ func enemy_dead_body_spawn():
 		SanityBar.value -= 20
 		
 
-func _on_enemy_area_body_entered(body: Node3D):
+func _on_enemy_area_body_entered(body):
 	if body is Player:
 		target = Player
 		
-func _on_enemy_area_body_exited(body: Node3D):
+func _on_enemy_area_body_exited(body):
 	if body is Player:
 		target = null
 	
@@ -95,15 +95,15 @@ func enemy_stun():
 	stun_check = false
 
 func enemy_first_position():
-	var enemy_velocity = (nav_agent.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
+	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
 	var enemy_one_look_position = enemy_return_one.global_position
 	enemy_one_look_position.y = enemy_return_one.global_position.y
-	nav_agent.set_target_position(enemy_return_one.global_position)
+	enemy_nav.set_target_position(enemy_return_one.global_position)
 	move_and_collide(enemy_velocity)
 
 func enemy_second_position():
-	var enemy_velocity = (nav_agent.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
+	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
 	var enemy_two_look_position = enemy_return_two.global_position
 	enemy_two_look_position.y = enemy_return_two.global_position.y
-	nav_agent.set_target_position(enemy_return_two.global_position)
+	enemy_nav.set_target_position(enemy_return_two.global_position)
 	move_and_collide(enemy_velocity)

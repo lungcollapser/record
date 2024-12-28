@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://73a8pjvvssy8"]
+[gd_scene load_steps=13 format=3 uid="uid://73a8pjvvssy8"]
 
 [ext_resource type="PackedScene" uid="uid://cfqnnebvepiiw" path="res://scenes/dead_body.tscn" id="2_cjb3p"]
 [ext_resource type="Script" path="res://scripts/kill_floor_area.gd" id="2_iq4qy"]
 [ext_resource type="PackedScene" uid="uid://jyrhlvipedil" path="res://scenes/human_receptacle.tscn" id="4_rtglp"]
 [ext_resource type="PackedScene" uid="uid://cin7xys5d5odj" path="res://scenes/enemy.tscn" id="5_nv0q6"]
+[ext_resource type="PackedScene" uid="uid://1y17vfrf35yb" path="res://scenes/demon.tscn" id="6_8fra5"]
 [ext_resource type="PackedScene" uid="uid://oanau7q0yrjd" path="res://scenes/garbage_bag.tscn" id="6_fhtf8"]
 [ext_resource type="PackedScene" uid="uid://dxcu08sgbyylr" path="res://scenes/playerbody.tscn" id="8_qc25h"]
 
@@ -361,6 +362,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.4788, 1.49676, 9.98748)
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("5_nv0q6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.112, 2.12726, -0.369226)
+
+[node name="demon" parent="Enemies" instance=ExtResource("6_8fra5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83.5519, 2.84974, -4.68612)
 
 [node name="Items" type="Node3D" parent="."]
 
