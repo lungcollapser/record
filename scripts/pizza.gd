@@ -11,13 +11,14 @@ func _ready() -> void:
 
 func _physics_process(_delta: float):
 		eat_pizza()
-		item_spawn.item_spawn(pizza)
+		item_spawn.item_spawn()
 		
 func eat_pizza():
 	var pizza_collider = player_pick_up.get_collider()
 	if Input.is_action_just_pressed("interact") and pizza_collider == pizza and HealthBar.value < 100:
 		queue_free()
 		HealthBar.value += 5
+		SanityBar.value += 10
 		
 
 	

@@ -20,16 +20,20 @@ func _ready() -> void:
 	
 	
 func _physics_process(_delta: float) -> void:
-	demon_spawn()
+	demon_spawn_despawn()
 	demon_chase()
 
-func demon_spawn():
+func demon_spawn_despawn():
 	if SanityBar.value <= 99:
 		demon_mesh.visible = true
 		demon_shape.visible = true
+	else:
+		demon_mesh.visible = false
+		demon_shape.visible = false
 		
 #crawl doesnt work on this fix later
 func demon_chase():
+	var behavior = randi_range(0, 2)
 	var demon_crawl_velocity = (demon_nav.get_next_path_position() - global_position).normalized() * DEMON_CRAWL_SPEED
 	var demon_run_velocity = (demon_nav.get_next_path_position() - global_position).normalized() * DEMON_RUN_SPEED
 	var demon_look_position = player.global_position
@@ -40,13 +44,13 @@ func demon_chase():
 		if demon_look_position != Vector3.ZERO:
 				look_at(demon_look_position)
 		if demon_nav.distance_to_target() <= 5:
-			move_and_collide(demon_run_velocity)
-			print("hello")
-		else: 
+			match behavior:
+				0: move_and_collide(demon_run_velocity)
+				1: queue_free()
+				2: randf_range(demon.global_position, -5.0) 
+			print(behavior)
+		else:
 			move_and_collide(demon_crawl_velocity)
-			print("herro")
-		
-	
 
 func _on_demonarea_body_entered(body) -> void:
 	if body is Player:
