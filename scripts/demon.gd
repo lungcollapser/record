@@ -32,6 +32,7 @@ func demon_spawn_despawn():
 		demon_shape.visible = false
 		
 #crawl doesnt work on this fix later
+
 func demon_chase():
 	var behavior = randi_range(0, 2)
 	var demon_crawl_velocity = (demon_nav.get_next_path_position() - global_position).normalized() * DEMON_CRAWL_SPEED
