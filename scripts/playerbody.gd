@@ -1,32 +1,31 @@
 extends CharacterBody3D
 class_name Player
 
-#variables for giving attributes such as speed and endurance to player. 
-var speed = 0
-var max_endurance = clamp(100, 0, 100)
-var endurance_check = true 
-var player_health = clamp(100, 0, 100)
-const CROUCH_SPEED = 1.5
+#player attribute variables.
+var speed : int = 0
+var max_endurance : int = clamp(100, 0, 100)
+var player_health : int = clamp(100, 0, 100)
+const CROUCH_SPEED  = 1.5
 const WALK_SPEED = 2.0
-const RECEPTACLE_SPEED = 3.5
+const RECEPTACLE_SPEED  = 3.5
 const JOG_SPEED = 5.0
-const SPRINT_SPEED = 7.0
-const JUMP_VELOCITY = 4.5
-const SENSITIVTY = 0.01
-var pull_power = 35
+const SPRINT_SPEED  = 7.0
+const JUMP_VELOCITY  = 4.5
+const SENSITIVTY  = 0.01
+var pull_power : int = 35
 
-#boolean variables 
+#boolean/state machine/group variables.
+var endurance_check : bool = true
 var picked_up_object
-var dead_body_check = null
 var hit_detec_check
 
 
-#headbob variables
-const BOB_FREQ = 2.0
-const BOB_AMP = 0.08
-var t_bob = 0.0
+#headbob variables.
+const BOB_FREQ : float = 2.0
+const BOB_AMP : float= 0.08
+var t_bob : float = 0.0
 
-#variables for importing nodes/scenes into the script for use.
+#variables for importing nodes/scenes.
 @onready var player = $"."
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
@@ -38,7 +37,7 @@ var t_bob = 0.0
 @onready var dead_body_parts = preload("res://scenes/dead_body_parts.tscn").instantiate()
 
 
-
+#ready function.
 func _ready():
 	#intializes the mouse for first person.
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -158,20 +157,20 @@ func headbob(time) -> Vector3:
 	pos.y = sin(time * BOB_FREQ) * BOB_AMP
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	return pos
-	
+	#function for hit detection on player collision shape being entered.
 func _on_player_hitbox_body_entered(body):
 	if body is Enemy:
 		hit_detec_check = true
 
-
+	#function for hit detection on player collision shape being exited.
 func _on_player_hitbox_body_exited(_body):
 	hit_detec_check = false
 	
-	
+	#function reducing the speed and disabling sprint while holding receptacle.
 func receptacle_speed():
 	speed = RECEPTACLE_SPEED
 	endurance_check = false
-	
+	#function for normal jog speed and allowing sprint.
 func normal_speed():
 	speed = JOG_SPEED
 	endurance_check = true

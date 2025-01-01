@@ -8,8 +8,6 @@ extends CharacterBody3D
 
 var player
 var demon_spawn_check
-
-
 var demon_target = null
 
 const DEMON_CRAWL_SPEED = 0.02
@@ -30,11 +28,9 @@ func demon_spawn_despawn():
 	else:
 		demon_mesh.visible = false
 		demon_shape.visible = false
-		
-#crawl doesnt work on this fix later
 
 func demon_chase():
-	var behavior = randi_range(0, 2)
+	var behavior = randi_range(0, 1)
 	var demon_crawl_velocity = (demon_nav.get_next_path_position() - global_position).normalized() * DEMON_CRAWL_SPEED
 	var demon_run_velocity = (demon_nav.get_next_path_position() - global_position).normalized() * DEMON_RUN_SPEED
 	var demon_look_position = player.global_position
@@ -48,7 +44,6 @@ func demon_chase():
 			match behavior:
 				0: move_and_collide(demon_run_velocity)
 				1: queue_free()
-				2: randf_range(demon.global_position, -5.0) 
 			print(behavior)
 		else:
 			move_and_collide(demon_crawl_velocity)
