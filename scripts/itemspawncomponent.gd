@@ -15,7 +15,7 @@ var timeout_check : bool = true
 
 func _physics_process(delta: float):
 	if timeout_check == true:
-		item.apply_central_impulse(Vector3(0, 10, 0) * delta)
+		item.apply_central_impulse(Vector3(randf_range(60.0, -60.0),randf_range(20.0, -20.0), 0) * delta)
 		print("ayo")
 	else:
 		pass

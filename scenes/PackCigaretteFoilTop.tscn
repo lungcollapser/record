@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cwmv8hokd12xl" path="res://assets/PSXCigarette Pack[FIXED]/Textures/packFrontTextureLowPoly.png" id="1_p254r"]
 [ext_resource type="Script" path="res://scripts/pack_cigarette_foil_top.gd" id="1_wb50m"]
 [ext_resource type="PackedScene" uid="uid://bk6e6igwyvo4b" path="res://scenes/pickup_component.tscn" id="2_yhta6"]
+[ext_resource type="PackedScene" uid="uid://ca8xehtfsayl5" path="res://scenes/itemspawncomponent.tscn" id="4_pgdj7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_piqbj"]
 resource_name = "Material.053"
@@ -42,9 +43,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_yrheg")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_0bx77"]
-size = Vector3(0.055, 0.240137, 0.145)
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_0k0cj"]
 radius = 0.2
 
@@ -58,13 +56,12 @@ script = ExtResource("1_wb50m")
 transform = Transform3D(20, 0, 0, 0, 20, -3.25841e-06, 0, 3.25841e-06, 20, 0, 0, 0)
 mesh = SubResource("ArrayMesh_pvshc")
 
-[node name="PackCigaretteShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.167432, 0)
-shape = SubResource("BoxShape3D_0bx77")
-
 [node name="PickupComponent" parent="." instance=ExtResource("2_yhta6")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 2.58802e-08, 0.592069, -0.0215091)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PickupComponent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.422385, 0, 0)
 shape = SubResource("SphereShape3D_0k0cj")
+
+[node name="itemspawncomponent" parent="." instance=ExtResource("4_pgdj7")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 7.79261e-09, 0.178274, -0.0336246)
