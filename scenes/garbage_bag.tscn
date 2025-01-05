@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=4 uid="uid://oanau7q0yrjd"]
+[gd_scene load_steps=10 format=4 uid="uid://oanau7q0yrjd"]
 
 [ext_resource type="Script" path="res://scripts/garbage_bag.gd" id="1_h3y83"]
 [ext_resource type="Texture2D" uid="uid://bwlerjt8227xc" path="res://assets/Garbage_Bag_01_black1_Trash_Bag_01_x128.png" id="1_rvf2u"]
 [ext_resource type="PackedScene" uid="uid://bk6e6igwyvo4b" path="res://scenes/pickup_component.tscn" id="3_l2eyp"]
-[ext_resource type="PackedScene" uid="uid://ca8xehtfsayl5" path="res://scenes/itemspawncomponent.tscn" id="4_s8bpf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_b5oua"]
 friction = 0.59
@@ -72,5 +71,3 @@ shape = SubResource("ConvexPolygonShape3D_46uny")
 [node name="PickupComponentShape" type="CollisionShape3D" parent="PickupComponent"]
 transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0.260789, 0.00232207)
 shape = SubResource("SphereShape3D_uje6q")
-
-[node name="itemspawncomponent" parent="." instance=ExtResource("4_s8bpf")]

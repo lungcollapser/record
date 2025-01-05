@@ -23,6 +23,8 @@ HealthBar="*res://scenes/health_bar.tscn"
 Events="*res://scripts/events.gd"
 DeadBodyParts="*res://scenes/dead_body_parts.tscn"
 SanityBar="*res://scenes/sanity_bar.tscn"
+BeehaveGlobalMetrics="*res://addons/beehave/metrics/beehave_global_metrics.gd"
+BeehaveGlobalDebugger="*res://addons/beehave/debug/global_debugger.gd"
 
 [debug]
 
@@ -32,6 +34,10 @@ shapes/collision/shape_color=Color(1, 0, 0.984314, 0.419608)
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/beehave/plugin.cfg")
 
 [input]
 

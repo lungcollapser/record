@@ -2,9 +2,9 @@ extends CharacterBody3D
 class_name Player
 
 #player attribute variables.
-var speed : int = 0
-var max_endurance : int = clamp(100, 0, 100)
-var player_health : int = clamp(100, 0, 100)
+var speed = 0
+var max_endurance = clamp(100, 0, 100)
+var player_health  = clamp(100, 0, 100)
 const CROUCH_SPEED  = 1.5
 const WALK_SPEED = 2.0
 const RECEPTACLE_SPEED  = 3.5

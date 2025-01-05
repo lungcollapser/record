@@ -10,7 +10,7 @@ albedo_color = Color(0.18, 0.18, 0.18, 1)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qwncu"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_34ndt"]
-radius = 30.0
+radius = 100.0
 
 [node name="demon" type="CharacterBody3D"]
 script = ExtResource("1_dxsly")

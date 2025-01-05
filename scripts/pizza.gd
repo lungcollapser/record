@@ -1,7 +1,7 @@
 extends RigidBody3D
 #variables for importing nodes/scenes.
 @onready var pizza = $"."
-@onready var item_spawn = ItemSpawnComponent
+@onready var item_spawn = $itemspawncomponent
 #boolean/state machine/group variables.
 var player_pick_up
 
@@ -12,7 +12,7 @@ func _ready() -> void:
 #"main"
 func _physics_process(_delta: float):
 		eat_pizza()
-		item_spawn.item_spawn()
+	
 		#currently this item spawn component DOES NOT work.
 #function for the player eating pizza. currently this raises health AND sanity (bound to change in the future).	
 func eat_pizza():

@@ -4,7 +4,6 @@ class_name GarbageBag
 var player_hold
 var player_attack
 @onready var garbage = $"."
-@onready var item_spawn = $itemspawncomponent
 @onready var pizza = preload("res://scenes/pizza.tscn")
 @onready var cigarette = preload("res://scenes/PackCigaretteFoilTop.tscn")
 

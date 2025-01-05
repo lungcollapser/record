@@ -43,6 +43,7 @@ func _physics_process(_delta) -> void:
 		enemy_second_position()
 		await get_tree().create_timer(randf_range(5, 10)).timeout
 		return_check = false
+		
 	
 
 
@@ -99,11 +100,15 @@ func enemy_first_position():
 	var enemy_one_look_position = enemy_return_one.global_position
 	enemy_one_look_position.y = enemy_return_one.global_position.y
 	enemy_nav.set_target_position(enemy_return_one.global_position)
-	move_and_collide(enemy_velocity)
+	if enemy_one_look_position != Vector3.ZERO:
+		look_at(enemy_one_look_position)
+		move_and_collide(enemy_velocity)
 
 func enemy_second_position():
 	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
 	var enemy_two_look_position = enemy_return_two.global_position
 	enemy_two_look_position.y = enemy_return_two.global_position.y
 	enemy_nav.set_target_position(enemy_return_two.global_position)
-	move_and_collide(enemy_velocity)
+	if enemy_two_look_position != Vector3.ZERO:
+		look_at(enemy_two_look_position)
+		move_and_collide(enemy_velocity)
