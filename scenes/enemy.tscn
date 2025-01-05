@@ -17,8 +17,6 @@ albedo_color = Color(0, 0.313726, 0.109804, 1)
 radius = 4.238
 
 [node name="Enemy" type="CharacterBody3D"]
-axis_lock_angular_y = true
-axis_lock_angular_z = true
 script = ExtResource("1_c05o7")
 
 [node name="EnemyMesh" type="MeshInstance3D" parent="."]

@@ -1,6 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://3p3672qqmgn3"]
 
 [ext_resource type="PackedScene" uid="uid://bk6e6igwyvo4b" path="res://scenes/pickup_component.tscn" id="1_iue2g"]
+[ext_resource type="PackedScene" uid="uid://ca8xehtfsayl5" path="res://scenes/itemspawncomponent.tscn" id="2_mh0bp"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vs4ml"]
 rough = true
@@ -35,22 +36,14 @@ rough = true
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_35ouy"]
 rough = true
 
-[sub_resource type="GDScript" id="GDScript_uhdu5"]
-script/source = "extends RigidBody3D
-
-func _ready() -> void:
-	Events.emit_signal(\"call_item_spawn\")
-"
-
 [node name="deadbodyparts" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.653583, 0)
 
 [node name="LeftArmBody" type="RigidBody3D" parent="." groups=["Bussin"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.693915, 0, -0.598135)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.31434, 0, -0.165177)
 collision_layer = 2
-mass = 10.0
+mass = 15.0
 physics_material_override = SubResource("PhysicsMaterial_vs4ml")
-gravity_scale = 2.0
 
 [node name="LeftArmShape" type="CollisionShape3D" parent="LeftArmBody"]
 transform = Transform3D(0.375, 0, 0, 0, -1.63918e-08, -0.375, 0, 0.375, -1.63918e-08, 1.35549, 0, 0)
@@ -69,12 +62,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.80436, 0, 0)
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.439, 0, -0.0268832)
 shape = SubResource("CapsuleShape3D_qil11")
 
+[node name="itemspawncomponent" parent="LeftArmBody" instance=ExtResource("2_mh0bp")]
+
 [node name="LeftLegBody" type="RigidBody3D" parent="." groups=["Bussin"]]
-transform = Transform3D(0.891007, 0, -0.453991, 0, 1, 0, 0.453991, 0, 0.891007, -0.0571295, -0.0125533, 1.01119)
+transform = Transform3D(0.891007, 0, -0.453991, 0, 1, 0, 0.453991, 0, 0.891007, -0.473585, -0.0125533, 0.090588)
 collision_layer = 2
-mass = 10.0
+mass = 15.0
 physics_material_override = SubResource("PhysicsMaterial_ly17n")
-gravity_scale = 2.0
 
 [node name="LeftLeg" type="MeshInstance3D" parent="LeftLegBody"]
 transform = Transform3D(0.35, 0, 0, 0, -1.5299e-08, -0.35, 0, 0.35, -1.5299e-08, 0.656511, 0, 0)
@@ -93,12 +87,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.24943, 0, 0.304792)
 transform = Transform3D(-0.999048, 0.0436195, -1.90667e-09, 0, -4.37114e-08, -1, -0.0436195, -0.999048, 4.36698e-08, -0.604638, 0, -0.344567)
 shape = SubResource("CapsuleShape3D_qil11")
 
+[node name="itemspawncomponent" parent="LeftLegBody" instance=ExtResource("2_mh0bp")]
+
 [node name="RightArmBody" type="RigidBody3D" parent="." groups=["Bussin"]]
-transform = Transform3D(0.0540788, 0, -0.998537, 0, 1, 0, 0.998537, 0, 0.0540788, 1.57664, 0, -0.55579)
+transform = Transform3D(0.0540788, 0, -0.998537, 0, 1, 0, 0.998537, 0, 0.0540788, -0.123543, 0, -0.55579)
 collision_layer = 2
-mass = 10.0
+mass = 15.0
 physics_material_override = SubResource("PhysicsMaterial_camlx")
-gravity_scale = 2.0
 
 [node name="RightArm" type="MeshInstance3D" parent="RightArmBody"]
 transform = Transform3D(0.35, 0, 0, 0, -1.5299e-08, -0.35, 0, 0.35, -1.5299e-08, 0, 0, 0)
@@ -117,12 +112,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0219791, 0, 0.405832)
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0165344, 0, -0.422748)
 shape = SubResource("CapsuleShape3D_qil11")
 
+[node name="itemspawncomponent" parent="RightArmBody" instance=ExtResource("2_mh0bp")]
+
 [node name="RightLegBody" type="RigidBody3D" parent="." groups=["Bussin"]]
 transform = Transform3D(-0.726575, 0, 0.687088, 0, 1, 0, -0.687088, 0, -0.726575, -0.582222, 0, 0.559184)
 collision_layer = 2
-mass = 10.0
+mass = 15.0
 physics_material_override = SubResource("PhysicsMaterial_g42ib")
-gravity_scale = 2.0
 
 [node name="RightLeg" type="MeshInstance3D" parent="RightLegBody"]
 transform = Transform3D(0.35, 0, 0, 0, -1.5299e-08, -0.35, 0, 0.35, -1.5299e-08, 0, 0, 0)
@@ -140,13 +136,13 @@ shape = SubResource("ConvexPolygonShape3D_m5cmy")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.000669509, 0, 0.0548)
 shape = SubResource("CapsuleShape3D_qil11")
 
+[node name="itemspawncomponent" parent="RightLegBody" instance=ExtResource("2_mh0bp")]
+
 [node name="HeadBody" type="RigidBody3D" parent="." groups=["Bussin"]]
-transform = Transform3D(0.79653, 0, 0.604599, 0, 1, 0, -0.604599, 0, 0.79653, -1.16444, 0, -1.02716)
+transform = Transform3D(0.79653, 0, 0.604599, 0, 1, 0, -0.604599, 0, 0.79653, -0.612715, 0, -0.0841711)
 collision_layer = 2
 mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_35ouy")
-gravity_scale = 2.0
-script = SubResource("GDScript_uhdu5")
 
 [node name="Head" type="MeshInstance3D" parent="HeadBody"]
 transform = Transform3D(0.35, 0, 0, 0, -1.5299e-08, -0.35, 0, 0.35, -1.5299e-08, 0, 0, 0)
@@ -162,6 +158,8 @@ shape = SubResource("ConvexPolygonShape3D_m5cmy")
 [node name="PickupComponentShape" type="CollisionShape3D" parent="HeadBody/PickupComponent"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0249393, 0, -0.0680826)
 shape = SubResource("CapsuleShape3D_qil11")
+
+[node name="itemspawncomponent" parent="HeadBody" instance=ExtResource("2_mh0bp")]
 
 [connection signal="body_entered" from="LeftArmBody" to="." method="_on_left_arm_body_body_entered"]
 [connection signal="body_entered" from="LeftLegBody" to="." method="_on_left_leg_body_body_entered"]
