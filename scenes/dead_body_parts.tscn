@@ -40,7 +40,7 @@ rough = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.653583, 0)
 
 [node name="LeftArmBody" type="RigidBody3D" parent="." groups=["Bussin"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.31434, 0, -0.165177)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.652452, 0, -0.165177)
 collision_layer = 2
 mass = 15.0
 physics_material_override = SubResource("PhysicsMaterial_vs4ml")
@@ -65,7 +65,7 @@ shape = SubResource("CapsuleShape3D_qil11")
 [node name="itemspawncomponent" parent="LeftArmBody" instance=ExtResource("2_mh0bp")]
 
 [node name="LeftLegBody" type="RigidBody3D" parent="." groups=["Bussin"]]
-transform = Transform3D(0.891007, 0, -0.453991, 0, 1, 0, 0.453991, 0, 0.891007, -0.473585, -0.0125533, 0.090588)
+transform = Transform3D(0.891007, 0, -0.453991, 0, 1, 0, 0.453991, 0, 0.891007, -0.375862, -0.0125533, 0.416032)
 collision_layer = 2
 mass = 15.0
 physics_material_override = SubResource("PhysicsMaterial_ly17n")
@@ -90,7 +90,7 @@ shape = SubResource("CapsuleShape3D_qil11")
 [node name="itemspawncomponent" parent="LeftLegBody" instance=ExtResource("2_mh0bp")]
 
 [node name="RightArmBody" type="RigidBody3D" parent="." groups=["Bussin"]]
-transform = Transform3D(0.0540788, 0, -0.998537, 0, 1, 0, 0.998537, 0, 0.0540788, -0.123543, 0, -0.55579)
+transform = Transform3D(0.0540788, 0, -0.998537, 0, 1, 0, 0.998537, 0, 0.0540788, -0.030654, 0, -0.71126)
 collision_layer = 2
 mass = 15.0
 physics_material_override = SubResource("PhysicsMaterial_camlx")
@@ -115,7 +115,7 @@ shape = SubResource("CapsuleShape3D_qil11")
 [node name="itemspawncomponent" parent="RightArmBody" instance=ExtResource("2_mh0bp")]
 
 [node name="RightLegBody" type="RigidBody3D" parent="." groups=["Bussin"]]
-transform = Transform3D(-0.726575, 0, 0.687088, 0, 1, 0, -0.687088, 0, -0.726575, -0.582222, 0, 0.559184)
+transform = Transform3D(-0.726575, 0, 0.687088, 0, 1, 0, -0.687088, 0, -0.726575, -0.864218, 0, 0.726754)
 collision_layer = 2
 mass = 15.0
 physics_material_override = SubResource("PhysicsMaterial_g42ib")

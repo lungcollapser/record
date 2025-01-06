@@ -8,6 +8,7 @@ var dead_body_check = true
 @onready var dead_body_shape = $deadbodyshape
 @onready var dead_body_parts = preload("res://scenes/dead_body_parts.tscn")
 
+
 func _ready() -> void:
 	player_hold = get_tree().get_first_node_in_group("hold")
 	player_attack = get_tree().get_first_node_in_group("attack")
