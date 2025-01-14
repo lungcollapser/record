@@ -3,9 +3,9 @@ class_name ItemSpawnComponent
 
 @onready var item = get_parent()
 var timeout_check : bool = true
-var x_force_multiply : float = 15.5
-var y_force_multiply : float = 20.5
-var z_force_multiply : float = 16.5
+var x_force_multiply : float = 17.5
+var y_force_multiply : float = 25.5
+var z_force_multiply : float = 15.5
 
 
 func _physics_process(delta: float):

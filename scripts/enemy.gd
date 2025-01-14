@@ -1,7 +1,8 @@
 extends CharacterBody3D
 class_name Enemy
 
-const ENEMY_SPEED = 0.05
+const ENEMY_ROAMING_SPEED = 0.03
+const ENEMY_CHASE_SPEED = 0.02
 var enemy_health = clamp(10, 0, 10)
 var player
 var target = null
@@ -35,6 +36,7 @@ func _physics_process(_delta) -> void:
 	
 	#optimize later. still works but only under two conditions.
 	if return_check == false and aggro_check != true and target == null:
+		await get_tree().physics_frame
 		enemy_first_position()
 		await get_tree().create_timer(randf_range(5, 10)).timeout
 		return_check = true
@@ -49,7 +51,7 @@ func _physics_process(_delta) -> void:
 
 	
 func enemy_chase():
-	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
+	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_CHASE_SPEED
 	var enemy_look_position = player.global_position
 	enemy_look_position.y = player.global_position.y
 	if target == Player and stun_check == false || aggro_check == true and stun_check == false:
@@ -96,19 +98,20 @@ func enemy_stun():
 	stun_check = false
 
 func enemy_first_position():
-	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
+	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED
 	var enemy_one_look_position = enemy_return_one.global_position
 	enemy_nav.set_target_position(enemy_return_one.global_position)
+	move_and_collide(enemy_velocity)
 	if enemy_one_look_position != Vector3.ZERO:
-		look_at(enemy_return_one.global_position, Vector3.UP)
-		axis_lock_angular_x = true
-		move_and_collide(enemy_velocity)
+		while look_at(enemy_one_look_position):
+			axis_lock_angular_x = true
+			axis_lock_angular_y = true
+			move_and_collide(enemy_velocity)
 
 func enemy_second_position():
-	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_SPEED
+	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED
 	var enemy_two_look_position = enemy_return_two.global_position
 	enemy_nav.set_target_position(enemy_return_two.global_position)
 	if enemy_two_look_position != Vector3.ZERO:
-		look_at(enemy_return_two.global_position, Vector3.UP)
-		axis_lock_angular_x = true
+		look_at(enemy_two_look_position)
 		move_and_collide(enemy_velocity)
