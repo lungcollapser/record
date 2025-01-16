@@ -34,7 +34,7 @@ func _ready():
 func _physics_process(_delta) -> void:
 	enemy_chase()
 	enemy_dead_body_spawn()
-	
+	roaming_pattern()
 	
 	#optimize later. still works but only under two conditions.
 	#if return_check == false and aggro_check != true and target == null:
@@ -48,13 +48,7 @@ func _physics_process(_delta) -> void:
 	#	await get_tree().create_timer(5).timeout
 	#	return_check = false
 		
-		
-	if aggro_check != true and target == null:
-		await get_tree().physics_frame
-		match roaming_behavior:
-			0: enemy_first_position()
-			1: enemy_second_position()
-		print(roaming_behavior)
+	
 	
 
 
@@ -122,3 +116,12 @@ func enemy_second_position():
 	if enemy_two_look_position != Vector3.ZERO:
 		look_at(Vector3.FORWARD - enemy_two_look_position)
 		move_and_collide(enemy_velocity)
+		
+func roaming_pattern():
+	if aggro_check != true and target == null:
+		await get_tree().physics_frame
+		for i in roaming_behavior:
+			match roaming_behavior:
+				0: enemy_first_position() 
+				1: enemy_second_position()
+			print(roaming_behavior)
