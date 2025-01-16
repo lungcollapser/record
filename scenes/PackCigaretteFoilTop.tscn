@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://7lxy8ip0fa3g"]
+[gd_scene load_steps=9 format=4 uid="uid://7lxy8ip0fa3g"]
 
 [ext_resource type="Texture2D" uid="uid://cwmv8hokd12xl" path="res://assets/PSXCigarette Pack[FIXED]/Textures/packFrontTextureLowPoly.png" id="1_p254r"]
 [ext_resource type="PackedScene" uid="uid://bk6e6igwyvo4b" path="res://scenes/pickup_component.tscn" id="2_yhta6"]
@@ -42,6 +42,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_yrheg")
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_t742o"]
+points = PackedVector3Array(0.00126976, 0.0140346, 0.00388519, -0.00159223, 0.0140346, 0.00388519, 0.00126976, 0.00228394, 0.00388519, 0.00126976, 0.0140346, -0.00388519, -0.00159223, 0.0140346, -0.00388519, -0.00159223, 0.00228394, 0.00388519, 0.00126976, 0.00228394, -0.00388519, -0.00159223, 0.00228394, -0.00388519)
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_0k0cj"]
 radius = 0.2
 
@@ -52,8 +55,12 @@ mass = 10.0
 continuous_cd = true
 
 [node name="PackCigaretteFoilTop" type="MeshInstance3D" parent="."]
-transform = Transform3D(20, 0, 0, 0, 20, -3.25841e-06, 0, 3.25841e-06, 20, 0, 0, 0)
+transform = Transform3D(20, 0, 0, 0, 20, -3.25841e-06, 0, 3.25841e-06, 20, -1.19234e-10, -0.00272775, 0)
 mesh = SubResource("ArrayMesh_pvshc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, -3.25841e-06, 0, 3.25841e-06, 20, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_t742o")
 
 [node name="PickupComponent" parent="." instance=ExtResource("2_yhta6")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 2.58802e-08, 0.592069, -0.0215091)
