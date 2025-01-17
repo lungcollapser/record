@@ -39,8 +39,6 @@ func _physics_process(_delta) -> void:
 	enemy_chase()
 	enemy_dead_body_spawn()
 	
-func _process(delta: float) -> void:
-	_on_enemy_roaming_timer_timeout() * delta
 	
 	
 	#optimize later. still works but only under two conditions.
@@ -139,7 +137,7 @@ func enemy_third_position():
 func _on_enemy_roaming_timer_timeout():
 	if aggro_check != true and target == null:
 		match roaming_behavior:
-			0: enemy_first_position() 
+			0: enemy_first_position()
 			1: enemy_second_position()
 			2: enemy_third_position()
 		print(roaming_behavior)

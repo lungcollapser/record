@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://3p3672qqmgn3"]
+[gd_scene load_steps=15 format=3 uid="uid://3p3672qqmgn3"]
 
+[ext_resource type="Script" path="res://scripts/dead_body_parts.gd" id="1_g2gee"]
 [ext_resource type="PackedScene" uid="uid://bk6e6igwyvo4b" path="res://scenes/pickup_component.tscn" id="1_iue2g"]
 [ext_resource type="PackedScene" uid="uid://ca8xehtfsayl5" path="res://scenes/itemspawncomponent.tscn" id="2_mh0bp"]
 
@@ -38,6 +39,7 @@ rough = true
 
 [node name="deadbodyparts" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.653583, 0)
+script = ExtResource("1_g2gee")
 
 [node name="LeftArmBody" type="RigidBody3D" parent="." groups=["Bussin"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.10089, 0, -0.165177)
