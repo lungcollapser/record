@@ -333,7 +333,10 @@ shape = SubResource("WorldBoundaryShape3D_6inlm")
 transform = Transform3D(-0.998064, -0.0621982, 0, 0.0621982, -0.998064, 0, 0, 0, 1, -66.1421, 0.847271, 0)
 
 [node name="EnemyReturnTwo" type="Marker3D" parent="NavigationRegion3D" groups=["pathing"]]
-transform = Transform3D(-0.998064, -0.0621982, 0, 0.0621982, -0.998064, 0, 0, 0, 1, -53.3318, 1.23213, -1.01202)
+transform = Transform3D(-0.998064, -0.0621982, 0, 0.0621982, -0.998064, 0, 0, 0, 1, -49.5326, 1.23213, -4.5263)
+
+[node name="EnemyReturnThree" type="Marker3D" parent="NavigationRegion3D" groups=["pathing"]]
+transform = Transform3D(-0.998064, -0.0621982, 0, 0.0621982, -0.998064, 0, 0, 0, 1, -49.5326, 1.23213, 5.05805)
 
 [node name="HumanReceptacle" type="Node3D" parent="."]
 

@@ -1,20 +1,22 @@
 extends CharacterBody3D
 class_name Enemy
 
-const ENEMY_ROAMING_SPEED = 0.009
+const ENEMY_ROAMING_SPEED = 0.09
 const ENEMY_CHASE_SPEED = 0.03
 var enemy_health = clamp(10, 0, 10)
 var player
 var target = null
 var player_hold
 var player_attack
-var enemy_return_one
-var enemy_return_two
 var return_check = false
 var stun_check = false
 var enemy_dead_body_check = true
 var aggro_check
 var roaming_behavior = randi_range(0, 2)
+var enemy_return_one
+var enemy_return_two
+var enemy_return_three
+
 @onready var enemy_nav = $EnemyNavigation
 @onready var enemy = $"."
 @onready var enemy_shape = $"EnemyShape"
@@ -26,6 +28,8 @@ func _ready():
 	player_attack = get_tree().get_first_node_in_group("attack")
 	enemy_return_one = get_tree().get_nodes_in_group("pathing")[0]
 	enemy_return_two = get_tree().get_nodes_in_group("pathing")[1]
+	enemy_return_three = get_tree().get_nodes_in_group("pathing")[2]
+	
 	
 	Events.connect("call_enemy_lose_health", Callable(self, "enemy_lose_health"))
 	
@@ -34,7 +38,6 @@ func _ready():
 func _physics_process(_delta) -> void:
 	enemy_chase()
 	enemy_dead_body_spawn()
-	roaming_pattern()
 	
 	#optimize later. still works but only under two conditions.
 	#if return_check == false and aggro_check != true and target == null:
@@ -104,6 +107,8 @@ func enemy_first_position():
 	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED
 	var enemy_one_look_position = enemy_return_one.global_position
 	enemy_nav.set_target_position(enemy_return_one.global_position)
+	print("hubba")
+	
 	move_and_collide(enemy_velocity)
 	if enemy_one_look_position != Vector3.ZERO:
 		look_at(Vector3.FORWARD - enemy_one_look_position)
@@ -113,15 +118,31 @@ func enemy_second_position():
 	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED
 	var enemy_two_look_position = enemy_return_two.global_position
 	enemy_nav.set_target_position(enemy_return_two.global_position)
+	print("hubba")
+	
+	move_and_collide(enemy_velocity)
 	if enemy_two_look_position != Vector3.ZERO:
 		look_at(Vector3.FORWARD - enemy_two_look_position)
 		move_and_collide(enemy_velocity)
 		
+func enemy_third_position():
+	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED
+	var enemy_three_look_position = enemy_return_three.global_position
+	enemy_nav.set_target_position(enemy_return_three.global_position)
+	print("hubba")
+	move_and_collide(enemy_velocity)
+	if enemy_three_look_position != Vector3.ZERO:
+		look_at(Vector3.FORWARD - enemy_three_look_position)
+		move_and_collide(enemy_velocity)
+		
 func roaming_pattern():
 	if aggro_check != true and target == null:
-		await get_tree().physics_frame
-		for i in roaming_behavior:
-			match roaming_behavior:
-				0: enemy_first_position() 
-				1: enemy_second_position()
-			print(roaming_behavior)
+		match roaming_behavior:
+			0: enemy_first_position() 
+			1: enemy_second_position()
+			2: enemy_third_position()
+		print(roaming_behavior)
+
+
+func _on_timer_timeout():
+	roaming_pattern()
