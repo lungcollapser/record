@@ -36,11 +36,6 @@ func dead_body_explosion():
 			2: left_arm.queue_free()
 			3: left_leg.queue_free()
 			4: head.queue_free()
-			5: null
-			6: null
-			7: null
-			8: null
-			9: null
 		print(dead_body_part_behavior)
 			
 		get_parent().add_child(left_leg)
