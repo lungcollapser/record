@@ -6,12 +6,14 @@ extends Node3D
 @onready var right_leg = $RightLegBody
 @onready var head = $HeadBody
 
-var body_part_behavior = randi_range(0, 4)
+var body_part_behavior_num = randi_range(0, 4)
 
-func _physics_process(delta: float) -> void:
-	match body_part_behavior:
-		0: left_arm.visible = false
-		1: right_arm.visible = false
-		2: left_leg.visible = false
-		3: right_leg.visible = false
-		4: head.visible = false
+
+func body_part_behavior():
+	if is_instance_valid(left_arm) && is_instance_valid(right_arm) && is_instance_valid(left_leg) && is_instance_valid(right_leg) && is_instance_valid(head):
+		match body_part_behavior_num:
+			0: left_arm.queue_free()
+			1: right_arm.queue_free()
+			2: left_leg.queue_free()
+			3: right_leg.queue_free()
+			4: head.queue_free()

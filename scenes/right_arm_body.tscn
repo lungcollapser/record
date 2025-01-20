@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://dgrga2aeco7w7"]
+
+[ext_resource type="PackedScene" uid="uid://bk6e6igwyvo4b" path="res://scenes/pickup_component.tscn" id="1_o24t8"]
+[ext_resource type="PackedScene" uid="uid://ca8xehtfsayl5" path="res://scenes/itemspawncomponent.tscn" id="2_bpcev"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_h1um6"]
+radius = 0.15
+height = 0.65
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8jmyr"]
+albedo_color = Color(0.33, 0, 0, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sslke"]
+points = PackedVector3Array(0.144326, 0.202604, -0.0293243, -0.145606, -0.203285, -0.0197561, -0.145698, -0.203414, 0.0189463, -0.12708, 0.253404, 0.00930619, 0.0379276, -0.191692, 0.143439, 0.0474007, -0.220002, -0.134348, -0.0582082, 0.202352, -0.13529, -0.0293242, 0.202603, 0.144325, 0.126141, -0.253114, 0.0190441, 0.114144, 0.219476, 0.0854949, 0.0393037, 0.317869, -0.0202617, -0.0401141, -0.317769, 0.0194327, -0.0955733, -0.190282, 0.113815, 0.0659576, 0.189553, -0.133134, -0.0773175, -0.201929, -0.125379, 0.122571, -0.179708, -0.0855241, -0.133529, 0.180644, -0.0669487, -0.133135, 0.189555, 0.0659582, 0.142231, -0.171139, 0.0470993, -0.0200192, 0.294257, 0.0878897, 0.0389872, -0.295518, -0.0792227, 0.084964, 0.180201, 0.122908, -0.0397824, 0.295313, -0.079168, 0.0192044, -0.294373, 0.0879242, 0.113586, -0.199481, 0.0945886, -0.0197569, -0.203293, -0.145611, -0.0782563, -0.2822, -0.0685096, -0.0293243, -0.202604, 0.144326, 0.0579711, 0.272513, -0.0977244, -0.0977244, -0.272513, 0.0579711, -0.10496, 0.19966, 0.104167, 0.144325, -0.202603, -0.0293242)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a5o7q"]
+radius = 0.15
+height = 0.65
+
+[node name="RightArmBody" type="RigidBody3D" groups=["bodyparts"]]
+collision_layer = 2
+mass = 10.0
+
+[node name="RightArmMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_h1um6")
+surface_material_override/0 = SubResource("StandardMaterial3D_8jmyr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_sslke")
+
+[node name="PickupComponent" parent="." instance=ExtResource("1_o24t8")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupComponent"]
+shape = SubResource("CapsuleShape3D_a5o7q")
+
+[node name="itemspawncomponent" parent="." instance=ExtResource("2_bpcev")]

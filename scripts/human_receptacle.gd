@@ -43,7 +43,7 @@ func _physics_process(_delta: float):
 
 
 func _on_human_receptacle_grinder_body_entered(body):
-	if body.is_in_group("Bussin"):
+	if body.is_in_group("bodyparts"):
 		body.queue_free()
 		BloodBar.value += 10
 		

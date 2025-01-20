@@ -39,6 +39,10 @@ window/size/viewport_height=1080
 
 enabled=PackedStringArray("res://addons/beehave/plugin.cfg")
 
+[global_group]
+
+bodyparts=""
+
 [input]
 
 forward={
