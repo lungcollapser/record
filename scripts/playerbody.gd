@@ -34,7 +34,7 @@ var t_bob : float = 0.0
 @onready var player_mesh = $PlayerMesh
 @onready var player_shape = $PlayerShape
 @onready var item_drop = $Head/Camera3D/itemdrop
-@onready var dead_body_parts = preload("res://scenes/dead_body_parts.tscn").instantiate()
+
 
 
 #ready function.

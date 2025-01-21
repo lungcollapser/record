@@ -43,9 +43,10 @@ func _physics_process(_delta: float):
 
 
 func _on_human_receptacle_grinder_body_entered(body):
-	if body.is_in_group("bodyparts"):
+	if body is DeadBodyPartsComponent:
 		body.queue_free()
 		BloodBar.value += 10
+		print("herro")
 		
 func kill_floor_receptacle():
 	if receptacle_amount == false:

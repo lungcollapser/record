@@ -15,15 +15,10 @@ var dead_body_part_behavior = randi_range(0, 9)
 @onready var head = preload("res://scenes/head_body.tscn").instantiate()
 
 
-
-
-
 func _ready() -> void:
 	player_hold = get_tree().get_first_node_in_group("hold")
 	player_attack = get_tree().get_first_node_in_group("attack")
 	Events.connect("call_dead_body_explosion", Callable(self, "dead_body_explosion"))
-
-	
 
 
 func dead_body_explosion():
@@ -36,7 +31,6 @@ func dead_body_explosion():
 			2: left_arm.queue_free()
 			3: left_leg.queue_free()
 			4: head.queue_free()
-		print(dead_body_part_behavior)
 			
 		get_parent().add_child(left_leg)
 		get_parent().add_child(right_leg)

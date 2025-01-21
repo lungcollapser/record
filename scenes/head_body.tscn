@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvjfd1urw3i3c"]
+[gd_scene load_steps=9 format=3 uid="uid://cvjfd1urw3i3c"]
 
 [ext_resource type="PackedScene" uid="uid://bk6e6igwyvo4b" path="res://scenes/pickup_component.tscn" id="1_4vk3x"]
 [ext_resource type="PackedScene" uid="uid://ca8xehtfsayl5" path="res://scenes/itemspawncomponent.tscn" id="2_7spo5"]
+[ext_resource type="PackedScene" uid="uid://dab41wvy0hmok" path="res://scenes/deadbodypartscomponent.tscn" id="3_1dxvt"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_h1um6"]
 radius = 0.15
@@ -17,6 +18,10 @@ points = PackedVector3Array(0.144326, 0.202604, -0.0293243, -0.145606, -0.203285
 radius = 0.15
 height = 0.65
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1pheq"]
+radius = 0.15
+height = 0.65
+
 [node name="HeadBody" type="RigidBody3D" groups=["bodyparts"]]
 collision_layer = 2
 mass = 10.0
@@ -25,7 +30,7 @@ mass = 10.0
 mesh = SubResource("CapsuleMesh_h1um6")
 surface_material_override/0 = SubResource("StandardMaterial3D_8jmyr")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="HeadShape" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_sslke")
 
 [node name="PickupComponent" parent="." instance=ExtResource("1_4vk3x")]
@@ -34,3 +39,8 @@ shape = SubResource("ConvexPolygonShape3D_sslke")
 shape = SubResource("CapsuleShape3D_a5o7q")
 
 [node name="itemspawncomponent" parent="." instance=ExtResource("2_7spo5")]
+
+[node name="deadbodypartscomponent" parent="." instance=ExtResource("3_1dxvt")]
+
+[node name="deadbodypartsshape" type="CollisionShape3D" parent="deadbodypartscomponent"]
+shape = SubResource("CapsuleShape3D_1pheq")
