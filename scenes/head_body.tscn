@@ -8,7 +8,6 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4cmdc"]
 resource_name = "Material"
 vertex_color_use_as_albedo = true
-albedo_color = Color(1, 1, 1, 1)
 albedo_texture = ExtResource("1_aa4s1")
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
@@ -46,11 +45,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_6q4rb")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ll5sk"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_72c5p"]
 points = PackedVector3Array(0.00242772, 0.00598057, 0.00273973, -0.0117376, 0.000893705, -0.00242151, -0.01002, 0.000200001, -0.00382017, 0.00497902, -0.0099545, 0.00245056, -0.0031293, -0.00447036, 0.0104029, 0.0015228, -0.000153199, -0.00928971, -0.00745287, 0.0117183, -1.67552e-05, -0.00284564, -0.011785, -4.58583e-05, 0.00996496, -0.00332765, -2.53202e-06, 0.00221895, 0.0108434, -0.00426411, 0.000410193, 0.00123822, 0.0104094, -0.00987465, 0.00269091, 0.0056841, -0.00632004, 0.00589986, -0.00678193, -0.00623488, -0.00751383, 0.00491058, -0.00061454, 0.0114116, 0.00178433, -0.00522387, -0.00192286, -0.00744237, 0.00720408, -0.00122129, -0.00498552, -0.000974603, -0.0113216, -0.00145801, -0.00382566, -0.00656898, -0.00535529, 0.000770377, 0.000200001, 0.01047, -0.0121265, 0.00163755, -0.00145572, -0.00773388, 0.0112278, 0.000701588, -0.00509406, -0.00953719, 0.00369753, -0.000623032, 0.00090577, 0.0105901, 0.00536838, -0.00966695, 0.0017566, 0.00997898, -0.00262618, -0.000710395, -0.0116379, 0.00197668, -0.00285051, 0.00148503, -0.00085238, -0.00913861, 0.00432319, 0.00231671, -0.00671223, -0.00359587, -0.0106611, 0.00257226, -0.0103333, 0.0027184, 0.00502085, 0.00971429, -0.00255788, 1.36023e-05)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a5o7q"]
-height = 1.2
+radius = 0.7
+height = 1.4
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1pheq"]
 height = 1.0
@@ -60,13 +60,13 @@ collision_layer = 2
 mass = 10.0
 
 [node name="Cube_001" type="MeshInstance3D" parent="."]
-transform = Transform3D(18, 0, 0, 0, -7.86805e-07, 18, 0, -18, -7.86805e-07, 0, 0, 0)
+transform = Transform3D(18, 0, 0, 0, 18, 0, 0, 0, 18, 0, 0, 0)
 mesh = SubResource("ArrayMesh_g6xs6")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(18, 0, 0, 0, -7.86805e-07, 18, 0, -18, -7.86805e-07, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_ll5sk")
+transform = Transform3D(18, 0, 0, 0, 18, 0, 0, 0, 18, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_72c5p")
 
 [node name="PickupComponent" parent="." instance=ExtResource("1_4vk3x")]
 
