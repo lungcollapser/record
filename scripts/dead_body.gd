@@ -15,6 +15,8 @@ var dead_body_part_behavior = randi_range(0, 9)
 @onready var head = preload("res://scenes/head_body.tscn").instantiate()
 
 
+
+
 func _ready() -> void:
 	player_hold = get_tree().get_first_node_in_group("hold")
 	player_attack = get_tree().get_first_node_in_group("attack")
@@ -26,11 +28,12 @@ func dead_body_explosion():
 	if dismember_collider == dead_body:
 		queue_free()
 		match dead_body_part_behavior:
-			0: right_leg.queue_free()
-			1: right_arm.queue_free()
-			2: left_arm.queue_free()
-			3: left_leg.queue_free()
-			4: head.queue_free()
+			0: right_leg.scale = Vector3(1.5, 1.5, 1.5)
+			1: right_arm.scale = Vector3(1.5, 1.5, 1.5)
+			2: left_arm.scale = Vector3(1.5, 1.5, 1.5)
+			3: left_leg.scale = Vector3(1.5, 1.5, 1.5)
+			4: head.scale = Vector3(1.5, 1.5, 1.5)
+		
 			
 		get_parent().add_child(left_leg)
 		get_parent().add_child(right_leg)

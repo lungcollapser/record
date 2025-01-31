@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://x52gsxdowldr"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_k87bt"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="2_7jtou"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="3_rnco4"]
+
+[node name="BeehaveTree" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("1_k87bt")
+blackboard = NodePath("@Node@17299")
+actor = NodePath("")
+
+[node name="SequenceComposite" type="Node" parent="."]
+script = ExtResource("2_7jtou")
+
+[node name="StartRoaming" type="Node" parent="SequenceComposite"]
+script = ExtResource("3_rnco4")
+
+[node name="EndRoaming" type="Node" parent="SequenceComposite"]
+script = ExtResource("3_rnco4")
