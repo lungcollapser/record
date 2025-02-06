@@ -44,7 +44,7 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 					if running_child != null:
 						running_child.interrupt(actor, blackboard)
 					running_child = c
-				if c is StartRoaming:
+				if c is ActionLeaf:
 					blackboard.set_value("running_action", c, str(actor.get_instance_id()))
 				return RUNNING
 
