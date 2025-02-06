@@ -16,8 +16,10 @@ func get_class_name() -> Array[StringName]:
 	
 func tick(actor: Node, blackboard: Blackboard) -> int:
 	var enemy_roaming = actor.enemy.enemy_first_position()
-	if enemy_roaming == true:
-		return SUCCESS
-		print("gayo")
-	else:
+	if enemy_roaming == false:
 		return FAILURE
+		
+	else:
+		print("gayo")
+		enemy_roaming = true
+		return SUCCESS
