@@ -1,14 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://dyntx5nuoo7xm"]
+[gd_scene load_steps=6 format=3 uid="uid://dyntx5nuoo7xm"]
 
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_qtn4v"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="2_5fbt7"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/condition.gd" id="3_k06bh"]
-[ext_resource type="Script" path="res://beehavetrees/beehavescripts/condition_leaf.gd" id="3_xmx3k"]
-[ext_resource type="Script" path="res://beehavetrees/beehavescripts/first_position.gd" id="5_68qcy"]
-[ext_resource type="Script" path="res://beehavetrees/beehavescripts/action_leaf.gd" id="6_os3ea"]
+[ext_resource type="Script" path="res://beehavetrees/condition_leaf.gd" id="3_xmx3k"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="4_si1jj"]
 
 [node name="EnemyBehaviorTree" type="Node"]
 script = ExtResource("1_qtn4v")
+blackboard = null
+actor = null
 
 [node name="SequenceComposite" type="Node" parent="."]
 script = ExtResource("2_5fbt7")
@@ -23,7 +24,7 @@ script = ExtResource("2_5fbt7")
 script = ExtResource("3_k06bh")
 
 [node name="FirstPosition" type="Node" parent="SequenceComposite/SequenceComposite"]
-script = ExtResource("5_68qcy")
+script = ExtResource("4_si1jj")
 
 [node name="SequenceComposite" type="Node" parent="SequenceComposite/SequenceComposite"]
 script = ExtResource("2_5fbt7")
@@ -32,4 +33,4 @@ script = ExtResource("2_5fbt7")
 script = ExtResource("3_k06bh")
 
 [node name="ActionLeaf" type="Node" parent="SequenceComposite/SequenceComposite/SequenceComposite"]
-script = ExtResource("6_os3ea")
+script = ExtResource("4_si1jj")

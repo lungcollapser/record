@@ -1,6 +1,6 @@
 @tool
 @icon("../../icons/condition.svg")
-class_name RoamingCheck extends Leaf
+class_name BeginRoaming extends Leaf
 
 	
 func tick(actor: Node, _blackboard: Blackboard) -> int:
