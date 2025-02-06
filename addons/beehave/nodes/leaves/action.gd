@@ -1,6 +1,7 @@
 @tool
 @icon("../../icons/action.svg")
-class_name ActionLeaf extends Leaf
+class_name StartRoaming extends Leaf
+
 
 ## Actions are leaf nodes that define a task to be performed by an actor.
 ## Their execution can be long running, potentially being called across multiple
@@ -9,5 +10,14 @@ class_name ActionLeaf extends Leaf
 
 func get_class_name() -> Array[StringName]:
 	var classes := super()
-	classes.push_back(&"ActionLeaf")
+	classes.push_back(&"StartRoaming")
 	return classes
+	
+	
+func tick(actor: Node, blackboard: Blackboard) -> int:
+	var enemy_roaming = actor.enemy.enemy_first_position()
+	if enemy_roaming == true:
+		return SUCCESS
+		print("gayo")
+	else:
+		return FAILURE

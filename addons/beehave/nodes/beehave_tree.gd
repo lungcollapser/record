@@ -232,7 +232,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 
 ## Returns the currently running action
-func get_running_action() -> ActionLeaf:
+func get_running_action() -> StartRoaming:
 	return blackboard.get_value("running_action", null, str(actor.get_instance_id()))
 
 

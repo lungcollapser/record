@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyntx5nuoo7xm"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_qtn4v"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="2_5fbt7"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/condition.gd" id="3_k06bh"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="4_si1jj"]
+
+[node name="EnemyBehaviorTree" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("1_qtn4v")
+blackboard = NodePath("@Node@17293")
+actor = NodePath("..")
+
+[node name="SequenceComposite" type="Node" parent="."]
+script = ExtResource("2_5fbt7")
+
+[node name="ConditionLeaf" type="Node" parent="SequenceComposite"]
+script = ExtResource("3_k06bh")
+
+[node name="SequenceComposite" type="Node" parent="SequenceComposite"]
+script = ExtResource("2_5fbt7")
+
+[node name="StartRoaming" type="Node" parent="SequenceComposite/SequenceComposite"]
+script = ExtResource("4_si1jj")
+
+[node name="ConditionLeaf" type="Node" parent="SequenceComposite/SequenceComposite"]
+script = ExtResource("3_k06bh")

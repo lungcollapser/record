@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cin7xys5d5odj"]
+[gd_scene load_steps=9 format=3 uid="uid://cin7xys5d5odj"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_c05o7"]
+[ext_resource type="PackedScene" uid="uid://dyntx5nuoo7xm" path="res://beehavetrees/enemy_behavior_tree.tscn" id="2_0e8kq"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4wxgc"]
 
@@ -55,6 +56,9 @@ physics_interpolation_mode = 2
 process_callback = 0
 wait_time = 5.0
 autostart = true
+
+[node name="EnemyBehaviorTree" parent="." node_paths=PackedStringArray("blackboard") instance=ExtResource("2_0e8kq")]
+blackboard = NodePath("@Node@23803")
 
 [connection signal="body_entered" from="EnemyDetection" to="." method="_on_enemy_area_body_entered"]
 [connection signal="body_exited" from="EnemyDetection" to="." method="_on_enemy_area_body_exited"]

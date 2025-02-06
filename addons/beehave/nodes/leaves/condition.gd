@@ -9,3 +9,12 @@ func get_class_name() -> Array[StringName]:
 	var classes := super()
 	classes.push_back(&"ConditionLeaf")
 	return classes
+	
+func tick(actor: Node, blackboard: Blackboard) -> int:
+	var enemy_target = actor.enemy.target
+	if enemy_target == Player:
+		return FAILURE
+		print("ayo")
+	else:
+		return SUCCESS
+		

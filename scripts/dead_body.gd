@@ -15,8 +15,6 @@ var dead_body_part_behavior = randi_range(0, 9)
 @onready var head = preload("res://scenes/head_body.tscn").instantiate()
 
 
-
-
 func _ready() -> void:
 	player_hold = get_tree().get_first_node_in_group("hold")
 	player_attack = get_tree().get_first_node_in_group("attack")

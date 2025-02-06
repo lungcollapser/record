@@ -114,30 +114,30 @@ func enemy_first_position():
 		move_and_collide(enemy_velocity)
 		
 
-func enemy_second_position():
-	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED
-	var enemy_two_look_position = enemy_return_two.global_position
-	enemy_nav.set_target_position(enemy_return_two.global_position)
-	move_and_collide(enemy_velocity)
-	if enemy_two_look_position != Vector3.ZERO:
-		look_at(Vector3.FORWARD - enemy_two_look_position)
-		move_and_collide(enemy_velocity)
+#func enemy_second_position():
+#	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED
+#	var enemy_two_look_position = enemy_return_two.global_position
+#	enemy_nav.set_target_position(enemy_return_two.global_position)
+#	move_and_collide(enemy_velocity)
+#	if enemy_two_look_position != Vector3.ZERO:
+#		look_at(Vector3.FORWARD - enemy_two_look_position)
+#		move_and_collide(enemy_velocity)
 		
 		
-func enemy_third_position():
-	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED
-	var enemy_three_look_position = enemy_return_three.global_position
-	enemy_nav.set_target_position(enemy_return_three.global_position)
-	if enemy_three_look_position != Vector3.ZERO:
-		look_at(Vector3.FORWARD - enemy_three_look_position)
-		move_and_collide(enemy_velocity)
-		
+#func enemy_third_position():
+#	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED
+#	var enemy_three_look_position = enemy_return_three.global_position
+#	enemy_nav.set_target_position(enemy_return_three.global_position)
+#	if enemy_three_look_position != Vector3.ZERO:
+#		look_at(Vector3.FORWARD - enemy_three_look_position)
+#		move_and_collide(enemy_velocity)
+#		
 
 
-func _on_enemy_roaming_timer_timeout():
-	if aggro_check != true and target == null:
-		match roaming_behavior:
-			0: enemy_first_position()
-			1: enemy_second_position()
-			2: enemy_third_position()
-		print(roaming_behavior)
+#func _on_enemy_roaming_timer_timeout():
+#	if aggro_check != true and target == null:
+#		match roaming_behavior:
+#			0: enemy_first_position()
+#			1: enemy_second_position()
+#			2: enemy_third_position()
+#		print(roaming_behavior)
