@@ -10,5 +10,7 @@ func tick(actor: Node, _blackboard: Blackboard) -> int:
 		
 	else:
 		print("bayo")
+		
 		enemy_roaming = true
 		return SUCCESS
+		

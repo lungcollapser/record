@@ -7,7 +7,7 @@ func tick(actor: Node, _blackboard: Blackboard) -> int:
 	var enemy_target = actor.enemy.target
 	if enemy_target == Player:
 		return FAILURE
-		print("ayo")
+		
 	else:
 		enemy_target = null
 		return SUCCESS
