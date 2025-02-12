@@ -322,8 +322,3 @@ func _get_global_metrics() -> Node:
 # due to loading order problems with autoloads
 func _get_global_debugger() -> Node:
 	return get_tree().root.get_node("BeehaveGlobalDebugger")
-
-
-
-func _on_timer_timeout() -> void:
-	pass # Replace with function body.

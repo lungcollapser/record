@@ -25,14 +25,10 @@ func interrupt(actor: Node, blackboard: Blackboard) -> void:
 
 func after_run(actor: Node, blackboard: Blackboard) -> void:
 	running_child = null
-	timer()
-	print(timer)
+	
 
 
 func get_class_name() -> Array[StringName]:
 	var classes := super()
 	classes.push_back(&"Decorator")
 	return classes
-
-func timer():
-	await get_tree().create_timer(5).timeout

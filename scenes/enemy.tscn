@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cin7xys5d5odj"]
+[gd_scene load_steps=10 format=3 uid="uid://cin7xys5d5odj"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_c05o7"]
 [ext_resource type="PackedScene" uid="uid://dyntx5nuoo7xm" path="res://beehavetrees/enemy_behavior_tree.tscn" id="2_0e8kq"]
+[ext_resource type="PackedScene" uid="uid://bjjg266ut42id" path="res://scenes/timer_component.tscn" id="2_4p35q"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4wxgc"]
 
@@ -51,15 +52,13 @@ shape = SubResource("SphereShape3D_qdqve")
 path_height_offset = -0.53
 avoidance_enabled = true
 
-[node name="EnemyRoamingTimer" type="Timer" parent="."]
-physics_interpolation_mode = 2
-process_callback = 0
+[node name="timer_component" parent="." instance=ExtResource("2_4p35q")]
 wait_time = 5.0
 autostart = true
 
-[node name="EnemyBehaviorTree" parent="." node_paths=PackedStringArray("blackboard") instance=ExtResource("2_0e8kq")]
-blackboard = NodePath("@Node@25188")
+[node name="EnemyBehaviorTree" parent="." node_paths=PackedStringArray("blackboard", "actor") instance=ExtResource("2_0e8kq")]
+blackboard = NodePath("@Node@33269")
+actor = NodePath("..")
 
 [connection signal="body_entered" from="EnemyDetection" to="." method="_on_enemy_area_body_entered"]
 [connection signal="body_exited" from="EnemyDetection" to="." method="_on_enemy_area_body_exited"]
-[connection signal="timeout" from="EnemyRoamingTimer" to="." method="_on_enemy_roaming_timer_timeout"]

@@ -1,33 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://dyntx5nuoo7xm"]
+[gd_scene load_steps=5 format=3 uid="uid://dyntx5nuoo7xm"]
 
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_qtn4v"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="2_5fbt7"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/condition.gd" id="3_k06bh"]
-[ext_resource type="Script" path="res://beehavetrees/beehavescripts/condition_leaf.gd" id="3_xmx3k"]
 [ext_resource type="Script" path="res://beehavetrees/beehavescripts/first_position.gd" id="5_68qcy"]
 
 [node name="EnemyBehaviorTree" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_qtn4v")
-blackboard = NodePath("@Node@17302")
+blackboard = NodePath("@Node@17299")
 actor = NodePath("..")
 
-[node name="SequenceComposite" type="Node" parent="."]
+[node name="SequenceComposite2" type="Node" parent="."]
 script = ExtResource("2_5fbt7")
 
-[node name="ConditionLeaf" type="Node" parent="SequenceComposite"]
-script = ExtResource("3_xmx3k")
-
-[node name="SequenceComposite2" type="Node" parent="SequenceComposite"]
-script = ExtResource("2_5fbt7")
-
-[node name="ConditionLeaf" type="Node" parent="SequenceComposite/SequenceComposite2"]
+[node name="roaming_check" type="Node" parent="SequenceComposite2"]
 script = ExtResource("3_k06bh")
 
-[node name="FirstPosition" type="Node" parent="SequenceComposite/SequenceComposite2"]
+[node name="positions" type="Node" parent="SequenceComposite2"]
 script = ExtResource("5_68qcy")
-
-[node name="Timer" type="Timer" parent="SequenceComposite/SequenceComposite2/FirstPosition"]
-wait_time = 2.0
-autostart = true
-
-[connection signal="timeout" from="SequenceComposite/SequenceComposite2/FirstPosition/Timer" to="SequenceComposite/SequenceComposite2/FirstPosition" method="_on_timer_timeout"]

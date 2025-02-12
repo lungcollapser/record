@@ -17,6 +17,7 @@ var enemy_return_one
 var enemy_return_two
 var enemy_return_three
 
+@onready var enemy_roaming_timer = $timer_component
 @onready var enemy_nav = $EnemyNavigation
 @onready var enemy = $"."
 @onready var enemy_shape = $"EnemyShape"
@@ -38,7 +39,6 @@ func _ready():
 func _physics_process(_delta) -> void:
 	enemy_chase()
 	enemy_dead_body_spawn()
-	
 	
 func enemy_chase():
 	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_CHASE_SPEED
@@ -114,3 +114,10 @@ func enemy_third_position():
 		look_at(Vector3.FORWARD - enemy_three_look_position)
 		move_and_collide(enemy_velocity)
 		
+
+func enemy_random_move():
+	match roaming_behavior:
+		0: enemy_first_position()
+		1: enemy_second_position()
+		2: enemy_third_position()
+	print(roaming_behavior)
