@@ -3,7 +3,7 @@
 class_name FirstPosition extends Leaf
 
 func tick(actor: Node, _blackboard: Blackboard) -> int:
-	actor.enemy.enemy_move_positions()
+	actor.enemy._on_timer_timeout()
 	return RUNNING
 	
 	

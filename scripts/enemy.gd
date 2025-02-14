@@ -2,7 +2,7 @@ extends CharacterBody3D
 class_name Enemy
 
 const ENEMY_ROAMING_SPEED = 0.04
-const ENEMY_CHASE_SPEED = 0.001
+const ENEMY_CHASE_SPEED = 0.02
 var enemy_health = clamp(10, 0, 10)
 var player
 var target = null
@@ -12,19 +12,22 @@ var return_check = false
 var stun_check = false
 var enemy_dead_body_check = true
 var aggro_check
-var roaming_behavior = randi_range(0, 2)
+var rng = RandomNumberGenerator.new()
+var roaming_behavior = rng.randi_range(0, 2)
 var enemy_return_one
 var enemy_return_two
 var enemy_return_three
 var enemy_positions = [enemy_return_one, enemy_return_two, enemy_return_three]
-var target_position = 0
 
+
+@onready var timer = $Timer
 @onready var enemy_nav = $EnemyNavigation
 @onready var enemy = $"."
 @onready var enemy_shape = $"EnemyShape"
 @onready var dead_body = preload("res://scenes/dead_body.tscn")
 
 func _ready():
+	
 	player = get_tree().get_first_node_in_group("player")
 	player_hold = get_tree().get_nodes_in_group("hold")[0]
 	player_attack = get_tree().get_first_node_in_group("attack")
@@ -34,8 +37,6 @@ func _ready():
 	
 	
 	Events.connect("call_enemy_lose_health", Callable(self, "enemy_lose_health"))
-	
-	
 	
 func _physics_process(_delta) -> void:
 	enemy_chase()
@@ -51,6 +52,7 @@ func enemy_chase():
 		if enemy_look_position != Vector3.ZERO:
 			look_at(enemy_look_position)
 			move_and_collide(enemy_velocity)
+			
 	
 func enemy_dead_body_spawn():
 	var dead_body_instance = dead_body.instantiate()
@@ -90,30 +92,14 @@ func enemy_stun():
 
 func enemy_move_positions():
 	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED
-	match roaming_behavior:
-		0: enemy_nav.set_target_position(enemy_positions[0].global_position)
-		1: enemy_nav.set_target_position(enemy_positions[1].global_position)
-		2: enemy_nav.set_target_position(enemy_positions[2].global_position)
-	move_and_collide(enemy_velocity)
-		
+	if target != Player:
+		match roaming_behavior:
+			0: enemy_nav.set_target_position(enemy_positions[0].global_position)
+			1: enemy_nav.set_target_position(enemy_positions[1].global_position)
+			2: enemy_nav.set_target_position(enemy_positions[2].global_position)
+		move_and_collide(enemy_velocity)
+		print(timer.time_left)
 
-#func enemy_second_position():
-#	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED
-#	var enemy_two_look_position = enemy_return_two.global_position
-#	enemy_nav.set_target_position(enemy_return_two.global_position)
-#	move_and_collide(enemy_velocity)
-#	target_position = 2
-#	if enemy_two_look_position != Vector3.ZERO:
-#		look_at(Vector3.FORWARD - enemy_two_look_position)
-#		move_and_collide(enemy_velocity)
-		
-		
-#func enemy_third_position():
-#	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED
-#	var enemy_three_look_position = enemy_return_three.global_position
-#	enemy_nav.set_target_position(enemy_return_three.global_position)
-#	target_position = 3
-#	if enemy_three_look_position != Vector3.ZERO:
-#		look_at(Vector3.FORWARD - enemy_three_look_position)
-#		move_and_collide(enemy_velocity)
-		
+
+func _on_timer_timeout():
+	enemy_move_positions()
