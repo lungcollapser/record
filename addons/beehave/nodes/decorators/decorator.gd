@@ -17,14 +17,8 @@ func _get_configuration_warnings() -> PackedStringArray:
 	return warnings
 
 
-func interrupt(actor: Node, blackboard: Blackboard) -> void:
-	if running_child != null:
-		running_child.interrupt(actor, blackboard)
-		running_child = null
-
-
 func after_run(actor: Node, blackboard: Blackboard) -> void:
-	running_child = null
+	actor.enemy.enemy_random_move()
 	
 
 

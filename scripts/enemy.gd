@@ -1,8 +1,8 @@
 extends CharacterBody3D
 class_name Enemy
 
-const ENEMY_ROAMING_SPEED = 0.09
-const ENEMY_CHASE_SPEED = 0.03
+const ENEMY_ROAMING_SPEED = 0.04
+const ENEMY_CHASE_SPEED = 0.001
 var enemy_health = clamp(10, 0, 10)
 var player
 var target = null
@@ -16,8 +16,9 @@ var roaming_behavior = randi_range(0, 2)
 var enemy_return_one
 var enemy_return_two
 var enemy_return_three
+var enemy_positions = [enemy_return_one, enemy_return_two, enemy_return_three]
+var target_position = 0
 
-@onready var enemy_roaming_timer = $timer_component
 @onready var enemy_nav = $EnemyNavigation
 @onready var enemy = $"."
 @onready var enemy_shape = $"EnemyShape"
@@ -27,9 +28,9 @@ func _ready():
 	player = get_tree().get_first_node_in_group("player")
 	player_hold = get_tree().get_nodes_in_group("hold")[0]
 	player_attack = get_tree().get_first_node_in_group("attack")
-	enemy_return_one = get_tree().get_nodes_in_group("pathing")[0]
-	enemy_return_two = get_tree().get_nodes_in_group("pathing")[1]
-	enemy_return_three = get_tree().get_nodes_in_group("pathing")[2]
+	enemy_positions[0] = get_tree().get_nodes_in_group("pathing")[0]
+	enemy_positions[1] = get_tree().get_nodes_in_group("pathing")[1]
+	enemy_positions[2] = get_tree().get_nodes_in_group("pathing")[2]
 	
 	
 	Events.connect("call_enemy_lose_health", Callable(self, "enemy_lose_health"))
@@ -87,37 +88,32 @@ func enemy_stun():
 	await get_tree().create_timer(randf_range(1, 3)).timeout
 	stun_check = false
 
-func enemy_first_position():
+func enemy_move_positions():
 	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED
-	var enemy_one_look_position = enemy_return_one.global_position
-	enemy_nav.set_target_position(enemy_return_one.global_position)
-	if enemy_one_look_position != Vector3.ZERO:
-		look_at(Vector3.FORWARD - enemy_one_look_position)
-		move_and_collide(enemy_velocity)
-		
-
-func enemy_second_position():
-	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED
-	var enemy_two_look_position = enemy_return_two.global_position
-	enemy_nav.set_target_position(enemy_return_two.global_position)
-	move_and_collide(enemy_velocity)
-	if enemy_two_look_position != Vector3.ZERO:
-		look_at(Vector3.FORWARD - enemy_two_look_position)
-		move_and_collide(enemy_velocity)
-		
-		
-func enemy_third_position():
-	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED
-	var enemy_three_look_position = enemy_return_three.global_position
-	enemy_nav.set_target_position(enemy_return_three.global_position)
-	if enemy_three_look_position != Vector3.ZERO:
-		look_at(Vector3.FORWARD - enemy_three_look_position)
-		move_and_collide(enemy_velocity)
-		
-
-func enemy_random_move():
 	match roaming_behavior:
-		0: enemy_first_position()
-		1: enemy_second_position()
-		2: enemy_third_position()
-	print(roaming_behavior)
+		0: enemy_nav.set_target_position(enemy_positions[0].global_position)
+		1: enemy_nav.set_target_position(enemy_positions[1].global_position)
+		2: enemy_nav.set_target_position(enemy_positions[2].global_position)
+	move_and_collide(enemy_velocity)
+		
+
+#func enemy_second_position():
+#	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED
+#	var enemy_two_look_position = enemy_return_two.global_position
+#	enemy_nav.set_target_position(enemy_return_two.global_position)
+#	move_and_collide(enemy_velocity)
+#	target_position = 2
+#	if enemy_two_look_position != Vector3.ZERO:
+#		look_at(Vector3.FORWARD - enemy_two_look_position)
+#		move_and_collide(enemy_velocity)
+		
+		
+#func enemy_third_position():
+#	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED
+#	var enemy_three_look_position = enemy_return_three.global_position
+#	enemy_nav.set_target_position(enemy_return_three.global_position)
+#	target_position = 3
+#	if enemy_three_look_position != Vector3.ZERO:
+#		look_at(Vector3.FORWARD - enemy_three_look_position)
+#		move_and_collide(enemy_velocity)
+		
