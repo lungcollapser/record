@@ -93,11 +93,11 @@ func enemy_move_positions():
 		1: enemy_nav.set_target_position(enemy_positions[1].global_position) 
 		2: enemy_nav.set_target_position(enemy_positions[2].global_position) 
 	print(roaming_behavior)
-	if roaming_behavior == 0:
+	if roaming_behavior == 0 and enemy.global_position != enemy_nav.target_position:
 		look_at(enemy_positions[0].global_position)
-	elif roaming_behavior == 1:
+	elif roaming_behavior == 1 and enemy.global_position != enemy_nav.target_position:
 		look_at(enemy_positions[1].global_position)
-	elif roaming_behavior == 2:
+	elif roaming_behavior == 2 and enemy.global_position != enemy_nav.target_position:
 		look_at(enemy_positions[2].global_position)
 
 

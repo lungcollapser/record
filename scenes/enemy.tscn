@@ -60,7 +60,7 @@ wait_time = 7.0
 autostart = true
 
 [node name="EnemyBehaviorTree" parent="." node_paths=PackedStringArray("blackboard", "actor") instance=ExtResource("2_g8pol")]
-blackboard = NodePath("@Node@37089")
+blackboard = NodePath("@Node@38591")
 actor = NodePath("..")
 
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_timer_timeout"]
