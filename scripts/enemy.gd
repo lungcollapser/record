@@ -1,8 +1,8 @@
 extends CharacterBody3D
 class_name Enemy
 
-const ENEMY_ROAMING_SPEED = 0.04
-const ENEMY_CHASE_SPEED = 0.02
+const ENEMY_ROAMING_SPEED = 0.02
+const ENEMY_CHASE_SPEED = 0.002
 var enemy_health = clamp(10, 0, 10)
 var player
 var target = null
@@ -41,8 +41,6 @@ func _ready():
 func _physics_process(_delta) -> void:
 	enemy_dead_body_spawn()
 	
-	var eye_one_collider = eye_hitbox_one.get_collider()
-	var eye_two_collider = eye_hitbox_two.get_collider()
 	
 	#allows enemy to move within every frame. VERY IMPORTANT BUT COULD BE OPTIMIZED
 	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED
@@ -89,14 +87,19 @@ func enemy_stun():
 	stun_check = false
 
 func enemy_move_positions():
-	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED
 	var roaming_behavior = rng.randi_range(0, 2)
 	match roaming_behavior:
 		0: enemy_nav.set_target_position(enemy_positions[0].global_position)
-		1: enemy_nav.set_target_position(enemy_positions[1].global_position)
-		2: enemy_nav.set_target_position(enemy_positions[2].global_position)
-	move_and_collide(enemy_velocity)
+		1: enemy_nav.set_target_position(enemy_positions[1].global_position) 
+		2: enemy_nav.set_target_position(enemy_positions[2].global_position) 
 	print(roaming_behavior)
+	if roaming_behavior == 0:
+		look_at(enemy_positions[0].global_position)
+	elif roaming_behavior == 1:
+		look_at(enemy_positions[1].global_position)
+	elif roaming_behavior == 2:
+		look_at(enemy_positions[2].global_position)
+
 
 
 func _on_timer_timeout():

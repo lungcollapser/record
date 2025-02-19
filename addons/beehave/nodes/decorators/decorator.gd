@@ -1,60 +1,33 @@
 @tool
-@icon("../../icons/limiter.svg")
-class_name TimeLimiterDecorator extends Decorator
+@icon("../../icons/category_decorator.svg")
+class_name Decorator extends BeehaveNode
 
-## The Time Limit Decorator will give its `RUNNING` child a set amount of time to finish
-## before interrupting it and return a `FAILURE` status code. 
-## The timer resets the next time that a child is not `RUNNING`
+## Decorator nodes are used to transform the result received by its child.
+## Must only have one child.
 
-@export var wait_time: = 0.0
-
-@onready var cache_key = 'time_limiter_%s' % self.get_instance_id()
+var running_child: BeehaveNode = null
 
 
-func tick(actor: Node, blackboard: Blackboard) -> int:
-	if not get_child_count() == 1:
-		return FAILURE
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings: PackedStringArray = super._get_configuration_warnings()
 
-	var child = self.get_child(0)
-	var time_left = blackboard.get_value(cache_key, 0.0, str(actor.get_instance_id()))
+	if get_child_count() != 1:
+		warnings.append("Decorator should have exactly one child node.")
 
-	if time_left < wait_time:
-		time_left += get_physics_process_delta_time()
-		blackboard.set_value(cache_key, time_left, str(actor.get_instance_id()))
-		var response = child.tick(actor, blackboard)
-		if can_send_message(blackboard):
-			BeehaveDebuggerMessages.process_tick(child.get_instance_id(), response)
-		
-		if child is ConditionLeaf:
-			blackboard.set_value("last_condition", child, str(actor.get_instance_id()))
-			blackboard.set_value("last_condition_status", response, str(actor.get_instance_id()))
-		
-		if response == RUNNING:
-			running_child = child
-			if child is ActionLeaf:
-				blackboard.set_value("running_action", child, str(actor.get_instance_id()))
-		else:
-			child.after_run(actor, blackboard)
-		return response
-	else:
-		interrupt(actor, blackboard)
-		child.after_run(actor, blackboard)
-		return FAILURE
+	return warnings
 
 
-func before_run(actor: Node, blackboard: Blackboard) -> void:
-	blackboard.set_value(cache_key, 0.0, str(actor.get_instance_id()))
-	if get_child_count() > 0:
-		get_child(0).before_run(actor, blackboard)
+func interrupt(actor: Node, blackboard: Blackboard) -> void:
+	if running_child != null:
+		running_child.interrupt(actor, blackboard)
+		running_child = null
+
+
+func after_run(actor: Node, blackboard: Blackboard) -> void:
+	running_child = null
 
 
 func get_class_name() -> Array[StringName]:
 	var classes := super()
-	classes.push_back(&"TimeLimiterDecorator")
+	classes.push_back(&"Decorator")
 	return classes
-
-
-func _get_configuration_warnings() -> PackedStringArray:
-	if not get_child_count() == 1:
-		return ["Requires exactly one child node"]
-	return []
