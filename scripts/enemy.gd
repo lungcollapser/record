@@ -13,11 +13,11 @@ var stun_check = false
 var enemy_dead_body_check = true
 var aggro_check
 var rng = RandomNumberGenerator.new()
-var roaming_behavior = rng.randi_range(0, 2)
 var enemy_return_one
 var enemy_return_two
 var enemy_return_three
 var enemy_positions = [enemy_return_one, enemy_return_two, enemy_return_three]
+
 
 
 @onready var timer = $Timer
@@ -25,6 +25,7 @@ var enemy_positions = [enemy_return_one, enemy_return_two, enemy_return_three]
 @onready var enemy = $"."
 @onready var enemy_shape = $"EnemyShape"
 @onready var dead_body = preload("res://scenes/dead_body.tscn")
+
 
 func _ready():
 	
@@ -41,6 +42,10 @@ func _ready():
 func _physics_process(_delta) -> void:
 	enemy_chase()
 	enemy_dead_body_spawn()
+	
+	#allows enemy to move within every frame. VERY IMPORTANT BUT COULD BE OPTIMIZED
+	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED
+	move_and_collide(enemy_velocity)
 	
 func enemy_chase():
 	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_CHASE_SPEED
@@ -92,13 +97,13 @@ func enemy_stun():
 
 func enemy_move_positions():
 	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED
-	if target != Player:
-		match roaming_behavior:
-			0: enemy_nav.set_target_position(enemy_positions[0].global_position)
-			1: enemy_nav.set_target_position(enemy_positions[1].global_position)
-			2: enemy_nav.set_target_position(enemy_positions[2].global_position)
-		move_and_collide(enemy_velocity)
-		print(timer.time_left)
+	var roaming_behavior = rng.randi_range(0, 2)
+	match roaming_behavior:
+		0: enemy_nav.set_target_position(enemy_positions[0].global_position)
+		1: enemy_nav.set_target_position(enemy_positions[1].global_position)
+		2: enemy_nav.set_target_position(enemy_positions[2].global_position)
+	move_and_collide(enemy_velocity)
+	print(roaming_behavior)
 
 
 func _on_timer_timeout():

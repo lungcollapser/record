@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://cin7xys5d5odj"]
+[gd_scene load_steps=8 format=3 uid="uid://cin7xys5d5odj"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_c05o7"]
-[ext_resource type="PackedScene" uid="uid://dyntx5nuoo7xm" path="res://beehavetrees/enemy_behavior_tree.tscn" id="2_0e8kq"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4wxgc"]
 
@@ -51,11 +50,8 @@ shape = SubResource("SphereShape3D_qdqve")
 path_height_offset = -0.53
 avoidance_enabled = true
 
-[node name="EnemyBehaviorTree" parent="." node_paths=PackedStringArray("blackboard") instance=ExtResource("2_0e8kq")]
-blackboard = NodePath("@Node@50037")
-
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 4.0
 autostart = true
 
 [connection signal="body_entered" from="EnemyDetection" to="." method="_on_enemy_area_body_entered"]

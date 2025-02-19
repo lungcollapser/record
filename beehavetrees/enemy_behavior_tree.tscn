@@ -7,7 +7,7 @@
 
 [node name="EnemyBehaviorTree" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_qtn4v")
-blackboard = NodePath("@Node@17299")
+blackboard = NodePath("@Node@17293")
 actor = NodePath("")
 
 [node name="SequenceComposite" type="Node" parent="."]
