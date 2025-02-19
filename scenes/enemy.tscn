@@ -1,6 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cin7xys5d5odj"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_c05o7"]
+[ext_resource type="PackedScene" uid="uid://dyntx5nuoo7xm" path="res://beehavetrees/enemy_behavior_tree.tscn" id="2_g8pol"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4wxgc"]
 
@@ -13,11 +14,16 @@ albedo_color = Color(0, 0.313726, 0.109804, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_syuu0"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_qdqve"]
-radius = 4.238
-
 [node name="Enemy" type="CharacterBody3D"]
 script = ExtResource("1_c05o7")
+
+[node name="EyeHitbox1" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.131409, 0.456439, 0)
+target_position = Vector3(0.43, -0.145, -11.615)
+
+[node name="EyeHitbox2" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.197132, 0.456439, 0)
+target_position = Vector3(0.43, -0.145, -11.615)
 
 [node name="EnemyMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_4wxgc")
@@ -41,19 +47,16 @@ shape = SubResource("CapsuleShape3D_wf8db")
 [node name="EnemyHitboxShape" type="CollisionShape3D" parent="EnemyHitbox"]
 shape = SubResource("CapsuleShape3D_syuu0")
 
-[node name="EnemyDetection" type="Area3D" parent="."]
-
-[node name="EnemyDetectionShape" type="CollisionShape3D" parent="EnemyDetection"]
-shape = SubResource("SphereShape3D_qdqve")
-
 [node name="EnemyNavigation" type="NavigationAgent3D" parent="."]
 path_height_offset = -0.53
 avoidance_enabled = true
 
-[node name="Timer" type="Timer" parent="."]
+[node name="EnemyTimer" type="Timer" parent="."]
 wait_time = 4.0
 autostart = true
 
-[connection signal="body_entered" from="EnemyDetection" to="." method="_on_enemy_area_body_entered"]
-[connection signal="body_exited" from="EnemyDetection" to="." method="_on_enemy_area_body_exited"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="EnemyBehaviorTree" parent="." node_paths=PackedStringArray("blackboard") instance=ExtResource("2_g8pol")]
+blackboard = NodePath("@Node@41778")
+
+[connection signal="timeout" from="EnemyTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="EnemyTimer" to="EnemyBehaviorTree" method="_on_enemy_timer_timeout"]

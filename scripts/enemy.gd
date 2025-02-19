@@ -18,9 +18,8 @@ var enemy_return_two
 var enemy_return_three
 var enemy_positions = [enemy_return_one, enemy_return_two, enemy_return_three]
 
-
-
-@onready var timer = $Timer
+@onready var eye_hitbox_one = $EyeHitbox1
+@onready var eye_hitbox_two = $EyeHitbox2
 @onready var enemy_nav = $EnemyNavigation
 @onready var enemy = $"."
 @onready var enemy_shape = $"EnemyShape"
@@ -40,8 +39,10 @@ func _ready():
 	Events.connect("call_enemy_lose_health", Callable(self, "enemy_lose_health"))
 	
 func _physics_process(_delta) -> void:
-	enemy_chase()
 	enemy_dead_body_spawn()
+	
+	var eye_one_collider = eye_hitbox_one.get_collider()
+	var eye_two_collider = eye_hitbox_two.get_collider()
 	
 	#allows enemy to move within every frame. VERY IMPORTANT BUT COULD BE OPTIMIZED
 	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED
@@ -51,7 +52,7 @@ func enemy_chase():
 	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_CHASE_SPEED
 	var enemy_look_position = player.global_position
 	enemy_look_position.y = player.global_position.y
-	if target == Player and stun_check == false || aggro_check == true and stun_check == false:
+	if stun_check == false || aggro_check == true and stun_check == false:
 		await get_tree().physics_frame
 		enemy_nav.set_target_position(player.global_position)
 		if enemy_look_position != Vector3.ZERO:
@@ -68,16 +69,8 @@ func enemy_dead_body_spawn():
 		get_parent().add_child(dead_body_instance)
 		dead_body_instance.global_position = enemy_shape.global_position
 		SanityBar.value -= 20
-		
 
-func _on_enemy_area_body_entered(body):
-	if body is Player:
-		target = Player
-		
-func _on_enemy_area_body_exited(body):
-	if body is Player:
-		target = null
-	
+
 func enemy_lose_health():
 	var stun_chance = randf_range(0, 10)
 	var enemy_attack = player_attack.get_collider()
