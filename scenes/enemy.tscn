@@ -17,6 +17,7 @@ albedo_color = Color(0, 0.313726, 0.109804, 1)
 [node name="Enemy" type="CharacterBody3D"]
 axis_lock_angular_x = true
 axis_lock_angular_y = true
+axis_lock_angular_z = true
 script = ExtResource("1_c05o7")
 
 [node name="EyeHitbox1" type="RayCast3D" parent="."]
@@ -59,8 +60,7 @@ avoidance_enabled = true
 wait_time = 7.0
 autostart = true
 
-[node name="EnemyBehaviorTree" parent="." node_paths=PackedStringArray("blackboard", "actor") instance=ExtResource("2_g8pol")]
-blackboard = NodePath("@Node@38591")
-actor = NodePath("..")
+[node name="EnemyBehaviorTree" parent="." node_paths=PackedStringArray("blackboard") instance=ExtResource("2_g8pol")]
+blackboard = NodePath("@Node@38309")
 
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_timer_timeout"]

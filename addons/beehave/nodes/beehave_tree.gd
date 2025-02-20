@@ -237,7 +237,7 @@ func get_running_action() -> ActionLeaf:
 
 
 ## Returns the last condition that was executed
-func get_last_condition() -> RoamingCheck:
+func get_last_condition() -> ConditionLeaf:
 	return blackboard.get_value("last_condition", null, str(actor.get_instance_id()))
 
 

@@ -3,24 +3,7 @@
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_qtn4v"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="2_5fbt7"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/condition.gd" id="3_k06bh"]
-
-[sub_resource type="GDScript" id="GDScript_jq27k"]
-script/source = "@tool
-@icon(\"../../icons/action.svg\")
-class_name EnemyChase extends Leaf
-
-
-
-func tick(actor: Node, _blackboard: Blackboard) -> int:
-	if actor.enemy.global_position.distance_to(actor.player.global_position) >= 8:
-		print(\"howdy\")
-		return FAILURE
-	else:
-		actor.enemy.enemy_chase() 
-		return RUNNING
-	
-	
-"
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="4_1yh5r"]
 
 [node name="EnemyBehaviorTree" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_qtn4v")
@@ -30,8 +13,8 @@ actor = NodePath("")
 [node name="SequenceComposite" type="Node" parent="."]
 script = ExtResource("2_5fbt7")
 
-[node name="hitbox_check" type="Node" parent="SequenceComposite"]
+[node name="ConditionLeaf" type="Node" parent="SequenceComposite"]
 script = ExtResource("3_k06bh")
 
-[node name="positions" type="Node" parent="SequenceComposite"]
-script = SubResource("GDScript_jq27k")
+[node name="ActionLeaf" type="Node" parent="SequenceComposite"]
+script = ExtResource("4_1yh5r")

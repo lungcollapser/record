@@ -9,7 +9,6 @@ var target = null
 var player_hold
 var player_attack
 var return_check = false
-var stun_check = false
 var enemy_dead_body_check = true
 var aggro_check
 var rng = RandomNumberGenerator.new()
@@ -18,6 +17,7 @@ var enemy_return_two
 var enemy_return_three
 var enemy_positions = [enemy_return_one, enemy_return_two, enemy_return_three]
 
+@onready var enemy_timer = $EnemyTimer
 @onready var eye_hitbox_one = $EyeHitbox1
 @onready var eye_hitbox_two = $EyeHitbox2
 @onready var enemy_nav = $EnemyNavigation
@@ -50,7 +50,7 @@ func enemy_chase():
 	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_CHASE_SPEED
 	var enemy_look_position = player.global_position
 	enemy_look_position.y = player.global_position.y
-	if stun_check == false || aggro_check == true and stun_check == false:
+	if aggro_check == true || aggro_check == false:
 		await get_tree().physics_frame
 		enemy_nav.set_target_position(player.global_position)
 		if enemy_look_position != Vector3.ZERO:
@@ -79,12 +79,14 @@ func enemy_lose_health():
 		for stun in stun_chance:
 			if stun >= 5:
 				enemy_stun()
+				print("stunned")
 	
 		
 func enemy_stun():
-	stun_check = true
-	await get_tree().create_timer(randf_range(1, 3)).timeout
-	stun_check = false
+	var stun_length = randf_range(0.0, 3.0)
+	for stun in stun_length:
+		await get_tree().create_timer(stun_length).timeout
+	
 
 func enemy_move_positions():
 	var roaming_behavior = rng.randi_range(0, 2)
@@ -92,15 +94,18 @@ func enemy_move_positions():
 		0: enemy_nav.set_target_position(enemy_positions[0].global_position)
 		1: enemy_nav.set_target_position(enemy_positions[1].global_position) 
 		2: enemy_nav.set_target_position(enemy_positions[2].global_position) 
-	print(roaming_behavior)
-	if roaming_behavior == 0 and enemy.global_position != enemy_nav.target_position:
+	if roaming_behavior == 0:
 		look_at(enemy_positions[0].global_position)
-	elif roaming_behavior == 1 and enemy.global_position != enemy_nav.target_position:
+	elif roaming_behavior == 1:
 		look_at(enemy_positions[1].global_position)
-	elif roaming_behavior == 2 and enemy.global_position != enemy_nav.target_position:
+	elif roaming_behavior == 2:
 		look_at(enemy_positions[2].global_position)
 
 
 
 func _on_timer_timeout():
 	enemy_move_positions()
+	if aggro_check == true:
+		pass
+
+		
