@@ -8,10 +8,10 @@
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/cooldown.gd" id="4_wn2lc"]
 [ext_resource type="Script" path="res://beehavetrees/beehavescripts/action_leaf.gd" id="5_alul8"]
 
-[node name="EnemyBehaviorTree" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
+[node name="enemybehaviortree" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_qtn4v")
 blackboard = NodePath("@Node@17299")
-actor = NodePath("..")
+actor = NodePath("")
 
 [node name="SequenceComposite2" type="Node" parent="."]
 script = ExtResource("2_5fbt7")

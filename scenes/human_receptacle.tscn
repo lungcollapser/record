@@ -1,14 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://jyrhlvipedil"]
+[gd_scene load_steps=13 format=3 uid="uid://jyrhlvipedil"]
 
 [ext_resource type="Script" path="res://scripts/human_receptacle.gd" id="1_05dvp"]
+[ext_resource type="Material" uid="uid://bsg2t3frmfjce" path="res://shaders/receptacle_material.tres" id="2_eieo8"]
+[ext_resource type="PackedScene" uid="uid://bk6e6igwyvo4b" path="res://scenes/pickup_component.tscn" id="3_4anad"]
+[ext_resource type="Material" uid="uid://rrcq2bsaxi3y" path="res://shaders/transparent_shader.tres" id="4_7jrsj"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k8dcf"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_7i2cu"]
-size = Vector3(0.835, 0.835, 0.835)
+[sub_resource type="BoxMesh" id="BoxMesh_wnh4g"]
+material = ExtResource("2_eieo8")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8o8bw"]
-albedo_color = Color(0.0518905, 0, 0.377873, 1)
+[sub_resource type="BoxMesh" id="BoxMesh_txx4o"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5otlv"]
 
@@ -19,6 +21,8 @@ albedo_color = Color(0, 0.545098, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_evmdg"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_etaps"]
+
 [node name="HumanReceptacle" type="RigidBody3D"]
 collision_priority = 100.0
 mass = 18.079
@@ -28,8 +32,11 @@ max_contacts_reported = 3
 script = ExtResource("1_05dvp")
 
 [node name="HumanReceptacleMesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_7i2cu")
-surface_material_override/0 = SubResource("StandardMaterial3D_8o8bw")
+mesh = SubResource("BoxMesh_wnh4g")
+
+[node name="Glass" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_txx4o")
+surface_material_override/0 = ExtResource("4_7jrsj")
 
 [node name="HumanReceptacleShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.825, 0, 0, 0, 0.825, 0, 0, 0, 0.825, 0, 0.0210883, 0)
@@ -47,5 +54,10 @@ collision_mask = 2
 [node name="HumanReceptacleGrinderShape" type="CollisionShape3D" parent="HumanReceptacleGrinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0487064, 0)
 shape = SubResource("BoxShape3D_evmdg")
+
+[node name="PickupComponent" parent="." instance=ExtResource("3_4anad")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupComponent"]
+shape = SubResource("BoxShape3D_etaps")
 
 [connection signal="body_entered" from="HumanReceptacleGrinder" to="." method="_on_human_receptacle_grinder_body_entered"]

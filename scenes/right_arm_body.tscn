@@ -8,7 +8,6 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kr4ba"]
 resource_name = "Material.003"
 vertex_color_use_as_albedo = true
-albedo_color = Color(1, 1, 1, 1)
 albedo_texture = ExtResource("1_kb2lq")
 emission_enabled = true
 emission = Color(1, 1, 1, 1)

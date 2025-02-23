@@ -17,6 +17,8 @@ func eat_pizza():
 		queue_free()
 		HealthBar.value += 5
 		SanityBar.value += 10
+	
+		
 		
 
 	
