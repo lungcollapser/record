@@ -19,7 +19,6 @@ var enemy_return_three
 var enemy_positions = [enemy_return_one, enemy_return_two, enemy_return_three]
 
 @onready var enemy_stun_timer = $EnemyStunTimer
-@onready var enemy_timer = $EnemyTimer
 @onready var eye_hitbox_one = $EyeHitbox1
 @onready var eye_hitbox_two = $EyeHitbox2
 @onready var enemy_nav = $EnemyNavigation
@@ -101,14 +100,6 @@ func enemy_move_positions():
 	elif roaming_behavior == 2:
 		look_at(enemy_positions[2].global_position)
 	print(roaming_behavior)
-
-
-
-func _on_timer_timeout():
-	enemy_move_positions()
-	if aggro_check == true || stun_check == true:
-		pass
-
 
 func _on_enemy_stun_timer_timeout():
 	set_physics_process(true)

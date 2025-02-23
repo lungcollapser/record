@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://beehavetrees/beehavescripts/condition_leaf.gd" id="3_050nc"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/condition.gd" id="3_k06bh"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="4_1yh5r"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/delayer.gd" id="4_ifyfq"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/cooldown.gd" id="4_wn2lc"]
 [ext_resource type="Script" path="res://beehavetrees/beehavescripts/action_leaf.gd" id="5_alul8"]
 
 [node name="EnemyBehaviorTree" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
@@ -19,11 +19,11 @@ script = ExtResource("2_5fbt7")
 [node name="ConditionLeaf" type="Node" parent="SequenceComposite2"]
 script = ExtResource("3_050nc")
 
-[node name="DelayDecorator" type="Node" parent="SequenceComposite2"]
-script = ExtResource("4_ifyfq")
-wait_time = 3.0
+[node name="CooldownDecorator" type="Node" parent="SequenceComposite2"]
+script = ExtResource("4_wn2lc")
+wait_time = 6.0
 
-[node name="ActionLeaf" type="Node" parent="SequenceComposite2/DelayDecorator"]
+[node name="ActionLeaf" type="Node" parent="SequenceComposite2/CooldownDecorator"]
 script = ExtResource("5_alul8")
 
 [node name="SequenceComposite" type="Node" parent="SequenceComposite2"]
