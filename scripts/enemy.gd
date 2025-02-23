@@ -10,13 +10,15 @@ var player_hold
 var player_attack
 var return_check = false
 var enemy_dead_body_check = true
-var aggro_check
+var aggro_check = false
+var stun_check = false
 var rng = RandomNumberGenerator.new()
 var enemy_return_one
 var enemy_return_two
 var enemy_return_three
 var enemy_positions = [enemy_return_one, enemy_return_two, enemy_return_three]
 
+@onready var enemy_stun_timer = $EnemyStunTimer
 @onready var enemy_timer = $EnemyTimer
 @onready var eye_hitbox_one = $EyeHitbox1
 @onready var eye_hitbox_two = $EyeHitbox2
@@ -47,7 +49,6 @@ func _physics_process(_delta) -> void:
 	move_and_collide(enemy_velocity)
 	
 func enemy_chase():
-	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_CHASE_SPEED
 	var enemy_look_position = player.global_position
 	enemy_look_position.y = player.global_position.y
 	if aggro_check == true || aggro_check == false:
@@ -55,7 +56,7 @@ func enemy_chase():
 		enemy_nav.set_target_position(player.global_position)
 		if enemy_look_position != Vector3.ZERO:
 			look_at(enemy_look_position)
-			move_and_collide(enemy_velocity)
+			
 			
 	
 func enemy_dead_body_spawn():
@@ -78,15 +79,14 @@ func enemy_lose_health():
 		aggro_check = true
 		for stun in stun_chance:
 			if stun >= 5:
-				enemy_stun()
+				enemy_stun() 
 				print("stunned")
 	
 		
 func enemy_stun():
-	var stun_length = randf_range(0.0, 3.0)
-	for stun in stun_length:
-		await get_tree().create_timer(stun_length).timeout
-	
+	set_physics_process(false)
+	enemy_stun_timer.start()
+		
 
 func enemy_move_positions():
 	var roaming_behavior = rng.randi_range(0, 2)
@@ -100,12 +100,15 @@ func enemy_move_positions():
 		look_at(enemy_positions[1].global_position)
 	elif roaming_behavior == 2:
 		look_at(enemy_positions[2].global_position)
+	print(roaming_behavior)
 
 
 
 func _on_timer_timeout():
 	enemy_move_positions()
-	if aggro_check == true:
+	if aggro_check == true || stun_check == true:
 		pass
 
-		
+
+func _on_enemy_stun_timer_timeout():
+	set_physics_process(true)
