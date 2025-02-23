@@ -1,6 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://1y17vfrf35yb"]
+[gd_scene load_steps=7 format=3 uid="uid://1y17vfrf35yb"]
 
 [ext_resource type="Script" path="res://scripts/demon.gd" id="1_dxsly"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vguw8"]
+size = Vector3(0.085, 0.175, 0.11)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x01q5"]
 albedo_color = Color(0.18, 0.18, 0.18, 1)
@@ -15,13 +18,19 @@ radius = 100.0
 [node name="demon" type="CharacterBody3D"]
 script = ExtResource("1_dxsly")
 
+[node name="eye1" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999391, -0.0348995, 0, -1.52551e-09, -4.36848e-08, -1, 0.0348995, 0.999391, -4.37114e-08, 0.20158, 0.477162, -0.452385)
+mesh = SubResource("BoxMesh_vguw8")
+
+[node name="eye2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.243632, 0.477162, -0.412804)
+mesh = SubResource("BoxMesh_vguw8")
+
 [node name="demonmesh" type="MeshInstance3D" parent="."]
-visible = false
 material_override = SubResource("StandardMaterial3D_x01q5")
 mesh = SubResource("CapsuleMesh_8jsuv")
 
 [node name="demonshape" type="CollisionShape3D" parent="."]
-visible = false
 shape = SubResource("CapsuleShape3D_qwncu")
 
 [node name="demonarea" type="Area3D" parent="."]
