@@ -95,8 +95,8 @@ func _physics_process(delta: float):
 	#allows the player to crouch by reducing the y axis. endurance check to avoid sprinting while crounching.
 	if Input.is_action_pressed("crouch"):
 		speed = CROUCH_SPEED
-		player_mesh.position.y = 0.2
-		player_shape.position.y = 0.2
+		player_mesh.position.y = -0.2
+		player_shape.shape.height = 1.5
 		endurance_check = false
 	else:
 		player_mesh.position.y = 0

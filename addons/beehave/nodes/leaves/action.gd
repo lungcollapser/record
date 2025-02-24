@@ -7,4 +7,4 @@ func tick(actor: Node, _blackboard: Blackboard) -> int:
 		return FAILURE
 	else:
 		actor.enemy.enemy_chase() 
-		return RUNNING
+		return SUCCESS

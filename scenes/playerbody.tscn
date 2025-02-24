@@ -27,6 +27,7 @@ skeleton = NodePath("")
 shape = SubResource("CapsuleShape3D_ibc3c")
 
 [node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.507165, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18984, 0.283112)

@@ -5,7 +5,7 @@
 
 [node name="demonbehaviortree" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_grcr1")
-blackboard = NodePath("@Node@24282")
+blackboard = NodePath("@Node@17298")
 actor = NodePath("")
 
 [node name="SequenceComposite" type="Node" parent="."]

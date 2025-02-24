@@ -40,9 +40,6 @@ func _ready():
 	Events.connect("call_enemy_lose_health", Callable(self, "enemy_lose_health"))
 	
 func _physics_process(_delta) -> void:
-	enemy_dead_body_spawn()
-	
-	
 	#allows enemy to move within every frame. VERY IMPORTANT BUT COULD BE OPTIMIZED
 	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED
 	move_and_collide(enemy_velocity)
@@ -50,36 +47,35 @@ func _physics_process(_delta) -> void:
 func enemy_chase():
 	var enemy_look_position = player.global_position
 	enemy_look_position.y = player.global_position.y
-	if aggro_check == true || aggro_check == false:
-		await get_tree().physics_frame
-		enemy_nav.set_target_position(player.global_position)
-		if enemy_look_position != Vector3.ZERO:
-			look_at(enemy_look_position)
+	await get_tree().physics_frame
+	enemy_nav.set_target_position(player.global_position)
+	if enemy_look_position != Vector3.ZERO:
+		look_at(enemy_look_position)
 			
 			
 	
 func enemy_dead_body_spawn():
 	var dead_body_instance = dead_body.instantiate()
-	if enemy_health == 0 and enemy_dead_body_check == true:
-		enemy_dead_body_check = false
-		visible = false
-		enemy_shape.disabled = true
-		get_parent().add_child(dead_body_instance)
-		dead_body_instance.global_position = enemy_shape.global_position
-		SanityBar.value -= 20
+	enemy_dead_body_check = false
+	visible = false
+	enemy_shape.disabled = true
+	get_parent().add_child(dead_body_instance)
+	dead_body_instance.global_position = enemy_shape.global_position
+	SanityBar.value -= 20
 
 
 func enemy_lose_health():
-	var stun_chance = randf_range(0, 10)
+	var stun_chance = randf_range(0, 20)
 	var enemy_attack = player_attack.get_collider()
+	
 	if enemy_attack == enemy:
 		print(enemy_health)
 		enemy_health -= 1
 		aggro_check = true
 		for stun in stun_chance:
-			if stun >= 5:
+			if stun >= 10:
 				enemy_stun() 
-				print("stunned")
+		
 	
 		
 func enemy_stun():
@@ -99,7 +95,7 @@ func enemy_move_positions():
 		look_at(enemy_positions[1].global_position)
 	elif roaming_behavior == 2:
 		look_at(enemy_positions[2].global_position)
-	print(roaming_behavior)
+	
 
 func _on_enemy_stun_timer_timeout():
 	set_physics_process(true)
