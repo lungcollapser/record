@@ -1,14 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://rur8lkdjm8qa"]
+[gd_scene load_steps=7 format=3 uid="uid://rur8lkdjm8qa"]
 
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_grcr1"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="2_qs44a"]
 [ext_resource type="Script" path="res://beehavetrees/beehavescripts/demon_spawn_check.gd" id="3_r5bul"]
 [ext_resource type="Script" path="res://beehavetrees/beehavescripts/demon_spawn.gd" id="4_nuc4a"]
-[ext_resource type="Script" path="res://beehavetrees/demon_chase_check.gd" id="5_diyxf"]
+[ext_resource type="Script" path="res://beehavetrees/beehavescripts/demon_chase_check.gd" id="5_diyxf"]
+[ext_resource type="Script" path="res://beehavetrees/demon_chase.gd" id="6_ghesn"]
 
 [node name="demonbehaviortree" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_grcr1")
-blackboard = NodePath("@Node@77375")
+blackboard = NodePath("@Node@21737")
 actor = NodePath("..")
 
 [node name="SequenceComposite" type="Node" parent="."]
@@ -25,3 +26,6 @@ script = ExtResource("2_qs44a")
 
 [node name="ConditionLeaf" type="Node" parent="SequenceComposite/SequenceComposite2"]
 script = ExtResource("5_diyxf")
+
+[node name="ActionLeaf" type="Node" parent="SequenceComposite/SequenceComposite2"]
+script = ExtResource("6_ghesn")
