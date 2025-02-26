@@ -33,7 +33,7 @@ var t_bob : float = 0.0
 @onready var hold = $Head/Camera3D/Hold
 @onready var player_mesh = $PlayerMesh
 @onready var player_shape = $PlayerShape
-@onready var item_drop = $Head/Camera3D/itemdrop
+
 
 
 
@@ -48,7 +48,7 @@ func _ready():
 	HealthBar.value = player_health
 	
 	#function for handling mouse when moving/rotating the camera.
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent):
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVTY)
 		camera.rotate_x(-event.relative.y * SENSITIVTY)
@@ -67,7 +67,10 @@ func drop_object():
 
 	#"main"
 func _physics_process(delta: float):
-	
+	if player_health <= 0:
+		head.position.y = -0.5
+		player.visible = false
+		player.set_physics_process(false)
 	#for picked up objects to be dropped if moved away from player too far.	
 	if picked_up_object != null and global_position.distance_to(picked_up_object.global_position) >= 3:
 		drop_object()

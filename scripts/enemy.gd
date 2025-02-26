@@ -65,15 +65,14 @@ func enemy_dead_body_spawn():
 
 
 func enemy_lose_health():
-	var stun_chance = randf_range(0, 20)
+	var stun_chance = randf_range(0, 100)
 	var enemy_attack = player_attack.get_collider()
-	
 	if enemy_attack == enemy:
 		print(enemy_health)
 		enemy_health -= 1
 		aggro_check = true
 		for stun in stun_chance:
-			if stun >= 10:
+			if stun >= 80:
 				enemy_stun() 
 		
 	
