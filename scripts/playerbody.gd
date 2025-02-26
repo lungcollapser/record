@@ -1,6 +1,8 @@
 extends CharacterBody3D
 class_name Player
 
+@onready var death_screen = %deathscreen
+
 #player attribute variables.
 var speed = 0
 var max_endurance = clamp(100, 0, 100)
@@ -49,11 +51,11 @@ func _ready():
 	
 	#function for handling mouse when moving/rotating the camera.
 func _unhandled_input(event: InputEvent):
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and player_health > 0:
 		head.rotate_y(-event.relative.x * SENSITIVTY)
 		camera.rotate_x(-event.relative.y * SENSITIVTY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-50), deg_to_rad(60))
-		
+	
 	#function for picking up objects around the world.
 func pick_up_object():
 	var collider = pick_up.get_collider()
@@ -67,10 +69,13 @@ func drop_object():
 
 	#"main"
 func _physics_process(delta: float):
+	#player death. could be optimized
 	if player_health <= 0:
 		head.position.y = -0.5
 		player.visible = false
 		player.set_physics_process(false)
+		%deathscreen.visible = true
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	#for picked up objects to be dropped if moved away from player too far.	
 	if picked_up_object != null and global_position.distance_to(picked_up_object.global_position) >= 3:
 		drop_object()
