@@ -4,17 +4,17 @@
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="2_5fbt7"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="2_qw33a"]
 [ext_resource type="Script" path="res://beehavetrees/beehavescripts/condition_leaf.gd" id="3_050nc"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/condition.gd" id="3_k06bh"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="4_1yh5r"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/inverter.gd" id="4_uv5kk"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/cooldown.gd" id="4_wn2lc"]
 [ext_resource type="Script" path="res://beehavetrees/beehavescripts/action_leaf.gd" id="5_alul8"]
 [ext_resource type="Script" path="res://beehavetrees/beehavescripts/death_condition.gd" id="5_s8nit"]
+[ext_resource type="Script" path="res://beehavetrees/beehavescripts/enemy_chase_check.gd" id="8_ag0hs"]
+[ext_resource type="Script" path="res://beehavetrees/beehavescripts/enemy_chase.gd" id="9_rlc8v"]
 [ext_resource type="Script" path="res://beehavetrees/beehavescripts/death_action.gd" id="11_467ud"]
 
 [node name="enemybehaviortree" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_qtn4v")
-blackboard = NodePath("@Node@17305")
+blackboard = NodePath("@Node@83950")
 actor = NodePath("")
 
 [node name="SelectorReactiveComposite" type="Node" parent="."]
@@ -40,10 +40,10 @@ script = ExtResource("5_alul8")
 script = ExtResource("2_5fbt7")
 
 [node name="ConditionLeaf" type="Node" parent="SelectorReactiveComposite/SequenceComposite2"]
-script = ExtResource("3_k06bh")
+script = ExtResource("8_ag0hs")
 
 [node name="ActionLeaf" type="Node" parent="SelectorReactiveComposite/SequenceComposite2"]
-script = ExtResource("4_1yh5r")
+script = ExtResource("9_rlc8v")
 
 [node name="SequenceComposite" type="Node" parent="SelectorReactiveComposite/SequenceComposite2"]
 script = ExtResource("2_5fbt7")
