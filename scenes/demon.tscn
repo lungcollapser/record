@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://1y17vfrf35yb"]
+[gd_scene load_steps=8 format=3 uid="uid://1y17vfrf35yb"]
 
 [ext_resource type="Script" path="res://scripts/demon.gd" id="1_dxsly"]
+[ext_resource type="PackedScene" uid="uid://rur8lkdjm8qa" path="res://beehavetrees/demon_behavior_tree.tscn" id="2_pl0jq"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_vguw8"]
 size = Vector3(0.085, 0.175, 0.11)
@@ -16,6 +17,7 @@ albedo_color = Color(0.18, 0.18, 0.18, 1)
 radius = 100.0
 
 [node name="demon" type="CharacterBody3D"]
+visible = false
 script = ExtResource("1_dxsly")
 
 [node name="eye1" type="MeshInstance3D" parent="."]
@@ -41,6 +43,10 @@ shape = SubResource("SphereShape3D_34ndt")
 [node name="demonnav" type="NavigationAgent3D" parent="."]
 path_height_offset = -0.65
 avoidance_enabled = true
+
+[node name="demonbehaviortree" parent="." node_paths=PackedStringArray("blackboard", "actor") instance=ExtResource("2_pl0jq")]
+blackboard = NodePath("@Node@80132")
+actor = NodePath("..")
 
 [connection signal="body_entered" from="demonarea" to="." method="_on_demonarea_body_entered"]
 [connection signal="body_exited" from="demonarea" to="." method="_on_demonarea_body_exited"]

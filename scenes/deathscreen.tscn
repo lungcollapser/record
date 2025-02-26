@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cwca6rfvlnd73"]
 
-[ext_resource type="Script" path="res://scenes/death_screen.gd" id="1_wmbg1"]
+[ext_resource type="Script" path="res://scripts/death_screen.gd" id="1_wmbg1"]
 [ext_resource type="Texture2D" uid="uid://dmnqapalq2qne" path="res://icon.svg" id="2_43fii"]
 
 [node name="deathscreen" type="ColorRect"]
@@ -29,6 +29,7 @@ offset_bottom = 30.0
 text = "CONTINUE"
 
 [node name="TextureButton2" type="TextureButton" parent="."]
+layout_mode = 0
 offset_left = 1235.0
 offset_top = 503.0
 offset_right = 1363.0
@@ -36,6 +37,7 @@ offset_bottom = 631.0
 texture_normal = ExtResource("2_43fii")
 
 [node name="Label" type="Label" parent="TextureButton2"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 30.0
 text = "QUIT"

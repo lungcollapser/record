@@ -5,7 +5,6 @@ extends CharacterBody3D
 @onready var demon_shape = $demonshape
 @onready var demon_nav = $demonnav
 
-var demon_invisible = false
 
 var player
 var demon_spawn_check
@@ -19,14 +18,7 @@ func _ready() -> void:
 	
 	
 func _physics_process(_delta: float) -> void:
-	demon_spawn_despawn()
 	demon_chase()
-
-func demon_spawn_despawn():
-	if SanityBar.value <= 99:
-		demon_invisible = true
-	else:
-		demon_invisible = false
 
 func demon_chase():
 	var behavior = randi_range(0, 1)

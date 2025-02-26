@@ -47,7 +47,6 @@ func _physics_process(_delta) -> void:
 func enemy_chase():
 	var enemy_look_position = player.global_position
 	enemy_look_position.y = player.global_position.y
-	await get_tree().physics_frame
 	enemy_nav.set_target_position(player.global_position)
 	if enemy_look_position != Vector3.ZERO:
 		look_at(enemy_look_position)
