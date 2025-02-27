@@ -10,7 +10,7 @@ func _ready() -> void:
 #"main"
 func _physics_process(_delta: float):
 		eat_pizza()
-#function for the player eating pizza. currently this raises health AND sanity (bound to change in the future).	
+#function for the player eating pizza. currently this raises health AND sanity (bound to change in the future).
 func eat_pizza():
 	var pizza_collider = player_pick_up.get_collider()
 	if Input.is_action_just_pressed("interact") and pizza_collider == pizza and HealthBar.value < 100:

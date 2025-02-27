@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=4 uid="uid://dxdvf75naxjm5"]
+[gd_scene load_steps=8 format=4 uid="uid://dxdvf75naxjm5"]
 
 [ext_resource type="Texture2D" uid="uid://bmmxnh5ktxtwn" path="res://assets/source/model_0.png" id="1_0oqjr"]
 [ext_resource type="Script" path="res://scripts/pizza.gd" id="1_6k68w"]
 [ext_resource type="PackedScene" uid="uid://ca8xehtfsayl5" path="res://scenes/itemspawncomponent.tscn" id="3_4376s"]
-[ext_resource type="PackedScene" uid="uid://bk6e6igwyvo4b" path="res://scenes/pickup_component.tscn" id="4_vp02n"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4dj34"]
 resource_name = "material_0"
@@ -69,9 +68,3 @@ shape = SubResource("ConvexPolygonShape3D_57phb")
 
 [node name="itemspawncomponent" parent="." instance=ExtResource("3_4376s")]
 transform = Transform3D(0.30641, 0.9519, 0, -0.9519, 0.30641, 0, 0, 0, 1, 0.10841, 0.137522, 0.0153017)
-
-[node name="PickupComponent" parent="." instance=ExtResource("4_vp02n")]
-
-[node name="pizzapickup" type="CollisionShape3D" parent="PickupComponent"]
-transform = Transform3D(0.395, 0, 0, 0, 0.395, 0, 0, 0, 0.395, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_57phb")

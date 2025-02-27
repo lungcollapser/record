@@ -9,10 +9,11 @@ extends CharacterBody3D
 var player
 var demon_spawn_check
 var demon_target = null
-var behavior = randi_range(0, 1)
+var action_behavior = randi_range(0, 1)
+var movement_behavior = randi_range(0, 1)
 
-var demon_crawl_speed = 0.02
-const DEMON_RUN_SPEED = 4
+var demon_crawl_speed = 0.04
+const DEMON_RUN_SPEED = 6
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
@@ -31,10 +32,9 @@ func demon_chase():
 	demon_nav.set_target_position(player.global_position)
 	if demon_look_position != Vector3.ZERO:
 			look_at(demon_look_position)
-	if demon_nav.distance_to_target() <= 5:
-		match behavior:
+	if demon_nav.distance_to_target() <= 3:
+		match action_behavior:
 			0: move_and_collide(demon_run_velocity)
 			1: queue_free()
-		print(behavior)
 	else:
 		move_and_collide(demon_crawl_velocity)
