@@ -25,16 +25,12 @@ func _physics_process(_delta: float) -> void:
 	
 func demon_chase():
 	var demon_crawl_velocity = (demon_nav.get_next_path_position() - global_position).normalized() * demon_crawl_speed
-	var demon_run_velocity = (demon_nav.get_next_path_position() - global_position).normalized() * DEMON_RUN_SPEED
+	var _demon_run_velocity = (demon_nav.get_next_path_position() - global_position).normalized() * DEMON_RUN_SPEED
 	var demon_look_position = player.global_position
 	demon_look_position.y = player.global_position.y
 	await get_tree().physics_frame
 	demon_nav.set_target_position(player.global_position)
+	move_and_collide(demon_crawl_velocity)
 	if demon_look_position != Vector3.ZERO:
 			look_at(demon_look_position)
-	if demon_nav.distance_to_target() <= 3:
-		match action_behavior:
-			0: move_and_collide(demon_run_velocity)
-			1: queue_free()
-	else:
-		move_and_collide(demon_crawl_velocity)
+	

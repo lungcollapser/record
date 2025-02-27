@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://rur8lkdjm8qa"]
+[gd_scene load_steps=12 format=3 uid="uid://rur8lkdjm8qa"]
 
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_grcr1"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="2_qs44a"]
@@ -8,6 +8,9 @@
 [ext_resource type="Script" path="res://beehavetrees/beehavescripts/demon_chase.gd" id="6_ghesn"]
 [ext_resource type="Script" path="res://beehavetrees/beehavescripts/demon_behavior_check.gd" id="7_55mh3"]
 [ext_resource type="Script" path="res://beehavetrees/beehavescripts/demon_behavior.gd" id="8_jcagl"]
+[ext_resource type="Script" path="res://beehavetrees/beehavescripts/demon_close_behavior_check.gd" id="9_cqvpn"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/delayer.gd" id="10_atik2"]
+[ext_resource type="Script" path="res://beehavetrees/demon_close_behavior.gd" id="10_ks0yh"]
 
 [node name="demonbehaviortree" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_grcr1")
@@ -40,3 +43,16 @@ script = ExtResource("7_55mh3")
 
 [node name="ActionLeaf" type="Node" parent="SequenceComposite/SequenceComposite2/SequenceComposite2"]
 script = ExtResource("8_jcagl")
+
+[node name="SequenceComposite2" type="Node" parent="SequenceComposite/SequenceComposite2/SequenceComposite2"]
+script = ExtResource("2_qs44a")
+
+[node name="ConditionLeaf" type="Node" parent="SequenceComposite/SequenceComposite2/SequenceComposite2/SequenceComposite2"]
+script = ExtResource("9_cqvpn")
+
+[node name="DelayDecorator" type="Node" parent="SequenceComposite/SequenceComposite2/SequenceComposite2/SequenceComposite2"]
+script = ExtResource("10_atik2")
+wait_time = 1.0
+
+[node name="ActionLeaf" type="Node" parent="SequenceComposite/SequenceComposite2/SequenceComposite2/SequenceComposite2/DelayDecorator"]
+script = ExtResource("10_ks0yh")

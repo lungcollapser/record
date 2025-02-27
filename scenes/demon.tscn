@@ -45,4 +45,4 @@ path_height_offset = -0.65
 avoidance_enabled = true
 
 [node name="demonbehaviortree" parent="." node_paths=PackedStringArray("blackboard") instance=ExtResource("2_pl0jq")]
-blackboard = NodePath("@Node@31885")
+blackboard = NodePath("@Node@43193")
