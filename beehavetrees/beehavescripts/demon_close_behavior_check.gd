@@ -1,8 +1,8 @@
 extends ConditionLeaf
 
 
-func tick(actor: Node, blackboard: Blackboard) -> int:
-	if actor.demon_nav.distance_to_target() <= 3:
+func tick(actor: Node, _blackboard: Blackboard) -> int:
+	if actor.demon_nav.distance_to_target() <= 5:
 		return SUCCESS
 	else:
 		return FAILURE

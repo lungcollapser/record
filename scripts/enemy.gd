@@ -44,6 +44,8 @@ func _physics_process(_delta) -> void:
 	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED
 	move_and_collide(enemy_velocity)
 	
+	print(player.global_position.distance_to(global_position))
+	
 func enemy_chase():
 	var enemy_look_position = player.global_position
 	enemy_look_position.y = player.global_position.y

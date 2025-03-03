@@ -28,7 +28,6 @@ func demon_chase():
 	var _demon_run_velocity = (demon_nav.get_next_path_position() - global_position).normalized() * DEMON_RUN_SPEED
 	var demon_look_position = player.global_position
 	demon_look_position.y = player.global_position.y
-	await get_tree().physics_frame
 	demon_nav.set_target_position(player.global_position)
 	move_and_collide(demon_crawl_velocity)
 	if demon_look_position != Vector3.ZERO:

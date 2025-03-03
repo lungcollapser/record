@@ -10,12 +10,12 @@
 [ext_resource type="Script" path="res://beehavetrees/beehavescripts/demon_behavior.gd" id="8_jcagl"]
 [ext_resource type="Script" path="res://beehavetrees/beehavescripts/demon_close_behavior_check.gd" id="9_cqvpn"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/delayer.gd" id="10_atik2"]
-[ext_resource type="Script" path="res://beehavetrees/demon_close_behavior.gd" id="10_ks0yh"]
+[ext_resource type="Script" path="res://beehavetrees/beehavescripts/demon_close_behavior.gd" id="10_ks0yh"]
 
 [node name="demonbehaviortree" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_grcr1")
-blackboard = NodePath("@Node@22929")
-actor = NodePath("..")
+blackboard = NodePath("@Node@17299")
+actor = NodePath("")
 
 [node name="SequenceComposite" type="Node" parent="."]
 script = ExtResource("2_qs44a")
@@ -52,7 +52,7 @@ script = ExtResource("9_cqvpn")
 
 [node name="DelayDecorator" type="Node" parent="SequenceComposite/SequenceComposite2/SequenceComposite2/SequenceComposite2"]
 script = ExtResource("10_atik2")
-wait_time = 1.0
+wait_time = 0.5
 
 [node name="ActionLeaf" type="Node" parent="SequenceComposite/SequenceComposite2/SequenceComposite2/SequenceComposite2/DelayDecorator"]
 script = ExtResource("10_ks0yh")
