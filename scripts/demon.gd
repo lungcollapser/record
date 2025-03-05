@@ -22,6 +22,11 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	demon_chase()
 	
+	if SanityBar.value >= 100:
+		set_physics_process(false)
+	else:
+		set_physics_process(true)
+	
 	
 func demon_chase():
 	var demon_crawl_velocity = (demon_nav.get_next_path_position() - global_position).normalized() * demon_crawl_speed

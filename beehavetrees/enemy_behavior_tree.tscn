@@ -14,7 +14,7 @@
 [node name="enemybehaviortree" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_qtn4v")
 blackboard = NodePath("@Node@21794")
-actor = NodePath("..")
+actor = NodePath("")
 
 [node name="SelectorReactiveComposite" type="Node" parent="."]
 script = ExtResource("2_i30wa")
@@ -41,11 +41,11 @@ script = ExtResource("8_ag0hs")
 [node name="ActionLeaf" type="Node" parent="SelectorReactiveComposite/SequenceComposite2"]
 script = ExtResource("9_rlc8v")
 
-[node name="SequenceComposite" type="Node" parent="SelectorReactiveComposite"]
+[node name="SequenceComposite" type="Node" parent="SelectorReactiveComposite/SequenceComposite2"]
 script = ExtResource("2_5fbt7")
 
-[node name="ConditionLeaf" type="Node" parent="SelectorReactiveComposite/SequenceComposite"]
+[node name="ConditionLeaf" type="Node" parent="SelectorReactiveComposite/SequenceComposite2/SequenceComposite"]
 script = ExtResource("5_s8nit")
 
-[node name="ActionLeaf" type="Node" parent="SelectorReactiveComposite/SequenceComposite"]
+[node name="ActionLeaf" type="Node" parent="SelectorReactiveComposite/SequenceComposite2/SequenceComposite"]
 script = ExtResource("11_467ud")
