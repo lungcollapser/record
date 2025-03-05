@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cin7xys5d5odj"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_c05o7"]
+[ext_resource type="Script" uid="uid://dyidmxrcn7s8m" path="res://scripts/enemy.gd" id="1_c05o7"]
 [ext_resource type="PackedScene" uid="uid://dyntx5nuoo7xm" path="res://beehavetrees/enemy_behavior_tree.tscn" id="2_g8pol"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4wxgc"]
@@ -60,6 +60,6 @@ avoidance_enabled = true
 wait_time = 2.0
 
 [node name="EnemyBehaviorTree" parent="." node_paths=PackedStringArray("blackboard") instance=ExtResource("2_g8pol")]
-blackboard = NodePath("@Node@17305")
+blackboard = NodePath("@Node@21792")
 
 [connection signal="timeout" from="EnemyStunTimer" to="." method="_on_enemy_stun_timer_timeout"]

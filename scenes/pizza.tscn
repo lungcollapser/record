@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=4 uid="uid://dxdvf75naxjm5"]
 
 [ext_resource type="Texture2D" uid="uid://bmmxnh5ktxtwn" path="res://assets/source/model_0.png" id="1_0oqjr"]
-[ext_resource type="Script" path="res://scripts/pizza.gd" id="1_6k68w"]
+[ext_resource type="Script" uid="uid://l16apur3xubr" path="res://scripts/pizza.gd" id="1_6k68w"]
 [ext_resource type="PackedScene" uid="uid://ca8xehtfsayl5" path="res://scenes/itemspawncomponent.tscn" id="3_4376s"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4dj34"]

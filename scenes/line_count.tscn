@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cktxh0vdjv8vh"]
 
-[ext_resource type="Script" path="res://scripts/line_count.gd" id="1_iicwt"]
+[ext_resource type="Script" uid="uid://dx7omg4w2h1ts" path="res://scripts/line_count.gd" id="1_iicwt"]
 
 [node name="line_count" type="Node3D"]
 script = ExtResource("1_iicwt")

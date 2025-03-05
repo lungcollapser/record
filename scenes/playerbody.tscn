@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dxcu08sgbyylr"]
 
-[ext_resource type="Script" path="res://scripts/health_component.gd" id="1_hgtuj"]
-[ext_resource type="Script" path="res://scripts/playerbody.gd" id="1_qqke5"]
+[ext_resource type="Script" uid="uid://gd0mcfetqhqw" path="res://scripts/health_component.gd" id="1_hgtuj"]
+[ext_resource type="Script" uid="uid://bt85ohqbt4jcr" path="res://scripts/playerbody.gd" id="1_qqke5"]
 [ext_resource type="PackedScene" uid="uid://0py6gtps6jdo" path="res://scenes/psx_first_person_arms.tscn" id="2_8a1dm"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_0kd7y"]

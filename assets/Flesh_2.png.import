@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbbccalgneusu"
+uid="uid://g4o0tcsqnbip"
 path.s3tc="res://.godot/imported/Flesh_2.png-31e678e5c5fcb24eaae3add96322bdc1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "fd125da16d07e59cf35c7bf8817d9d44"
 }
 
 [deps]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cfqnnebvepiiw"]
 
-[ext_resource type="Script" path="res://scripts/dead_body.gd" id="1_woxul"]
+[ext_resource type="Script" uid="uid://c1f6f6eobctpt" path="res://scripts/dead_body.gd" id="1_woxul"]
 [ext_resource type="PackedScene" uid="uid://bk6e6igwyvo4b" path="res://scenes/pickup_component.tscn" id="2_gqq67"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_03anv"]

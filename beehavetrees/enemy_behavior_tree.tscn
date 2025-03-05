@@ -1,19 +1,19 @@
 [gd_scene load_steps=11 format=3 uid="uid://dyntx5nuoo7xm"]
 
-[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_qtn4v"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="2_5fbt7"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="2_i30wa"]
-[ext_resource type="Script" path="res://beehavetrees/beehavescripts/condition_leaf.gd" id="3_050nc"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/cooldown.gd" id="4_wn2lc"]
-[ext_resource type="Script" path="res://beehavetrees/beehavescripts/action_leaf.gd" id="5_alul8"]
-[ext_resource type="Script" path="res://beehavetrees/beehavescripts/death_condition.gd" id="5_s8nit"]
-[ext_resource type="Script" path="res://beehavetrees/beehavescripts/enemy_chase_check.gd" id="8_ag0hs"]
-[ext_resource type="Script" path="res://beehavetrees/beehavescripts/enemy_chase.gd" id="9_rlc8v"]
-[ext_resource type="Script" path="res://beehavetrees/beehavescripts/death_action.gd" id="11_467ud"]
+[ext_resource type="Script" uid="uid://cbhx7cqfl4pky" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_qtn4v"]
+[ext_resource type="Script" uid="uid://cftuh1744ak4w" path="res://addons/beehave/nodes/composites/sequence.gd" id="2_5fbt7"]
+[ext_resource type="Script" uid="uid://d3ig7kuo2v1lg" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="2_i30wa"]
+[ext_resource type="Script" uid="uid://dvp6w5jdr2ux4" path="res://beehavetrees/beehavescripts/condition_leaf.gd" id="3_050nc"]
+[ext_resource type="Script" uid="uid://c6esj4ed3u2le" path="res://addons/beehave/nodes/decorators/cooldown.gd" id="4_wn2lc"]
+[ext_resource type="Script" uid="uid://8yljawjt41sy" path="res://beehavetrees/beehavescripts/action_leaf.gd" id="5_alul8"]
+[ext_resource type="Script" uid="uid://bsknebvsltp5t" path="res://beehavetrees/beehavescripts/death_condition.gd" id="5_s8nit"]
+[ext_resource type="Script" uid="uid://dnnbxwrlxma47" path="res://beehavetrees/beehavescripts/enemy_chase_check.gd" id="8_ag0hs"]
+[ext_resource type="Script" uid="uid://eaqy87rbn8jk" path="res://beehavetrees/beehavescripts/enemy_chase.gd" id="9_rlc8v"]
+[ext_resource type="Script" uid="uid://c7j4nejdfwqds" path="res://beehavetrees/beehavescripts/death_action.gd" id="11_467ud"]
 
 [node name="enemybehaviortree" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_qtn4v")
-blackboard = NodePath("@Node@17307")
+blackboard = NodePath("@Node@21794")
 actor = NodePath("..")
 
 [node name="SelectorReactiveComposite" type="Node" parent="."]

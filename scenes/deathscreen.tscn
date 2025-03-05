@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cwca6rfvlnd73"]
 
-[ext_resource type="Script" path="res://scripts/death_screen.gd" id="1_wmbg1"]
+[ext_resource type="Script" uid="uid://d1cvjhmdtcwwa" path="res://scripts/death_screen.gd" id="1_wmbg1"]
 [ext_resource type="Texture2D" uid="uid://dmnqapalq2qne" path="res://icon.svg" id="2_43fii"]
 
 [node name="deathscreen" type="ColorRect"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://jyrhlvipedil"]
 
-[ext_resource type="Script" path="res://scripts/human_receptacle.gd" id="1_05dvp"]
+[ext_resource type="Script" uid="uid://bly3dhoft5cyj" path="res://scripts/human_receptacle.gd" id="1_05dvp"]
 [ext_resource type="Material" uid="uid://bsg2t3frmfjce" path="res://shaders/receptacle_material.tres" id="2_eieo8"]
 [ext_resource type="PackedScene" uid="uid://bk6e6igwyvo4b" path="res://scenes/pickup_component.tscn" id="3_4anad"]
 [ext_resource type="Material" uid="uid://rrcq2bsaxi3y" path="res://shaders/transparent_shader.tres" id="4_7jrsj"]

@@ -1,4 +1,5 @@
-extends "res://beehavetrees/beehavescripts/condition_leaf.gd"
+@tool
+extends ConditionLeaf
 
 
 func tick(actor: Node, _blackboard: Blackboard) -> int:

@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=4 uid="uid://0py6gtps6jdo"]
 
-[ext_resource type="Script" path="res://scripts/psx_first_person_arms.gd" id="1_u28hl"]
+[ext_resource type="Script" uid="uid://csv66q385ce71" path="res://scripts/psx_first_person_arms.gd" id="1_u28hl"]
 [ext_resource type="Texture2D" uid="uid://d0q2ollkwbdva" path="res://assets/psx_first_person_arms_0.png" id="2_v5tgo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hsnd6"]
@@ -5173,18 +5173,18 @@ tracks/62/keys = PackedFloat32Array(0, 1, -0.605155, 0.345862, 0.356134, 0.62236
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vt104"]
 _data = {
-"RESET": SubResource("Animation_q62ek"),
-"arms_armature|Collect_something": SubResource("Animation_kywi7"),
-"arms_armature|Combat_idle": SubResource("Animation_5ryke"),
-"arms_armature|Combat_idle_start": SubResource("Animation_fvvpc"),
-"arms_armature|Combat_punch_left": SubResource("Animation_prnyj"),
-"arms_armature|Combat_punch_right": SubResource("Animation_3k8f1"),
-"arms_armature|Hands_below": SubResource("Animation_ajr5v"),
-"arms_armature|Magic_spell": SubResource("Animation_6oc4p"),
-"arms_armature|Magic_spell_attack": SubResource("Animation_mbgvg"),
-"arms_armature|Magic_spell_loop_start": SubResource("Animation_heud8"),
-"arms_armature|Relax_hands_idle": SubResource("Animation_gi67x"),
-"arms_armature|Relax_hands_idle_start": SubResource("Animation_0re00")
+&"RESET": SubResource("Animation_q62ek"),
+&"arms_armature|Collect_something": SubResource("Animation_kywi7"),
+&"arms_armature|Combat_idle": SubResource("Animation_5ryke"),
+&"arms_armature|Combat_idle_start": SubResource("Animation_fvvpc"),
+&"arms_armature|Combat_punch_left": SubResource("Animation_prnyj"),
+&"arms_armature|Combat_punch_right": SubResource("Animation_3k8f1"),
+&"arms_armature|Hands_below": SubResource("Animation_ajr5v"),
+&"arms_armature|Magic_spell": SubResource("Animation_6oc4p"),
+&"arms_armature|Magic_spell_attack": SubResource("Animation_mbgvg"),
+&"arms_armature|Magic_spell_loop_start": SubResource("Animation_heud8"),
+&"arms_armature|Relax_hands_idle": SubResource("Animation_gi67x"),
+&"arms_armature|Relax_hands_idle_start": SubResource("Animation_0re00")
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0kl6a"]

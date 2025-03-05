@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dab41wvy0hmok"]
 
-[ext_resource type="Script" path="res://scripts/deadbodypartscomponent.gd" id="1_y671g"]
+[ext_resource type="Script" uid="uid://clcs5arjg0m2g" path="res://scripts/deadbodypartscomponent.gd" id="1_y671g"]
 
 [node name="deadbodypartscomponent" type="Area3D"]
 script = ExtResource("1_y671g")
