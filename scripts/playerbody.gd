@@ -15,6 +15,7 @@ const SPRINT_SPEED  = 7.0
 const JUMP_VELOCITY  = 4.5
 const SENSITIVTY  = 0.01
 var pull_power : int = 35
+var player_hit : float = 3.0
 
 #boolean/state machine/group variables.
 var endurance_check : bool = true
@@ -166,9 +167,17 @@ func headbob(time) -> Vector3:
 	pos.y = sin(time * BOB_FREQ) * BOB_AMP
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	return pos
+	
+func player_damage_reaction(time) -> Vector3:
+	var pos = Vector3.ZERO
+	pos.y = sin(time * BOB_FREQ) * BOB_AMP
+	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
+	return pos
+	
 	#function for hit detection on player collision shape being entered.
 func _on_player_hitbox_body_entered(body):
 	if body is Enemy:
+		camera.transform.origin = player_damage_reaction(t_bob)
 		hit_detec_check = true
 
 	#function for hit detection on player collision shape being exited.

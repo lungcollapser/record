@@ -1,8 +1,8 @@
 extends CharacterBody3D
 class_name Enemy
 
-const ENEMY_ROAMING_SPEED = 0.02
-const ENEMY_CHASE_SPEED = 0.002
+const ENEMY_ROAMING_SPEED = 3
+const ENEMY_CHASE_SPEED = 5
 var enemy_health = clamp(10, 0, 10)
 var player
 var target = null
@@ -39,10 +39,10 @@ func _ready():
 	
 	Events.connect("call_enemy_lose_health", Callable(self, "enemy_lose_health"))
 	
-func _physics_process(_delta) -> void:
+func _physics_process(delta) -> void:
 	#allows enemy to move within every frame. VERY IMPORTANT BUT COULD BE OPTIMIZED
 	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED
-	move_and_collide(enemy_velocity)
+	move_and_collide(enemy_velocity * delta)
 	
 func enemy_chase():
 	var enemy_look_position = player.global_position
