@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dyntx5nuoo7xm"]
+[gd_scene load_steps=13 format=3 uid="uid://dyntx5nuoo7xm"]
 
 [ext_resource type="Script" uid="uid://cbhx7cqfl4pky" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_qtn4v"]
 [ext_resource type="Script" uid="uid://cftuh1744ak4w" path="res://addons/beehave/nodes/composites/sequence.gd" id="2_5fbt7"]
@@ -7,14 +7,16 @@
 [ext_resource type="Script" uid="uid://c6esj4ed3u2le" path="res://addons/beehave/nodes/decorators/cooldown.gd" id="4_wn2lc"]
 [ext_resource type="Script" uid="uid://8yljawjt41sy" path="res://beehavetrees/beehavescripts/action_leaf.gd" id="5_alul8"]
 [ext_resource type="Script" uid="uid://bsknebvsltp5t" path="res://beehavetrees/beehavescripts/death_condition.gd" id="5_s8nit"]
-[ext_resource type="Script" uid="uid://dnnbxwrlxma47" path="res://beehavetrees/beehavescripts/enemy_chase_check.gd" id="8_ag0hs"]
-[ext_resource type="Script" uid="uid://eaqy87rbn8jk" path="res://beehavetrees/beehavescripts/enemy_chase.gd" id="9_rlc8v"]
+[ext_resource type="Script" uid="uid://dnnbxwrlxma47" path="res://beehavetrees/beehavescripts/enemy_look_check.gd" id="8_ag0hs"]
+[ext_resource type="Script" uid="uid://dn6tbis1pn7wy" path="res://beehavetrees/enemy_chase_check.gd" id="9_itom1"]
+[ext_resource type="Script" uid="uid://eaqy87rbn8jk" path="res://beehavetrees/beehavescripts/enemy_look.gd" id="9_rlc8v"]
+[ext_resource type="Script" uid="uid://cyvh10j1poww7" path="res://beehavetrees/enemy_chase.gd" id="10_f5h6y"]
 [ext_resource type="Script" uid="uid://c7j4nejdfwqds" path="res://beehavetrees/beehavescripts/death_action.gd" id="11_467ud"]
 
 [node name="enemybehaviortree" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_qtn4v")
-blackboard = NodePath("@Node@21794")
-actor = NodePath("")
+blackboard = NodePath("@Node@29253")
+actor = NodePath("..")
 
 [node name="SelectorReactiveComposite" type="Node" parent="."]
 script = ExtResource("2_i30wa")
@@ -41,11 +43,20 @@ script = ExtResource("8_ag0hs")
 [node name="ActionLeaf" type="Node" parent="SelectorReactiveComposite/SequenceComposite2"]
 script = ExtResource("9_rlc8v")
 
-[node name="SequenceComposite" type="Node" parent="SelectorReactiveComposite/SequenceComposite2"]
+[node name="SequenceComposite2" type="Node" parent="SelectorReactiveComposite/SequenceComposite2"]
 script = ExtResource("2_5fbt7")
 
-[node name="ConditionLeaf" type="Node" parent="SelectorReactiveComposite/SequenceComposite2/SequenceComposite"]
+[node name="ConditionLeaf" type="Node" parent="SelectorReactiveComposite/SequenceComposite2/SequenceComposite2"]
+script = ExtResource("9_itom1")
+
+[node name="ActionLeaf" type="Node" parent="SelectorReactiveComposite/SequenceComposite2/SequenceComposite2"]
+script = ExtResource("10_f5h6y")
+
+[node name="SequenceComposite" type="Node" parent="SelectorReactiveComposite/SequenceComposite2/SequenceComposite2"]
+script = ExtResource("2_5fbt7")
+
+[node name="ConditionLeaf" type="Node" parent="SelectorReactiveComposite/SequenceComposite2/SequenceComposite2/SequenceComposite"]
 script = ExtResource("5_s8nit")
 
-[node name="ActionLeaf" type="Node" parent="SelectorReactiveComposite/SequenceComposite2/SequenceComposite"]
+[node name="ActionLeaf" type="Node" parent="SelectorReactiveComposite/SequenceComposite2/SequenceComposite2/SequenceComposite"]
 script = ExtResource("11_467ud")
