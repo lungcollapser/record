@@ -9,6 +9,7 @@ extends CharacterBody3D
 var player
 var demon_spawn_check
 var demon_target = null
+var initial_behavior = randi_range(0, 1)
 var action_behavior = randi_range(0, 1)
 var movement_behavior = randi_range(0, 1)
 

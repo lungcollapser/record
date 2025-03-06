@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://rur8lkdjm8qa"]
+[gd_scene load_steps=13 format=3 uid="uid://rur8lkdjm8qa"]
 
 [ext_resource type="Script" uid="uid://cbhx7cqfl4pky" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_grcr1"]
 [ext_resource type="Script" uid="uid://cftuh1744ak4w" path="res://addons/beehave/nodes/composites/sequence.gd" id="2_qs44a"]
+[ext_resource type="Script" uid="uid://dktf2xlj7ob4m" path="res://addons/beehave/nodes/composites/sequence_reactive.gd" id="2_rwblc"]
 [ext_resource type="Script" uid="uid://ohumh1ep26x4" path="res://beehavetrees/beehavescripts/demon_spawn_check.gd" id="3_r5bul"]
 [ext_resource type="Script" uid="uid://wvwagy84mekn" path="res://beehavetrees/beehavescripts/demon_spawn.gd" id="4_nuc4a"]
 [ext_resource type="Script" uid="uid://d1delnxk328u6" path="res://beehavetrees/beehavescripts/demon_chase_check.gd" id="5_diyxf"]
@@ -15,44 +16,48 @@
 [node name="demonbehaviortree" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_grcr1")
 blackboard = NodePath("@Node@21786")
-actor = NodePath("")
+actor = NodePath("..")
 
-[node name="SequenceComposite" type="Node" parent="."]
+[node name="SelectorReactiveComposite" type="Node" parent="."]
+script = ExtResource("2_rwblc")
+metadata/_custom_type_script = "uid://dktf2xlj7ob4m"
+
+[node name="SequenceComposite" type="Node" parent="SelectorReactiveComposite"]
 script = ExtResource("2_qs44a")
 
-[node name="ConditionLeaf" type="Node" parent="SequenceComposite"]
+[node name="ConditionLeaf" type="Node" parent="SelectorReactiveComposite/SequenceComposite"]
 script = ExtResource("3_r5bul")
 
-[node name="ActionLeaf" type="Node" parent="SequenceComposite"]
+[node name="ActionLeaf" type="Node" parent="SelectorReactiveComposite/SequenceComposite"]
 script = ExtResource("4_nuc4a")
 
-[node name="SequenceComposite2" type="Node" parent="SequenceComposite"]
+[node name="SequenceComposite2" type="Node" parent="SelectorReactiveComposite/SequenceComposite"]
 script = ExtResource("2_qs44a")
 
-[node name="ConditionLeaf" type="Node" parent="SequenceComposite/SequenceComposite2"]
+[node name="ConditionLeaf" type="Node" parent="SelectorReactiveComposite/SequenceComposite/SequenceComposite2"]
 script = ExtResource("5_diyxf")
 
-[node name="ActionLeaf" type="Node" parent="SequenceComposite/SequenceComposite2"]
+[node name="ActionLeaf" type="Node" parent="SelectorReactiveComposite/SequenceComposite/SequenceComposite2"]
 script = ExtResource("6_ghesn")
 
-[node name="SequenceComposite2" type="Node" parent="SequenceComposite/SequenceComposite2"]
+[node name="SequenceComposite3" type="Node" parent="SelectorReactiveComposite"]
 script = ExtResource("2_qs44a")
 
-[node name="ConditionLeaf" type="Node" parent="SequenceComposite/SequenceComposite2/SequenceComposite2"]
+[node name="ConditionLeaf" type="Node" parent="SelectorReactiveComposite/SequenceComposite3"]
 script = ExtResource("7_55mh3")
 
-[node name="ActionLeaf" type="Node" parent="SequenceComposite/SequenceComposite2/SequenceComposite2"]
+[node name="ActionLeaf" type="Node" parent="SelectorReactiveComposite/SequenceComposite3"]
 script = ExtResource("8_jcagl")
 
-[node name="SequenceComposite2" type="Node" parent="SequenceComposite/SequenceComposite2/SequenceComposite2"]
+[node name="SequenceComposite4" type="Node" parent="SelectorReactiveComposite"]
 script = ExtResource("2_qs44a")
 
-[node name="ConditionLeaf" type="Node" parent="SequenceComposite/SequenceComposite2/SequenceComposite2/SequenceComposite2"]
+[node name="ConditionLeaf" type="Node" parent="SelectorReactiveComposite/SequenceComposite4"]
 script = ExtResource("9_cqvpn")
 
-[node name="DelayDecorator" type="Node" parent="SequenceComposite/SequenceComposite2/SequenceComposite2/SequenceComposite2"]
+[node name="DelayDecorator" type="Node" parent="SelectorReactiveComposite/SequenceComposite4"]
 script = ExtResource("10_atik2")
 wait_time = 0.5
 
-[node name="ActionLeaf" type="Node" parent="SequenceComposite/SequenceComposite2/SequenceComposite2/SequenceComposite2/DelayDecorator"]
+[node name="ActionLeaf" type="Node" parent="SelectorReactiveComposite/SequenceComposite4/DelayDecorator"]
 script = ExtResource("10_ks0yh")
