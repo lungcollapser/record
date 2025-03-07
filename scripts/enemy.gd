@@ -1,7 +1,7 @@
 extends CharacterBody3D
 class_name Enemy
 
-const ENEMY_ROAMING_SPEED = 3
+const ENEMY_ROAMING_SPEED = 1
 const ENEMY_CHASE_SPEED = 5
 var enemy_health = clamp(10, 0, 10)
 var player
@@ -17,6 +17,9 @@ var enemy_return_one
 var enemy_return_two
 var enemy_return_three
 var enemy_positions = [enemy_return_one, enemy_return_two, enemy_return_three]
+
+var enemy_roam_check = false
+var enemy_chase_check = false
 
 @onready var enemy_stun_timer = $EnemyStunTimer
 @onready var eye_hitbox_one = $EyeHitbox1
@@ -41,8 +44,13 @@ func _ready():
 	
 func _physics_process(delta: float) -> void:
 	#allows enemy to move within every frame. VERY IMPORTANT BUT COULD BE OPTIMIZED
-	var enemy_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED * delta
-	move_and_collide(enemy_velocity)
+	var enemy_roam_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED * delta
+	var enemy_chase_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_CHASE_SPEED * delta
+	
+	if enemy_roam_check == false:
+		move_and_collide(enemy_chase_velocity)
+	else:
+		move_and_collide(enemy_roam_velocity)
 	
 func enemy_chase():
 	var enemy_look_position = player.global_position
@@ -50,8 +58,6 @@ func enemy_chase():
 	enemy_nav.set_target_position(player.global_position)
 	if enemy_look_position != Vector3.ZERO:
 		look_at(enemy_look_position)
-			
-			
 	
 func enemy_dead_body_spawn():
 	var dead_body_instance = dead_body.instantiate()
@@ -93,7 +99,6 @@ func enemy_move_positions():
 		look_at(enemy_positions[1].global_position)
 	elif roaming_behavior == 2:
 		look_at(enemy_positions[2].global_position)
-	
 
 func _on_enemy_stun_timer_timeout():
 	set_physics_process(true)

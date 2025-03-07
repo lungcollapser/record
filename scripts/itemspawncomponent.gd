@@ -11,7 +11,7 @@ var z_force_multiply : float = 2.0
 func _physics_process(delta: float):
 	if timeout_check == true:
 		item.apply_central_impulse(Vector3(randf_range(100.0, -100.0) * x_force_multiply, randf_range(100.0, -100.0) * y_force_multiply, randf_range(100.0, -100.0) * z_force_multiply) * delta)
-		item.apply_torque_impulse(Vector3(randf_range(100.0, -100.0),randf_range(100.0, -100.0), randf_range(100.0, -100.0)) * delta)
+		item.apply_torque_impulse(Vector3(randf_range(100.0, -100.0), randf_range(100.0, -100.0), randf_range(100.0, -100.0)) * delta)
 	else:
 		pass
 	
