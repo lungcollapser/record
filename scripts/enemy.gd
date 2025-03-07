@@ -1,8 +1,8 @@
 extends CharacterBody3D
 class_name Enemy
 
-const ENEMY_ROAMING_SPEED = 1
-const ENEMY_CHASE_SPEED = 5
+const ENEMY_ROAMING_SPEED = 2
+const ENEMY_CHASE_SPEED = 4
 var enemy_health = clamp(10, 0, 10)
 var player
 var target = null
@@ -18,8 +18,8 @@ var enemy_return_two
 var enemy_return_three
 var enemy_positions = [enemy_return_one, enemy_return_two, enemy_return_three]
 
-var enemy_roam_check = false
-var enemy_chase_check = false
+var enemy_movement_check = false
+
 
 @onready var enemy_stun_timer = $EnemyStunTimer
 @onready var eye_hitbox_one = $EyeHitbox1
@@ -47,7 +47,7 @@ func _physics_process(delta: float) -> void:
 	var enemy_roam_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_ROAMING_SPEED * delta
 	var enemy_chase_velocity = (enemy_nav.get_next_path_position() - global_position).normalized() * ENEMY_CHASE_SPEED * delta
 	
-	if enemy_roam_check == false:
+	if enemy_movement_check == false:
 		move_and_collide(enemy_chase_velocity)
 	else:
 		move_and_collide(enemy_roam_velocity)

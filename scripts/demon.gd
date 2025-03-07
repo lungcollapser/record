@@ -12,6 +12,7 @@ var demon_target = null
 var initial_behavior = randi_range(0, 1)
 var action_behavior = randi_range(0, 1)
 var movement_behavior = randi_range(0, 1)
+var demon_movement_check = false
 
 const DEMON_CRAWL_SPEED = 3
 const DEMON_RUN_SPEED = 8
@@ -22,7 +23,13 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	var demon_run_velocity = (demon_nav.get_next_path_position() - global_position).normalized() * DEMON_RUN_SPEED * delta
-	move_and_collide(demon_run_velocity)
+	var demon_crawl_velocity = (demon_nav.get_next_path_position() - global_position).normalized() * DEMON_CRAWL_SPEED * delta
+	
+	
+	if demon_movement_check == false:
+		move_and_collide(demon_run_velocity)
+	else: 
+		move_and_collide(demon_crawl_velocity)
 	
 
 	
