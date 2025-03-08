@@ -41,6 +41,8 @@ enabled=PackedStringArray("res://addons/beehave/plugin.cfg")
 [global_group]
 
 bodyparts=""
+spawns="spawn points for various npcs"
+spawnsplayer=""
 
 [input]
 

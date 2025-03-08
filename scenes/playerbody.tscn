@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxcu08sgbyylr"]
+[gd_scene load_steps=8 format=3 uid="uid://dxcu08sgbyylr"]
 
 [ext_resource type="Script" uid="uid://gd0mcfetqhqw" path="res://scripts/health_component.gd" id="1_hgtuj"]
 [ext_resource type="Script" uid="uid://bt85ohqbt4jcr" path="res://scripts/playerbody.gd" id="1_qqke5"]
@@ -9,6 +9,9 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ibc3c"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qmjj8"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5e0b5"]
+radius = 22.418
 
 [node name="Playerbody" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_qqke5")
@@ -51,6 +54,11 @@ transform = Transform3D(1.51, 0, 0, 0, 1.51, 0, 0, 0, 1.51, 0, 0, 0)
 
 [node name="PlayerHitboxShape" type="CollisionShape3D" parent="PlayerHitbox"]
 shape = SubResource("CapsuleShape3D_qmjj8")
+
+[node name="SpawnRadius" type="Area3D" parent="."]
+
+[node name="SpawnRadiusShape" type="CollisionShape3D" parent="SpawnRadius" groups=["spawnsplayer"]]
+shape = SubResource("SphereShape3D_5e0b5")
 
 [connection signal="body_entered" from="PlayerHitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="PlayerHitbox" to="." method="_on_player_hitbox_body_exited"]

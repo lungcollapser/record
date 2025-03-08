@@ -8,18 +8,17 @@ var player
 var target = null
 var player_hold
 var player_attack
-var return_check = false
-var enemy_dead_body_check = true
-var aggro_check = false
-var stun_check = false
 var rng = RandomNumberGenerator.new()
 var enemy_return_one
 var enemy_return_two
 var enemy_return_three
 var enemy_positions = [enemy_return_one, enemy_return_two, enemy_return_three]
-
+#state checks
 var enemy_movement_check = false
-
+var return_check = false
+var enemy_dead_body_check = true
+var aggro_check = false
+var stun_check = false
 
 @onready var enemy_stun_timer = $EnemyStunTimer
 @onready var eye_hitbox_one = $EyeHitbox1
