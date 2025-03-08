@@ -50,6 +50,8 @@ func demon_chase():
 			look_at(demon_look_position)
 	
 func demon_spawn():
-	var player_spawn_radius = player_spawn.radius
-	if SanityBar.value < 100:
-		demon_nav.set_target_position(player_spawn) 
+	var player_spawn_radius = player_spawn.shape.radius
+	var player_spawn_radius_rand = randf_range(5.0, player_spawn_radius)
+	if SanityBar.value < 100 and demon_nav.target_position == player_spawn.shape:
+		set_physics_process(true)
+		demon.visible = true
