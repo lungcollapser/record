@@ -14,6 +14,7 @@ var action_behavior = randi_range(0, 1)
 var movement_behavior = randi_range(0, 1)
 var spawn_behavior = randi_range(0, 3)
 var demon_movement_check = false
+var demon_check = true
 
 var spawn_point_one
 var spawn_point_two
@@ -52,6 +53,8 @@ func demon_chase():
 func demon_spawn():
 	var player_spawn_radius = player_spawn.shape.radius
 	var player_spawn_radius_rand = randf_range(5.0, player_spawn_radius)
-	if SanityBar.value < 100 and demon_nav.target_position == player_spawn.shape:
+	if demon_check == true:
+		demon_check = false
 		set_physics_process(true)
 		demon.visible = true
+		demon.set_global_position(Vector3(randf_range(2.0, player_spawn_radius), 0, randf_range(2.0, player_spawn_radius)))

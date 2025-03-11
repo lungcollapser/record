@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://1y17vfrf35yb"]
+[gd_scene load_steps=7 format=3 uid="uid://1y17vfrf35yb"]
 
 [ext_resource type="Script" uid="uid://dbxfrg5rs300j" path="res://scripts/demon.gd" id="1_dxsly"]
 [ext_resource type="PackedScene" uid="uid://rur8lkdjm8qa" path="res://beehavetrees/demon_behavior_tree.tscn" id="2_pl0jq"]
@@ -12,9 +12,6 @@ albedo_color = Color(0.18, 0.18, 0.18, 1)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_8jsuv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qwncu"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_34ndt"]
-radius = 100.0
 
 [node name="demon" type="CharacterBody3D"]
 visible = false
@@ -35,15 +32,10 @@ mesh = SubResource("CapsuleMesh_8jsuv")
 [node name="demonshape" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_qwncu")
 
-[node name="demonarea" type="Area3D" parent="."]
-
-[node name="demonareashape" type="CollisionShape3D" parent="demonarea"]
-shape = SubResource("SphereShape3D_34ndt")
-
 [node name="demonnav" type="NavigationAgent3D" parent="."]
 path_height_offset = -0.65
 avoidance_enabled = true
+radius = 5.0
 
-[node name="demonbehaviortree" parent="." node_paths=PackedStringArray("blackboard", "actor") instance=ExtResource("2_pl0jq")]
-blackboard = NodePath("@Node@28204")
-actor = NodePath("..")
+[node name="demonbehaviortree" parent="." node_paths=PackedStringArray("blackboard") instance=ExtResource("2_pl0jq")]
+blackboard = NodePath("@Node@44638")

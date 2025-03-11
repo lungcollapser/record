@@ -2,7 +2,7 @@ extends CharacterBody3D
 class_name Player
 
 @onready var death_screen = %deathscreen
-
+@onready var demon = %demon
 #player attribute variables.
 var speed = 0
 var max_endurance = clamp(100, 0, 100)

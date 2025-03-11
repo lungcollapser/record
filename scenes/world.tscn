@@ -31,7 +31,7 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 3, 2), PackedInt32Arr
 [node name="world" type="Node3D"]
 
 [node name="Playerbody" parent="." instance=ExtResource("8_qc25h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.1114, 3.39988, 2.11204)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.8238, 3.39988, 2.11204)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xmfbt")
@@ -359,6 +359,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.4788, 1.49676, 9.98748)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.112, 2.12726, -0.369226)
 
 [node name="demon" parent="Enemies" instance=ExtResource("6_8fra5")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83.5519, 2.08931, -4.68612)
 
 [node name="Items" type="Node3D" parent="."]
