@@ -51,10 +51,8 @@ func demon_chase():
 			look_at(demon_look_position)
 	
 func demon_spawn():
-	var player_spawn_radius = player_spawn.shape.radius
-	var player_spawn_radius_rand = randf_range(5.0, player_spawn_radius)
 	if demon_check == true:
 		demon_check = false
 		set_physics_process(true)
 		demon.visible = true
-		demon.set_global_position(Vector3(randf_range(2.0, player_spawn_radius), 0, randf_range(2.0, player_spawn_radius)))
+		demon.set_global_position(Vector3(player.global_position.x + randf_range(-15.0, 15.0), 0, player.global_position.z + randf_range(-15.0, 15.0)))

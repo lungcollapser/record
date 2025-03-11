@@ -37,5 +37,6 @@ path_height_offset = -0.65
 avoidance_enabled = true
 radius = 5.0
 
-[node name="demonbehaviortree" parent="." node_paths=PackedStringArray("blackboard") instance=ExtResource("2_pl0jq")]
-blackboard = NodePath("@Node@44638")
+[node name="demonbehaviortree" parent="." node_paths=PackedStringArray("blackboard", "actor") instance=ExtResource("2_pl0jq")]
+blackboard = NodePath("@Node@47838")
+actor = NodePath("..")

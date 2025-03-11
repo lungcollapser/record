@@ -11,7 +11,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qmjj8"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5e0b5"]
-radius = 20.0
+radius = 5.0
 
 [node name="Playerbody" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_qqke5")
