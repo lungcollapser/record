@@ -55,4 +55,4 @@ func demon_spawn():
 		demon_check = false
 		set_physics_process(true)
 		demon.visible = true
-		demon.set_global_position(Vector3(player.global_position.x + randf_range(-15.0, 15.0), 0, player.global_position.z + randf_range(-15.0, 15.0)))
+		demon.set_global_position(Vector3(player.global_position.x + randf_range(-20.0, 20.0), 0, player.global_position.z + randf_range(-20.0, 20.0)))

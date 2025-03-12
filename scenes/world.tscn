@@ -47,13 +47,13 @@ directional_shadow_split_1 = 0.0
 navigation_mesh = SubResource("NavigationMesh_4q0lt")
 
 [node name="Floor" type="CSGBox3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.5665, -1.81775, 0)
+transform = Transform3D(1.505, 0, 0, 0, 1.505, 0, 0, 0, 1.505, -54.5665, -3.26946, 0)
 use_collision = true
 collision_priority = 100.0
 size = Vector3(55.44, 5.3, 34.145)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D" groups=["wall"]]
-transform = Transform3D(1.06639, 0, 0, 0, 1, 0, 0, 0, 1.0298, 0, 0, 0)
+transform = Transform3D(1.505, 0, 0, 0, 1.505, 0, 0, 0, 1.505, 0, -1.45171, 0)
 use_collision = true
 collision_mask = 3
 collision_priority = 100.0
