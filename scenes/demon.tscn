@@ -38,4 +38,4 @@ avoidance_enabled = true
 radius = 5.0
 
 [node name="demonbehaviortree" parent="." node_paths=PackedStringArray("blackboard") instance=ExtResource("2_pl0jq")]
-blackboard = NodePath("@Node@30822")
+blackboard = NodePath("@Node@29174")

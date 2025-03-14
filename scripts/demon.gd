@@ -28,6 +28,7 @@ const DEMON_RUN_SPEED = 8
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 	player_spawn = get_tree().get_first_node_in_group("spawnsplayer")
+	set_physics_process(false)
 	
 		
 func _physics_process(delta: float) -> void:
@@ -58,7 +59,7 @@ func demon_spawn():
 func demon_idle():
 	set_physics_process(true)
 	print("ayoooo")
-	demon_nav.set_target_position(demon.global_position.x + randf_range(-20.0, 20.0), 0, demon.global_position.z + randf_range(-20.0, 20.0))
+	demon_nav.set_target_position(Vector3(randf_range(-15.0, 15.0), 0, randf_range(-15.0, 15.0)))
 	look_at(demon_nav.target_position)
 			
 			
