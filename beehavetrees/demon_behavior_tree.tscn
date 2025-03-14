@@ -18,7 +18,7 @@
 [node name="demonbehaviortree" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_grcr1")
 blackboard = NodePath("@Node@21793")
-actor = NodePath("")
+actor = NodePath("..")
 
 [node name="SelectorReactiveComposite" type="Node" parent="."]
 script = ExtResource("2_j48i1")
@@ -63,19 +63,19 @@ script = ExtResource("10_atik2")
 [node name="ActionLeaf" type="Node" parent="SelectorReactiveComposite/SequenceComposite/SequenceComposite2/SequenceComposite3/SequenceComposite4/DelayDecorator"]
 script = ExtResource("10_ks0yh")
 
-[node name="SequenceComposite2" type="Node" parent="SelectorReactiveComposite"]
+[node name="DelayDecorator" type="Node" parent="SelectorReactiveComposite"]
+script = ExtResource("10_atik2")
+wait_time = 3.0
+metadata/_custom_type_script = "uid://iooh7exq4yqx"
+
+[node name="SequenceComposite2" type="Node" parent="SelectorReactiveComposite/DelayDecorator"]
 script = ExtResource("2_qs44a")
 metadata/_custom_type_script = "uid://cftuh1744ak4w"
 
-[node name="ConditionLeaf" type="Node" parent="SelectorReactiveComposite/SequenceComposite2"]
+[node name="ConditionLeaf" type="Node" parent="SelectorReactiveComposite/DelayDecorator/SequenceComposite2"]
 script = ExtResource("13_j48i1")
 metadata/_custom_type_script = "uid://bg8f4f85y1mvr"
 
-[node name="DelayDecorator" type="Node" parent="SelectorReactiveComposite/SequenceComposite2"]
-script = ExtResource("10_atik2")
-wait_time = 0.5
-metadata/_custom_type_script = "uid://iooh7exq4yqx"
-
-[node name="ActionLeaf" type="Node" parent="SelectorReactiveComposite/SequenceComposite2/DelayDecorator"]
+[node name="ActionLeaf" type="Node" parent="SelectorReactiveComposite/DelayDecorator/SequenceComposite2"]
 script = ExtResource("14_ujw7y")
 metadata/_custom_type_script = "uid://b18ewv75iua1r"

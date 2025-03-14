@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://1y17vfrf35yb"]
+[gd_scene load_steps=8 format=3 uid="uid://1y17vfrf35yb"]
 
 [ext_resource type="Script" uid="uid://dbxfrg5rs300j" path="res://scripts/demon.gd" id="1_dxsly"]
 [ext_resource type="PackedScene" uid="uid://rur8lkdjm8qa" path="res://beehavetrees/demon_behavior_tree.tscn" id="2_pl0jq"]
+[ext_resource type="PackedScene" uid="uid://f0m5m4mf0wu8" path="res://scenes/randomspawncomponent.tscn" id="3_ofewj"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_vguw8"]
 size = Vector3(0.085, 0.175, 0.11)
@@ -38,4 +39,6 @@ avoidance_enabled = true
 radius = 5.0
 
 [node name="demonbehaviortree" parent="." node_paths=PackedStringArray("blackboard") instance=ExtResource("2_pl0jq")]
-blackboard = NodePath("@Node@29174")
+blackboard = NodePath("@Node@42852")
+
+[node name="randomspawncomponent" parent="." instance=ExtResource("3_ofewj")]

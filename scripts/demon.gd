@@ -4,6 +4,7 @@ extends CharacterBody3D
 @onready var demon_mesh = $demonmesh
 @onready var demon_shape = $demonshape
 @onready var demon_nav = $demonnav
+@onready var random_spawn = $randomspawncomponent
 
 var player
 var player_spawn
@@ -49,17 +50,9 @@ func demon_chase():
 	if demon_look_position != Vector3.ZERO:
 			look_at(demon_look_position)
 	
-func demon_spawn():
-	if demon_check == true:
-		set_physics_process(true)
-		demon_check = false
-		demon.visible = true
-		demon.set_global_position(Vector3(player.global_position.x + randf_range(-15.0, 15.0), 2, player.global_position.z + randf_range(-15.0, 15.0)))
-
 func demon_idle():
 	set_physics_process(true)
-	print("ayoooo")
-	demon_nav.set_target_position(Vector3(randf_range(-15.0, 15.0), 0, randf_range(-15.0, 15.0)))
+	demon_nav.set_target_position(Vector3(player.global_position.x + randf_range(-30.0, 15.0), 0, player.global_position.z + randf_range(-30.0, 15.0)))
 	look_at(demon_nav.target_position)
 			
 			

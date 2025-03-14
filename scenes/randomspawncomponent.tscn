@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://f0m5m4mf0wu8"]
+
+[ext_resource type="Script" uid="uid://cx1og6mrrs3mh" path="res://scripts/randomspawncomponent.gd" id="1_txhmt"]
+
+[node name="randomspawncomponent" type="RigidBody3D"]
+script = ExtResource("1_txhmt")

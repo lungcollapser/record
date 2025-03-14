@@ -57,7 +57,7 @@ avoidance_enabled = true
 wait_time = 2.0
 
 [node name="EnemyBehaviorTree" parent="." node_paths=PackedStringArray("blackboard", "actor") instance=ExtResource("2_g8pol")]
-blackboard = NodePath("@Node@21799")
+blackboard = NodePath("@Node@43158")
 actor = NodePath("..")
 
 [connection signal="timeout" from="EnemyStunTimer" to="." method="_on_enemy_stun_timer_timeout"]
