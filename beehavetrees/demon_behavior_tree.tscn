@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://rur8lkdjm8qa"]
+[gd_scene load_steps=15 format=3 uid="uid://rur8lkdjm8qa"]
 
 [ext_resource type="Script" uid="uid://cbhx7cqfl4pky" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_grcr1"]
 [ext_resource type="Script" uid="uid://cftuh1744ak4w" path="res://addons/beehave/nodes/composites/sequence.gd" id="2_qs44a"]
@@ -12,10 +12,12 @@
 [ext_resource type="Script" uid="uid://c0cg2a8crif7v" path="res://beehavetrees/beehavescripts/demon_close_behavior_check.gd" id="9_cqvpn"]
 [ext_resource type="Script" uid="uid://iooh7exq4yqx" path="res://addons/beehave/nodes/decorators/delayer.gd" id="10_atik2"]
 [ext_resource type="Script" uid="uid://bdlmn83xy7ojl" path="res://beehavetrees/beehavescripts/demon_close_behavior.gd" id="10_ks0yh"]
+[ext_resource type="Script" uid="uid://orn0qdt7k7sr" path="res://beehavetrees/beehavescripts/demon_idle_state_check.gd" id="13_j48i1"]
+[ext_resource type="Script" uid="uid://c3312cer04jes" path="res://beehavetrees/beehavescripts/demon_idle_state.gd" id="14_ujw7y"]
 
 [node name="demonbehaviortree" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_grcr1")
-blackboard = NodePath("@Node@21786")
+blackboard = NodePath("@Node@21793")
 actor = NodePath("..")
 
 [node name="SelectorReactiveComposite" type="Node" parent="."]
@@ -61,3 +63,20 @@ wait_time = 0.5
 
 [node name="ActionLeaf" type="Node" parent="SelectorReactiveComposite/SequenceComposite4/DelayDecorator"]
 script = ExtResource("10_ks0yh")
+
+[node name="DelayDecorator" type="Node" parent="SelectorReactiveComposite"]
+script = ExtResource("10_atik2")
+wait_time = 2.0
+metadata/_custom_type_script = "uid://iooh7exq4yqx"
+
+[node name="SequenceComposite" type="Node" parent="SelectorReactiveComposite/DelayDecorator"]
+script = ExtResource("2_qs44a")
+metadata/_custom_type_script = "uid://cftuh1744ak4w"
+
+[node name="ConditionLeaf" type="Node" parent="SelectorReactiveComposite/DelayDecorator/SequenceComposite"]
+script = ExtResource("13_j48i1")
+metadata/_custom_type_script = "uid://bg8f4f85y1mvr"
+
+[node name="ActionLeaf" type="Node" parent="SelectorReactiveComposite/DelayDecorator/SequenceComposite"]
+script = ExtResource("14_ujw7y")
+metadata/_custom_type_script = "uid://b18ewv75iua1r"

@@ -110,4 +110,4 @@ sprint={
 [physics]
 
 common/physics_ticks_per_second=128
-3d/physics_engine="JoltPhysics3D"
+3d/physics_engine="Jolt Physics (Extension)"

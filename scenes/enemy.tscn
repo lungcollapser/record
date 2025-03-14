@@ -48,7 +48,7 @@ shape = SubResource("CapsuleShape3D_wf8db")
 shape = SubResource("CapsuleShape3D_syuu0")
 
 [node name="EnemyNavigation" type="NavigationAgent3D" parent="."]
-path_height_offset = -0.53
+path_height_offset = -0.75
 simplify_path = true
 simplify_epsilon = 5.995
 avoidance_enabled = true
@@ -57,7 +57,7 @@ avoidance_enabled = true
 wait_time = 2.0
 
 [node name="EnemyBehaviorTree" parent="." node_paths=PackedStringArray("blackboard", "actor") instance=ExtResource("2_g8pol")]
-blackboard = NodePath("@Node@21792")
+blackboard = NodePath("@Node@24345")
 actor = NodePath("..")
 
 [connection signal="timeout" from="EnemyStunTimer" to="." method="_on_enemy_stun_timer_timeout"]

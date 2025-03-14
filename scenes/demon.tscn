@@ -33,10 +33,9 @@ mesh = SubResource("CapsuleMesh_8jsuv")
 shape = SubResource("CapsuleShape3D_qwncu")
 
 [node name="demonnav" type="NavigationAgent3D" parent="."]
-path_height_offset = -0.65
+path_height_offset = -0.85
 avoidance_enabled = true
 radius = 5.0
 
-[node name="demonbehaviortree" parent="." node_paths=PackedStringArray("blackboard", "actor") instance=ExtResource("2_pl0jq")]
-blackboard = NodePath("@Node@28920")
-actor = NodePath("..")
+[node name="demonbehaviortree" parent="." node_paths=PackedStringArray("blackboard") instance=ExtResource("2_pl0jq")]
+blackboard = NodePath("@Node@30822")
